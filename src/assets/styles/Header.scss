@@ -1,0 +1,33 @@
+header {
+    background-color: #110F21;
+    color:white;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    justify-content: space-between;
+    .header__logo__block {
+        margin-left: 10%;
+    }
+    .header__interaction__block {
+        margin-right: 5%;
+        text-transform: uppercase;
+        button {
+            background-color: transparent;
+            border: none;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+        a { 
+            margin-left: 25px;
+            cursor: pointer;
+        }
+        a:nth-last-child(1) {
+            margin: 0px;
+        }
+        span {
+           border:1px solid #FD7114;
+           margin: 0 20px;
+           background-color: #FD7114;
+        }
+    }
+}
