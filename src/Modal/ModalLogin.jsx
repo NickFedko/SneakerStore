@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from 'react';
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { setUser } from "../UserStore/Slice/userSlice";
 
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
@@ -18,8 +19,23 @@ export default function ModalLogin({openLoginModal, openModal}) {
         setPasswordShown(!passwordShown);
     }
 
+    const dispatch = useDispatch();
+    const history = useNavigate();
+
     const handleLogin = (email, password) => {
         const auth = getAuth();
+        signInWithEmailAndPassword(auth, email, password)
+            .then(({user}) => {
+                console.log(user);
+                dispatch(setUser({
+                    email: user.email,
+                    id: user.uid,
+                    token: user.accessToken,
+                }));
+                history('/');
+                openLoginModal(false);
+            })
+            .catch(() => alert('Invalid user!'))
     }
     
     return(
@@ -76,8 +92,8 @@ export default function ModalLogin({openLoginModal, openModal}) {
                     />
                 </div>
                 <button
-                    type="submit"
-                    onClick={handleLogin}
+                    type="button"
+                    onClick={(e) => handleLogin(email, password)}
                 >
                     Login
                 </button>
