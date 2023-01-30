@@ -6,12 +6,10 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
 import store from './Store/store';
-import { userStore } from './UserStore';
-import './firebase';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <Provider store={userStore}>
+    <Provider store={store}>
       <React.StrictMode>
         <BrowserRouter>
           <App />

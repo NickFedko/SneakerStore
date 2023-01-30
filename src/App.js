@@ -12,13 +12,18 @@ import CardPage from './Pages/CardPage';
 function App() {
   const [openRegisterModal, setOpenRegisterModal] = useState(false);
   const [openLoginModal, setOpenLoginModal] = useState(false);
+  const [isLogined, setLogined] = useState(false);
 
   return (
     <div className="App">
-      <Header openModal={setOpenRegisterModal} openLoginModal={setOpenLoginModal}/>
+      <Header 
+        openModal={setOpenRegisterModal} 
+        openLoginModal={setOpenLoginModal}
+        isLogined= {setLogined}
+      />
       <AnimatePresence>
-        {openRegisterModal && <ModalRegister openModal={setOpenRegisterModal} openLoginModal={setOpenLoginModal}/>}
-        {openLoginModal && <ModalLogin openModal={setOpenRegisterModal} openLoginModal={setOpenLoginModal} />}
+        {openRegisterModal && <ModalRegister openModal={setOpenRegisterModal} openLoginModal={setOpenLoginModal} />}
+        {openLoginModal && <ModalLogin openModal={setOpenRegisterModal} openLoginModal={setOpenLoginModal} isLogined={setLogined}/>}
       </AnimatePresence>
       <Routes>
         <Route exact path='/' element={<MainPage />} />

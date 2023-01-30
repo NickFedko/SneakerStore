@@ -1,16 +1,11 @@
 import { motion } from "framer-motion";
+import axios from "axios";
 import { useState } from 'react';
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { setUser } from "../UserStore/Slice/userSlice";
-
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 import close from '../assets/images/close.svg';
-
 import '../assets/styles/ModalLogin.css';
 
-export default function ModalLogin({openLoginModal, openModal}) {
+export default function ModalLogin({openLoginModal, openModal, isLogined}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordShown, setPasswordShown] = useState(false);
@@ -18,26 +13,38 @@ export default function ModalLogin({openLoginModal, openModal}) {
     const togglePassword = () => {
         setPasswordShown(!passwordShown);
     }
-
-    const dispatch = useDispatch();
-    const history = useNavigate();
-
-    const handleLogin = (email, password) => {
-        const auth = getAuth();
-        signInWithEmailAndPassword(auth, email, password)
-            .then(({user}) => {
-                console.log(user);
-                dispatch(setUser({
-                    email: user.email,
-                    id: user.uid,
-                    token: user.accessToken,
-                }));
-                history('/');
-                openLoginModal(false);
-            })
-            .catch(() => alert('Invalid user!'))
-    }
     
+    async function signIn(email, password) {
+        let item={ 
+            email, 
+            password
+        };
+        let result = await axios({
+            method: 'POST',
+            url: "https://demo-api.apiko.academy/api/auth/login",
+            data: item,
+            headers: {
+                "Content-type": "application/json",
+                "accept": "application/json"
+            }
+        });
+        await openLoginModal(false);
+        await isLogined(true);
+        console.log(result);
+        let token = result.data.token;
+        localStorage.setItem('token', token)
+        token = localStorage.getItem('token');
+        let account = await axios({
+            url:"https://demo-api.apiko.academy/api/account", 
+            method: 'GET',
+            headers: {
+                "accept": "application/json",
+                "Authorization" : `Bearer ${token}`
+            }
+        });
+        console.log(account);
+    }
+
     return(
             <motion.div 
                 className='modal__overlay' 
@@ -49,8 +56,7 @@ export default function ModalLogin({openLoginModal, openModal}) {
                 }}
                 exit={{opacity:0}}
             >
-                <motion.form
-                    autoComplete="off" 
+                <motion.div
                     className="modal__container" 
                     onClick={(e) => e.stopPropagation()}
                     initial={{scale:0}}
@@ -93,11 +99,11 @@ export default function ModalLogin({openLoginModal, openModal}) {
                 </div>
                 <button
                     type="button"
-                    onClick={(e) => handleLogin(email, password)}
+                    onClick={(e) => signIn(email, password)}
                 >
                     Login
                 </button>
-            </motion.form>
+            </motion.div>
             <motion.div 
                 className="modal__login__transfer" 
                 onClick={() => openModal(true)}

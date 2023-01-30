@@ -5,7 +5,7 @@ import '../assets/styles/Header.css'
 import { Link } from 'react-router-dom';
 
 
-export default function Header({openModal, openLoginModal}) {    
+export default function Header({openModal, openLoginModal, isLogined}) {    
     return(
         <header>
             <div className='header__logo__block'>

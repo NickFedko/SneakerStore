@@ -1,43 +1,41 @@
 import close from '../assets/images/close.svg';
 import '../assets/styles/ModalRegister.css';
+
 import {  motion } from 'framer-motion';
-import { useState } from 'react';
 
-import { useNavigate } from 'react-router-dom';
-
-import { setUser  } from '../UserStore/Slice/userSlice';
-
-import { useDispatch } from "react-redux";
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-
+import { useState, useEffect } from 'react';
 
 export default function ModalRegister({openModal, openLoginModal}) {
     const [passwordShown, setPasswordShown] = useState(false);
     const [email, setEmail] =  useState('');
-    const [password, setPassword] = useState('')
+    const [password, setPassword] = useState('');
+    const [fullName, setFullName] = useState('');
+    const [phone, setPhone] = useState('');
 
     const togglePassword = () => {
         setPasswordShown(!passwordShown);
     }
 
-    const dispatch = useDispatch();
-    const history = useNavigate();
- 
-    const handleSignUp = (email, password) => {
-        const auth = getAuth();
-        createUserWithEmailAndPassword(auth, email, password)
-            .then(({user}) => {
-                console.log(user);
-                dispatch(setUser({
-                    email: user.email,
-                    id: user.uid,
-                    token: user.accessToken,
-                }));
-                history('/');
-                openModal(false);
-            })
-            .catch(console.error)
+    async function signUp(email, password, phone, fullName) {
+        let item={ 
+            email, 
+            password,
+            phone, 
+            fullName,
+        };
+        let result = await fetch("https://demo-api.apiko.academy/api/auth/register", {
+            method: 'POST',
+            body: JSON.stringify(item),
+            headers: {
+                "Content-type": "application/json"
+            }
+        });
+        result = await result.json();
+        await openModal(false);
+        console.log(result);
     }
+    
+
 
     return(
             <motion.div 
@@ -68,7 +66,13 @@ export default function ModalRegister({openModal, openLoginModal}) {
                 </button>
                 <h2>Register</h2>
                 <div className='input__container'>
-                    <input type="text" name="fullname" required />
+                    <input 
+                        type="text" 
+                        name="fullname"
+                        value={fullName}
+                        onChange={(e) => setFullName(e.target.value)}
+                        required 
+                    />
                     <span className="label__span">Full Name</span>
                 </div>
                 <div className='input__container'>
@@ -82,7 +86,13 @@ export default function ModalRegister({openModal, openLoginModal}) {
                     <span>Email</span>
                 </div>
                 <div className='input__container'>
-                    <input type="tel" name="tel" required />
+                    <input 
+                        type="tel" 
+                        name="tel"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)} 
+                        required 
+                    />
                     <span>Phone</span>
                 </div>
                 <div className='input__container'>
@@ -100,7 +110,8 @@ export default function ModalRegister({openModal, openLoginModal}) {
                     />
                 </div>
                 <button 
-                    onClick={(e) => handleSignUp(email, password)}
+                    type="button"
+                    onClick={(e) => signUp(email, password, phone, fullName)}
                 >
                     Register
                 </button>
