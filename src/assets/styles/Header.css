@@ -12,15 +12,23 @@ header .header__logo__block {
 header .header__interaction__block {
   margin-right: 5%;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
 }
 header .header__interaction__block button {
   background-color: transparent;
   border: none;
-  margin-right: 15px;
   cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 header .header__interaction__block a {
   margin-left: 25px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
   cursor: pointer;
 }
 header .header__interaction__block a:nth-last-child(1) {
@@ -29,5 +37,6 @@ header .header__interaction__block a:nth-last-child(1) {
 header .header__interaction__block span {
   border: 1px solid #FD7114;
   margin: 0 20px;
+  height: 13px;
   background-color: #FD7114;
 }/*# sourceMappingURL=Header.css.map */

@@ -5,7 +5,8 @@ import { useState } from 'react';
 import close from '../assets/images/close.svg';
 import '../assets/styles/ModalLogin.css';
 
-export default function ModalLogin({openLoginModal, openModal, isLogined}) {
+
+export default function ModalLogin({openLoginModal, openModal, setLogined}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordShown, setPasswordShown] = useState(false);
@@ -13,6 +14,7 @@ export default function ModalLogin({openLoginModal, openModal, isLogined}) {
     const togglePassword = () => {
         setPasswordShown(!passwordShown);
     }
+
     
     async function signIn(email, password) {
         let item={ 
@@ -29,7 +31,6 @@ export default function ModalLogin({openLoginModal, openModal, isLogined}) {
             }
         });
         await openLoginModal(false);
-        await isLogined(true);
         console.log(result);
         let token = result.data.token;
         localStorage.setItem('token', token)
@@ -43,6 +44,7 @@ export default function ModalLogin({openLoginModal, openModal, isLogined}) {
             }
         });
         console.log(account);
+        setLogined(true);
     }
 
     return(

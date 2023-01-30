@@ -19,11 +19,12 @@ function App() {
       <Header 
         openModal={setOpenRegisterModal} 
         openLoginModal={setOpenLoginModal}
-        isLogined= {setLogined}
+        isLogined={isLogined}
+        setLogined={setLogined}
       />
       <AnimatePresence>
         {openRegisterModal && <ModalRegister openModal={setOpenRegisterModal} openLoginModal={setOpenLoginModal} />}
-        {openLoginModal && <ModalLogin openModal={setOpenRegisterModal} openLoginModal={setOpenLoginModal} isLogined={setLogined}/>}
+        {openLoginModal && <ModalLogin openModal={setOpenRegisterModal} openLoginModal={setOpenLoginModal} isLogined={isLogined} setLogined={setLogined}/>}
       </AnimatePresence>
       <Routes>
         <Route exact path='/' element={<MainPage />} />

@@ -11,14 +11,22 @@ header {
     .header__interaction__block {
         margin-right: 5%;
         text-transform: uppercase;
+        display:flex;
+        align-items: center;
         button {
             background-color: transparent;
             border: none;
-            margin-right: 15px;
             cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         a { 
             margin-left: 25px;
+            align-items: center;
+            display: flex;
+            justify-content: center;
             cursor: pointer;
         }
         a:nth-last-child(1) {
@@ -27,6 +35,7 @@ header {
         span {
            border:1px solid #FD7114;
            margin: 0 20px;
+           height: 13px;
            background-color: #FD7114;
         }
     }
