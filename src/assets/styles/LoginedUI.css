@@ -8,6 +8,7 @@
 
 .user__ui .user__icon {
     width: 40px;
+    cursor: pointer;
     height: 40px;
     background-color: #DEDEE0;
     border-radius: none;
@@ -45,6 +46,12 @@
     text-align: left;
     margin: 0;
     padding: 0;
+}
+
+.user__ui .drop_down__ul a {
+    margin: 0;
+    text-decoration: none;
+    color: black;
 }
 
 .drop_down__ul .drop_down__li {

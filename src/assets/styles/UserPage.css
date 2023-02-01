@@ -1,0 +1,95 @@
+.user_page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    max-width: 904px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.user_page .user_page__image {
+    margin: 60px 0;
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #DEDEE0;
+    font-size: 24px;
+}
+
+.user_page .user_page__nav {
+    display: flex;
+}
+
+.user_page .user_page__nav .user_page__nav_button{
+    width: 163px;
+    height: 74px;
+    box-sizing: border-box;
+    background-color: white;
+    border: 1.3px solid #DEDEE0;
+}
+
+.user_page .user_page__info, .user_page .user_page__password_change {
+    text-align: left;
+    width: 480px;
+}
+
+.info__form__input_block, .password_change__form__input_block {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+}
+
+.input_block__input {
+    width: 362px;
+    height: 40px;
+    box-sizing: border-box;
+    background-color: transparent;
+    border:1px solid lightgray;
+    margin: 10px 0px;
+    padding: 0px 10px;
+    border-radius: 5px;
+    outline: none;
+}
+
+.input_block__input:focus {
+    border: 2px solid #707070;
+    transition: 0.5s;
+    outline: none;
+}
+
+.info__form__input_block span, .password_change__form__input_block span {
+    position: absolute;
+    left: 0;
+    top:20px;
+    padding: 0px 10px;
+    pointer-events: none;
+    color: rgba(0, 0, 0, 0.6);
+    transition: 0.5s;
+}
+
+.info__form__input_block input:valid ~ span,
+.info__form__input_block input:focus ~ span,
+.password_change__form__input_block input:valid ~ span,
+.password_change__form__input_block input:focus ~  span{
+    color:black;
+    font-weight: 600;
+    transform: translateX(10px) translateY(-20px);
+    font-size: 14px;
+    background: white;
+}
+
+.user_page__info__form button, .user_page__password_change__form button {
+    width: 362px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    background-color: #FD7114;
+    color: white;
+    font-weight: 500;
+}

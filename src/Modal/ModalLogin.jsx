@@ -27,7 +27,7 @@ export default function ModalLogin({openLoginModal, openModal, setLogined}) {
             data: item,
             headers: {
                 "Content-type": "application/json",
-                "accept": "application/json"
+                "accept": "application/json", 
             }
         });
         await openLoginModal(false);
@@ -44,6 +44,7 @@ export default function ModalLogin({openLoginModal, openModal, setLogined}) {
             }
         });
         console.log(account);
+        localStorage.setItem('data', JSON.stringify(account.data))
         setLogined(true);
     }
 

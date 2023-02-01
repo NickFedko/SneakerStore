@@ -8,6 +8,7 @@ import ModalLogin from './Modal/ModalLogin';
 import { Route, Routes } from 'react-router-dom';
 import MainPage from './Pages/MainPage';
 import CardPage from './Pages/CardPage';
+import UserPage from './Pages/UserPage';
 
 function App() {
   const [openRegisterModal, setOpenRegisterModal] = useState(false);
@@ -29,6 +30,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<MainPage />} />
         <Route exact path='/orders' element={<CardPage />} />
+        <Route exact path='/account' element={<UserPage/>} />
       </Routes>
       <Footer />
     </div>
