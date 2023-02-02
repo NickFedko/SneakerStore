@@ -21,6 +21,7 @@ export default function Sorting() {
 
     const categoryHandleChange = (id) => {
         getCategory(id);
+        getCategoryProducts(id);
     }
 
     async function getCategory(id) {
@@ -30,8 +31,19 @@ export default function Sorting() {
             headers: {
                 'accept': 'application/json'
             }
-        })
+        });
         console.log(result)
+    }
+
+    async function getCategoryProducts(id) {
+        let result = await axios ({
+            method: 'GET',
+            url: `https://demo-api.apiko.academy/api/categories/${id}/products?offset=0&limit=20&sortBy=latest`,
+            headers: {
+                'accept': 'application/json'
+            }
+        });
+        console.log(result);
     }
 
     return(
