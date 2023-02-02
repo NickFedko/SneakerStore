@@ -13,7 +13,7 @@ export default function UserPage() {
     const country = data.country;
     const city = data.city;
     const address = data.address;
-    const firstLettersOfFullname = fullName.split(' ')[0].split('')[0] + fullName.split(' ')[1].split('')[0]
+    const firstLettersOfFullname = fullName.split(' ')[0].split('')[0] + fullName.split(' ')[1].split('')[0];
 
     const [name,setName] = useState(`${fullName}`);
     const [mail,setMail] = useState(`${email}`);
@@ -22,7 +22,15 @@ export default function UserPage() {
     const [town,setTown] = useState(`${city ? city : ''}`);
     const [direction,setDirection]= useState(`${address ? address : ''}`);
 
-    let item = {
+    const [oldAccountPassword, setOldAccountPassword] = useState('');
+    const [newAccountPassword, setNewAccountPassword] = useState('');
+    const [repeatAccountPassword, setRepeatAccountPassword] = useState('');
+
+    // const acc_info = JSON.parse(localStorage.getItem('acc_info'))
+    // console.log(acc_info)
+
+
+    let info = {
         fullName: name,
         email: mail,
         phone: number,
@@ -31,16 +39,26 @@ export default function UserPage() {
         address: direction
     }
 
-    const infoHandleSubmit = (e, item) => {
-        e.preventDefault();
-        putData(item)
+    let password = {
+        oldPassword: oldAccountPassword,
+        password: newAccountPassword
     }
 
-    async function putData(item) {
+    const infoHandleSubmit = (e, item) => {
+        e.preventDefault();
+        putDataInfo(item);
+    }
+
+    const changePasswordHandleSubmit = (e, item) => {
+        e.preventDefault();
+        putDataPassword(item);
+    }
+
+    async function putDataInfo(item) {
         let result = await axios({
             method: 'PUT',
             url: "https://demo-api.apiko.academy/api/account",
-            data: item,
+            data: info,
             headers: {
                 "Content-type": "application/json",
                 "accept": "application/json",
@@ -48,6 +66,20 @@ export default function UserPage() {
             }
         });
         console.log(result)
+    }
+
+    async function putDataPassword(item) {
+        let result = await axios({
+            method: 'PUT',
+            url: "https://demo-api.apiko.academy/api/account/password",
+            data: item,
+            headers: {
+                "Content-type": "application/json",
+                "accept": "application/json",
+                "Authorization" : `Bearer ${token}`
+            }
+        });
+        console.log(result);
     }
 
     return(
@@ -61,7 +93,7 @@ export default function UserPage() {
                 <button className='user_page__nav_button'>Favourites</button>
             </div>
             <p className="user_page__info">Main information</p>
-            <form className="user_page__info__form" onSubmit={(e) => infoHandleSubmit(e, item)}>
+            <form className="user_page__info__form" onSubmit={(e) => infoHandleSubmit(e, info)}>
                 <div className="info__form__input_block">
                     <input 
                         className="input_block__input" 
@@ -120,17 +152,32 @@ export default function UserPage() {
                 <button type="submit" >Save</button>
             </form>
             <p className="user_page__password_change">Change Password</p>
-            <form className="user_page__password_change__form">
+            <form className="user_page__password_change__form" onSubmit={(e) => changePasswordHandleSubmit(e, password)}>
                 <div className="password_change__form__input_block">
-                    <input className="input_block__input" required/>
+                    <input 
+                        type="password"
+                        className="input_block__input"
+                        required
+                        onChange={(e) => setOldAccountPassword(e.target.value)}
+                    />
                     <span>Current password</span>
                 </div>
                 <div className="password_change__form__input_block">
-                    <input className="input_block__input" required/>
+                    <input 
+                        type="password"
+                        className="input_block__input" 
+                        required
+                        onChange={(e) => setNewAccountPassword(e.target.value)}
+                    />
                     <span>New Password</span>
                 </div>
                 <div className="password_change__form__input_block">
-                    <input className="input_block__input" required/>
+                    <input 
+                        type="password"
+                        className="input_block__input" 
+                        required
+                        onChange={(e) => setRepeatAccountPassword(e.target.value)}
+                    />
                     <span>Confirm password</span>
                 </div>
                 <button type="submit">Change password</button>
