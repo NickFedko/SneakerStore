@@ -32,7 +32,7 @@ export default function Sorting() {
                 'accept': 'application/json'
             }
         });
-        console.log(result)
+        console.log(result);
     }
 
     async function getCategoryProducts(id) {
