@@ -6,7 +6,6 @@ import axios from 'axios';
 export default function UserPage() {
     const data = JSON.parse(localStorage.getItem('data'));
     const token = localStorage.getItem('token');
-    console.log(token)
 
     const fullName = data.fullName;
     const email = data.email;
@@ -24,12 +23,12 @@ export default function UserPage() {
     const [direction,setDirection]= useState(`${address ? address : ''}`);
 
     let item = {
-        name,
-        mail,
-        number,
-        nation,
-        town,
-        direction
+        fullName: name,
+        email: mail,
+        phone: number,
+        country: nation,
+        city: town,
+        address: direction
     }
 
     const infoHandleSubmit = (e, item) => {
