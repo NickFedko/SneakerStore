@@ -5,12 +5,17 @@ import {  motion } from 'framer-motion';
 
 import { useState, useEffect } from 'react';
 
+import { FadeLoader } from 'react-spinners';
+
 export default function ModalRegister({openModal, openLoginModal}) {
     const [passwordShown, setPasswordShown] = useState(false);
+
     const [email, setEmail] =  useState('');
     const [password, setPassword] = useState('');
     const [fullName, setFullName] = useState('');
     const [phone, setPhone] = useState('');
+
+    const [loading, setLoading] = useState(false);
 
     const togglePassword = () => {
         setPasswordShown(!passwordShown);
@@ -18,6 +23,7 @@ export default function ModalRegister({openModal, openLoginModal}) {
 
     async function signUp(e, email, password, phone, fullName) {
         e.preventDefault();
+        setLoading(true)
         let item={ 
             email, 
             password,
@@ -31,7 +37,8 @@ export default function ModalRegister({openModal, openLoginModal}) {
                 "Content-type": "application/json"
             }
         });
-        await openModal(false);
+        setLoading(false)
+        openModal(false);
         console.log(result);
     }
     
@@ -48,6 +55,17 @@ export default function ModalRegister({openModal, openLoginModal}) {
                 }}
                 exit={{opacity:0}}
             >
+                <FadeLoader 
+                    loading={loading} 
+                    style={{
+                        position: 'absolute', 
+                        zIndex:1,
+                        left: '50%',
+                        top: '40%',
+                        transform: 'translate(-50%, -50%)'
+                    }}
+                />
+                
                 <motion.form 
                     className="modal__container" 
                     onClick={(e) => e.stopPropagation()}

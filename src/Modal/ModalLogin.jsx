@@ -5,8 +5,11 @@ import { useState } from 'react';
 import close from '../assets/images/close.svg';
 import '../assets/styles/ModalLogin.css';
 
+import { FadeLoader } from 'react-spinners';
 
 export default function ModalLogin({openLoginModal, openModal, setLogined}) {
+    const [loading, setLoading] = useState(false);
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordShown, setPasswordShown] = useState(false);
@@ -18,6 +21,7 @@ export default function ModalLogin({openLoginModal, openModal, setLogined}) {
     
     async function signIn(e, email, password) {
         e.preventDefault();
+        setLoading(true)
         let item={ 
             email, 
             password
@@ -31,8 +35,8 @@ export default function ModalLogin({openLoginModal, openModal, setLogined}) {
                 "accept": "application/json", 
             }
         });
-        await openLoginModal(false);
-        console.log(result);
+        openLoginModal(false);
+        await setLoading(false)
         let token = result.data.token;
         localStorage.setItem('token', token)
         token = localStorage.getItem('token');
@@ -59,7 +63,17 @@ export default function ModalLogin({openLoginModal, openModal, setLogined}) {
                     transition:{duration:0.5}
                 }}
                 exit={{opacity:0}}
-            >
+            >   
+                <FadeLoader 
+                    loading={loading} 
+                    style={{
+                        position: 'absolute', 
+                        zIndex:1,
+                        left: '50%',
+                        top: '40%',
+                        transform: 'translate(-50%, -50%)'
+                    }}
+                />
                 <motion.form
                     className="modal__container" 
                     onClick={(e) => e.stopPropagation()}
