@@ -16,7 +16,8 @@ export default function ModalRegister({openModal, openLoginModal}) {
         setPasswordShown(!passwordShown);
     }
 
-    async function signUp(email, password, phone, fullName) {
+    async function signUp(e, email, password, phone, fullName) {
+        e.preventDefault();
         let item={ 
             email, 
             password,
@@ -30,7 +31,6 @@ export default function ModalRegister({openModal, openLoginModal}) {
                 "Content-type": "application/json"
             }
         });
-        result = await result.json();
         await openModal(false);
         console.log(result);
     }
@@ -48,9 +48,10 @@ export default function ModalRegister({openModal, openLoginModal}) {
                 }}
                 exit={{opacity:0}}
             >
-                <motion.div 
+                <motion.form 
                     className="modal__container" 
                     onClick={(e) => e.stopPropagation()}
+                    onSubmit={(e) => signUp(e, email, password, phone, fullName)}
                     initial={{scale:0}}
                     animate={{
                         scale:1,
@@ -71,23 +72,27 @@ export default function ModalRegister({openModal, openLoginModal}) {
                         name="fullname"
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
+                        pattern="^[a-zA-Z\s]+$"
                         required 
                     />
                     <span className="label__span">Full Name</span>
+                    <label className='modal__container__input_error'>Only letters. Cannot have special characters and numbers</label>
                 </div>
                 <div className='input__container'>
                     <input 
-                        type="email" 
+                        type="text" 
                         name="email" 
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        pattern='\S+@\S+'
                         required 
                     />
                     <span>Email</span>
+                    <label className='modal__container__input_error'>Enter valid email</label>
                 </div>
                 <div className='input__container'>
                     <input 
-                        type="tel" 
+                        type="text" 
                         name="tel"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)} 
@@ -110,12 +115,11 @@ export default function ModalRegister({openModal, openLoginModal}) {
                     />
                 </div>
                 <button 
-                    type="button"
-                    onClick={(e) => signUp(email, password, phone, fullName)}
+                    type="submit"
                 >
                     Register
                 </button>
-            </motion.div>
+            </motion.form>
             <motion.div 
                 className="modal__login__transfer" 
                 onClick={() => openLoginModal(true)}

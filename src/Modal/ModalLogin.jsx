@@ -16,7 +16,8 @@ export default function ModalLogin({openLoginModal, openModal, setLogined}) {
     }
 
     
-    async function signIn(email, password) {
+    async function signIn(e, email, password) {
+        e.preventDefault();
         let item={ 
             email, 
             password
@@ -59,9 +60,10 @@ export default function ModalLogin({openLoginModal, openModal, setLogined}) {
                 }}
                 exit={{opacity:0}}
             >
-                <motion.div
+                <motion.form
                     className="modal__container" 
                     onClick={(e) => e.stopPropagation()}
+                    onSubmit={(e) => signIn(e, email, password)}
                     initial={{scale:0}}
                     animate={{
                         scale:1,
@@ -69,44 +71,43 @@ export default function ModalLogin({openLoginModal, openModal, setLogined}) {
                     }}
                     exit={{scale:0}}
                 >
-                <button 
-                    className="modal__close-button" 
-                    onClick={() => openLoginModal(false)}
-                >
-                    <img src={close} />
-                </button>
-                <h2>Login</h2>
-                <div className='input__container'>
-                    <input 
-                        type="email" 
-                        required
-                        value={email}
-                        onChange={ (e) => setEmail(e.target.value)}
-                    />
-                    <span>Email</span>
-                </div>
-                <div className='input__container'>
-                    <input 
-                        type={passwordShown ? 'text' : 'password'} 
-                        name="password" 
-                        required 
-                        value={password}
-                        onChange={ (e) => setPassword(e.target.value)}
-                    />
-                    <span>Password</span>
                     <button 
-                        type="button"
-                        className='input__container__password__button'
-                        onClick={togglePassword}
-                    />
-                </div>
-                <button
-                    type="button"
-                    onClick={(e) => signIn(email, password)}
-                >
-                    Login
-                </button>
-            </motion.div>
+                        className="modal__close-button" 
+                        onClick={() => openLoginModal(false)}
+                    >
+                        <img src={close} />
+                    </button>
+                    <h2>Login</h2>
+                    <div className='input__container'>
+                        <input 
+                            type="email" 
+                            required
+                            value={email}
+                            onChange={ (e) => setEmail(e.target.value)}
+                        />
+                        <span>Email</span>
+                    </div>
+                    <div className='input__container'>
+                        <input 
+                            type={passwordShown ? 'text' : 'password'} 
+                            name="password" 
+                            required 
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <span>Password</span>
+                        <button 
+                            type="button"
+                            className='input__container__password__button'
+                            onClick={togglePassword}
+                        />
+                    </div>
+                    <button
+                        type="submit"
+                    >
+                        Login
+                    </button>
+                </motion.form>
             <motion.div 
                 className="modal__login__transfer" 
                 onClick={() => openModal(true)}

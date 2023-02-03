@@ -12,7 +12,6 @@ export default function ShopItems () {
                 'accept': 'application/json'
             }
         })
-        console.log(result)
         let product = localStorage.setItem('product', JSON.stringify(result.data))
     } 
 

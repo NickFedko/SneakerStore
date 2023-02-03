@@ -44,6 +44,18 @@
     outline: none;
 }
 
+.modal__container .input__container .modal__container__input_error {
+    color: red;
+    font-size: 12px;
+    display: none;
+    align-self: flex-start;
+    margin-left: 5px;
+}
+
+.modal__container .input__container input:invalid ~ label{
+    display: block;
+}
+
 .modal__container p {
     font-size: 12px;
     width: 278px;
@@ -79,6 +91,8 @@
 }
 
 .modal__container .input__container {
+    display:flex;
+    flex-direction: column;
     position:relative;
     width: 362px;
 }
