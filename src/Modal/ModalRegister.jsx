@@ -73,6 +73,7 @@ export default function ModalRegister({openModal, openLoginModal}) {
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
                         pattern="^[a-zA-Z\s]+$"
+                        placeholder=' '
                         required 
                     />
                     <span className="label__span">Full Name</span>
@@ -85,6 +86,7 @@ export default function ModalRegister({openModal, openLoginModal}) {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         pattern='\S+@\S+'
+                        placeholder=' '
                         required 
                     />
                     <span>Email</span>
@@ -96,19 +98,27 @@ export default function ModalRegister({openModal, openLoginModal}) {
                         name="tel"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)} 
+                        pattern='^(\+)?([0-9]){10,14}$'
+                        placeholder=' '
                         required 
                     />
                     <span>Phone</span>
+                    <label className='modal__container__input_error'>Should contain 10-14 numbers, can have optional + at the beginning</label>
                 </div>
                 <div className='input__container'>
                     <input 
                         type={passwordShown ? 'text' : 'password'} 
                         name="password"
                         value={password}
+                        minLength='8'
+                        maxLength='35'
                         onChange={(e) => setPassword(e.target.value)} 
+                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,35}$"
+                        placeholder=' '
                         required 
                     />
                     <span>Password</span>
+                    <label className='modal__container__input_error'>Should contain at least 1 letter, 1 special symbol, 1 number</label>
                     <button 
                         className='input__container__password__button'
                         onClick={togglePassword}

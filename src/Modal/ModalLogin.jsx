@@ -80,22 +80,31 @@ export default function ModalLogin({openLoginModal, openModal, setLogined}) {
                     <h2>Login</h2>
                     <div className='input__container'>
                         <input 
-                            type="email" 
-                            required
+                            type="text" 
+                            name="email" 
                             value={email}
-                            onChange={ (e) => setEmail(e.target.value)}
+                            onChange={(e) => setEmail(e.target.value)}
+                            pattern='\S+@\S+'
+                            placeholder=' '
+                            required 
                         />
                         <span>Email</span>
+                        <label className='modal__container__input_error'>Enter your email</label>
                     </div>
                     <div className='input__container'>
-                        <input 
-                            type={passwordShown ? 'text' : 'password'} 
-                            name="password" 
-                            required 
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
+                    <input 
+                        type={passwordShown ? 'text' : 'password'} 
+                        name="password"
+                        value={password}
+                        minLength='8'
+                        maxLength='35'
+                        onChange={(e) => setPassword(e.target.value)} 
+                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,35}$"
+                        placeholder=' '
+                        required 
+                    />
                         <span>Password</span>
+                        <label className='modal__container__input_error'>Should contain at least 1 letter, 1 special symbol, 1 number</label>
                         <button 
                             type="button"
                             className='input__container__password__button'

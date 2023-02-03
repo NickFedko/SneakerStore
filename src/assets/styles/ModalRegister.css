@@ -93,6 +93,7 @@
 .modal__container .input__container {
     display:flex;
     flex-direction: column;
+    text-align: left;
     position:relative;
     width: 362px;
 }
@@ -128,9 +129,17 @@
     transition: 0.5s;
 }
 
+.modal__container .input__container input:invalid {
+    border-color: red;
+}
+
+.modal__container .input__container input:invalid ~ span {
+    color: red;
+}
+
 .modal__container .input__container input:valid ~ span,
-.modal__container .input__container input:focus ~ span {
-    color:black;
+.modal__container .input__container input:focus ~ span,
+.modal__container .input__container input:not(:placeholder-shown) ~ span {
     font-weight: 600;
     transform: translateX(10px) translateY(-20px);
     font-size: 14px;
