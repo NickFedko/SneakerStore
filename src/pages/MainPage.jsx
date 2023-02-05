@@ -1,5 +1,5 @@
 import Sorting from "../components/Sorting";
-import ShopItems from "../Items/ShopItems";
+import ShopItems from "../components/items/ShopItems";
 
 export default function MainPage() {
     return(

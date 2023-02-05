@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import { useState } from 'react';
 
-import close from '../assets/images/close.svg';
-import '../assets/styles/ModalLogin.css';
+import close from '../../assets/images/close.svg';
+import '../../assets/styles/ModalLogin.css';
 
 
 export default function ModalLogin({openLoginModal, openModal, setLogined}) {

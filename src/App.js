@@ -2,13 +2,13 @@ import { useState } from 'react';
 import './assets/styles/App.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import ModalRegister from './Modal/ModalRegister';
+import ModalRegister from './components/modals/ModalRegister';
 import { AnimatePresence } from 'framer-motion';
-import ModalLogin from './Modal/ModalLogin';
+import ModalLogin from './components/modals/ModalLogin';
 import { Route, Routes } from 'react-router-dom';
-import MainPage from './Pages/MainPage';
-import CardPage from './Pages/CardPage';
-import UserPage from './Pages/UserPage';
+import MainPage from './pages/MainPage';
+import CardPage from './pages/CardPage';
+import UserPage from './pages/UserPage';
 
 function App() {
   const [openRegisterModal, setOpenRegisterModal] = useState(false);

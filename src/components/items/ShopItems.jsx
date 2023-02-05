@@ -1,4 +1,4 @@
-import '../assets/styles/ShopItems.css'
+import '../../assets/styles/ShopItems.css'
 
 import axios from 'axios'
 

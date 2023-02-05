@@ -1,5 +1,5 @@
-import close from '../assets/images/close.svg';
-import '../assets/styles/ModalRegister.css';
+import close from '../../assets/images/close.svg';
+import '../../assets/styles/ModalRegister.css';
 
 import {  motion } from 'framer-motion';
 
