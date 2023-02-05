@@ -1,11 +1,11 @@
-import Sorting from "../components/Sorting";
-import ShopItems from "../Items/ShopItems";
+import SearchBar from "../components/SearchBar";
+import ProductItems from "../components/ProductItems";
 
 export default function MainPage() {
     return(
     <div>
-        <Sorting />
-        <ShopItems />
+        <SearchBar />
+        <ProductItems />
     </div>
     )
 }

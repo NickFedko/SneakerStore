@@ -1,12 +1,12 @@
-import dropDown from '../../assets/images/drop_down.svg';
+import dropDown from '../assets/images/drop_down.svg';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { Link } from 'react-router-dom';
 
-import '../../assets/styles/LoginedUI.css'
+import '../assets/styles/LoginedUI.css'
 
-export default function LoginedUi( {setLogined} ) {
+export default function UserBar({setLogined} ) {
     const [open, setOpen] = useState(false);
     const variants = {
         rotate: { rotate: 0 , transition: { duration:0.5 } },

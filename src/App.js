@@ -2,13 +2,13 @@ import { useState } from 'react';
 import './assets/styles/App.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import ModalRegister from './Modal/ModalRegister';
+import ModalRegister from './components/modals/Register';
 import { AnimatePresence } from 'framer-motion';
-import ModalLogin from './Modal/ModalLogin';
+import AuthModal from './components/modals/AuthModal';
 import { Route, Routes } from 'react-router-dom';
-import MainPage from './Pages/MainPage';
-import CardPage from './Pages/CardPage';
-import UserPage from './Pages/UserPage';
+import MainPage from './pages/MainPage';
+import CardPage from './pages/CardPage';
+import UserPage from './pages/UserPage';
 
 function App() {
   const [openRegisterModal, setOpenRegisterModal] = useState(false);
@@ -24,8 +24,18 @@ function App() {
         setLogined={setLogined}
       />
       <AnimatePresence>
-        {openRegisterModal && <ModalRegister openModal={setOpenRegisterModal} openLoginModal={setOpenLoginModal} />}
-        {openLoginModal && <ModalLogin openModal={setOpenRegisterModal} openLoginModal={setOpenLoginModal} isLogined={isLogined} setLogined={setLogined}/>}
+        {openRegisterModal && <AuthModal 
+          openRegisterModal={openRegisterModal} 
+          setOpenRegisterModal={setOpenRegisterModal} 
+          openLoginModal={openLoginModal}
+          setOpenLoginModal={setOpenLoginModal} />
+        }
+        {openLoginModal && <AuthModal 
+          openRegisterModal={openRegisterModal} 
+          setOpenRegisterModal={setOpenRegisterModal} 
+          openLoginModal={openLoginModal}
+          setOpenLoginModal={setOpenLoginModal} />
+        }
       </AnimatePresence>
       <Routes>
         <Route exact path='/' element={<MainPage />} />
