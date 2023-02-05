@@ -1,8 +1,8 @@
-import '../../assets/styles/ShopItems.css'
+import '../assets/styles/ShopItems.css'
 
 import axios from 'axios'
 
-export default function ShopItems () {
+export default function ProductItems () {
 
     async function products() {
         let result = await axios({

@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useState } from 'react';
 import '../assets/styles/Sorting.css'
 
-export default function Sorting() {
+export default function SearchBar() {
 
     async function categories() {
         let result = await axios({

@@ -3,7 +3,7 @@ import favourite from '../assets/images/favourite.svg';
 import basket from '../assets/images/basket.svg';
 import '../assets/styles/Header.css'
 import { Link } from 'react-router-dom';
-import LoginedUi from './UI/LoginedUI';
+import UserBar from './UserBar';
 
 
 export default function Header({openModal, openLoginModal, isLogined, setLogined}) {    
@@ -20,7 +20,7 @@ export default function Header({openModal, openLoginModal, isLogined, setLogined
                     <button className='header__basket__button'><img src={basket} /></button>
                 </Link>
                 {isLogined ?
-                    <LoginedUi setLogined={setLogined} />
+                    <UserBar setLogined={setLogined} />
                     :
                     <>
                         <a 
