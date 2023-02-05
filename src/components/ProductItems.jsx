@@ -1,25 +1,19 @@
 import '../assets/styles/ShopItems.css'
 
-import axios from 'axios'
-
+import {useEffect, useState} from "react";
+import getProducts from "../services/api/products";
 export default function ProductItems () {
+    const [items, setItems] = useState([]);
 
-    async function products() {
-        let result = await axios({
-            method: 'GET',
-            url: 'https://demo-api.apiko.academy/api/products?offset=0&limit=20&sortBy=latest',
-            headers: {
-                'accept': 'application/json'
-            }
+    useEffect(() => {
+        getProducts().then((response) => {
+            setItems(response.data);
+        }).catch(error => console.log(error))
+            .finally(() => {
+            console.log('Experiment completed');
         })
-        console.log(result)
-        let product = localStorage.setItem('product', JSON.stringify(result.data))
-    } 
+    }, [])
 
-    products();
-
-    const items = JSON.parse(localStorage.getItem('product'));
-    
     return (
         <div className='items'>
             {items.map(item => (
