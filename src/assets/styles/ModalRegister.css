@@ -83,6 +83,14 @@
     width: 362px;
 }
 
+.modal__container .input__container {
+    text-align: left;
+}
+.modal__container .input__container label {
+    color:red;
+    font-size: 14px;
+}
+
 .modal__container .input__container input:focus {
     border: 2px solid #707070;
     transition: 0.5s;

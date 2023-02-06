@@ -1,13 +1,13 @@
+import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
 
 import close from '../../assets/images/close.svg';
 import '../../assets/styles/ModalLogin.css';
 import postLogin from "../../services/api/login";
 
+import * as Yup from 'yup'
 
 export default function Login({setOpenLoginModal}) {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const [passwordShown, setPasswordShown] = useState(false);
 
     const [token, setToken] = useState('')
@@ -16,8 +16,30 @@ export default function Login({setOpenLoginModal}) {
         setPasswordShown(!passwordShown);
     }
 
+    const validationSchema = Yup.object().shape({
+        email: Yup.string().required("Email is required").email("Email is invalid"),
+        password: Yup.string()
+          .required("Password is required")
+          .min(8, "Password must be at least 8 characters")
+          .max(36, "Password must not exceed 36 characters")
+          .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,36}$/,
+          'Must contain one uppercase character, one lowercase and one special symbol'
+          )
+      });
+
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: ''
+        },
+        validationSchema,
+        onSubmit: (data) => {
+            return(JSON.stringify(data, null, 2));
+        },
+    });
+
     useEffect(() => {
-        postLogin(email, password).then(response => {
+        postLogin(formik.values.email, formik.values.password).then(response => {
             console.log(response.data);
             setToken(response.data.token);
         }).catch(error => console.log(error))
@@ -38,21 +60,28 @@ export default function Login({setOpenLoginModal}) {
             <div className='input__container'>
                 <input 
                     type="email" 
+                    name="email"
+                    placeholder=' '
                     required
-                    value={email}
-                    onChange={ (e) => setEmail(e.target.value)}
+                    value={formik.values.email}
+                    onChange={formik.handleChange}
                 />
                 <span>Email</span>
+                <label>
+                    {formik.errors.email && formik.touched.email ? formik.errors.email : null}
+              </label>
             </div>
             <div className='input__container'>
                 <input 
                     type={passwordShown ? 'text' : 'password'} 
                     name="password" 
+                    placeholder=' '
                     required 
-                    value={password}
-                    onChange={ (e) => setPassword(e.target.value)}
+                    value={formik.values.password}
+                    onChange={formik.handleChange}
                 />
                 <span>Password</span>
+                <label>{formik.errors.password && formik.touched.password ? formik.errors.password : null}</label>
                 <button 
                     type="button"
                     className='input__container__password__button'
@@ -61,6 +90,7 @@ export default function Login({setOpenLoginModal}) {
             </div>
             <button
                 type="button"
+                onClick={formik.handleSubmit}
             >
                 Login
             </button>

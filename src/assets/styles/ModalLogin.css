@@ -106,7 +106,16 @@
 }
 
 
-.modal__container .input__container input:valid ~ span,
+.modal__container .input__container {
+    text-align: left;
+}
+.modal__container .input__container label {
+    color:red;
+    font-size: 14px;
+}
+
+
+.modal__container .input__container input:not(:placeholder-shown) ~ span,
 .modal__container .input__container input:focus ~ span {
     color:black;
     font-weight: 600;
