@@ -47,13 +47,18 @@ export default function Register({setOpenRegisterModal}) {
     });
 
     useEffect(()=> {
-        postRegister(formik.values.email, formik.values.password, formik.values.phone, formik.values.fullName).then((response) =>{
+        postRegister(formik.values.email, formik.values.password, formik.values.phone, formik.values.fullName)
+        .then((response) =>{
             console.log(response);
         }).catch(error => console.log(error))
             .finally(() => {
             console.log('Expirement completed')
          })
     }, [])
+
+    const onClick = () => {
+        formik.handleSubmit() ? setOpenRegisterModal(false) : console.log('check')
+    }
     return(
         <>
             <button 
@@ -117,7 +122,7 @@ export default function Register({setOpenRegisterModal}) {
             </div>
             <button 
                 type="button"
-                onClick={formik.handleSubmit}
+                onClick={onClick}
             >
                 Register
             </button>

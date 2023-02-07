@@ -1,20 +1,41 @@
 import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import close from '../../assets/images/close.svg';
 import '../../assets/styles/ModalLogin.css';
 import postLogin from "../../services/api/login";
+
+import {login} from '../../actions/auth'
 
 import * as Yup from 'yup'
 
 export default function Login({setOpenLoginModal}) {
     const [passwordShown, setPasswordShown] = useState(false);
 
-    const [token, setToken] = useState('')
-
     const togglePassword = () => {
         setPasswordShown(!passwordShown);
     }
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const signIn = (email, password) => {
+        setLoading(true);
+        formik.handleSubmit() ? 
+            dispatch(login(email, password))
+                .then(() => {
+                    console.log('ok')
+                    navigate('/')
+                })
+                .catch(() => {
+                    setLoading(false);
+                })
+            : setLoading(false)
+    }
+
+    const [loading, setLoading] = useState(false);
 
     const validationSchema = Yup.object().shape({
         email: Yup.string().required("Email is required").email("Email is invalid"),
@@ -38,15 +59,15 @@ export default function Login({setOpenLoginModal}) {
         },
     });
 
-    useEffect(() => {
-        postLogin(formik.values.email, formik.values.password).then(response => {
-            console.log(response.data);
-            setToken(response.data.token);
-        }).catch(error => console.log(error))
-            .finally(() => {
-            console.log('Experiment completed');
-        })
-    }, [])
+    // useEffect(() => {
+    //     postLogin(formik.values.email, formik.values.password).then(response => {
+    //         console.log(response.data);
+    //         setToken(response.data.token);
+    //     }).catch(error => console.log(error))
+    //         .finally(() => {
+    //         console.log('Experiment completed');
+    //     })
+    // }, [])
 
     return(
         <>
@@ -90,7 +111,7 @@ export default function Login({setOpenLoginModal}) {
             </div>
             <button
                 type="button"
-                onClick={formik.handleSubmit}
+                onClick={signIn}
             >
                 Login
             </button>
