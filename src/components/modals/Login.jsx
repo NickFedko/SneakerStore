@@ -1,18 +1,21 @@
 import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import close from '../../assets/images/close.svg';
 import '../../assets/styles/ModalLogin.css';
 import postLogin from "../../services/api/login";
 
-import {login} from '../../actions/auth'
+import { login } from '../../actions/auth'
+
+import { ClipLoader } from 'react-spinners';
 
 import * as Yup from 'yup'
 
 export default function Login({setOpenLoginModal}) {
     const [passwordShown, setPasswordShown] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const togglePassword = () => {
         setPasswordShown(!passwordShown);
@@ -21,21 +24,24 @@ export default function Login({setOpenLoginModal}) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const {isLoggedIn} = useSelector(state => state.auth)
+    const {message} = useSelector(state => state.message)
+
     const signIn = (email, password) => {
         setLoading(true);
         formik.handleSubmit() ? 
+            setLoading(false)
+            : 
             dispatch(login(email, password))
                 .then(() => {
-                    console.log('ok')
-                    navigate('/')
+                    navigate('/account')
+                    setLoading(false)
+                    setOpenLoginModal(false)
                 })
                 .catch(() => {
                     setLoading(false);
                 })
-            : setLoading(false)
     }
-
-    const [loading, setLoading] = useState(false);
 
     const validationSchema = Yup.object().shape({
         email: Yup.string().required("Email is required").email("Email is invalid"),
@@ -71,6 +77,7 @@ export default function Login({setOpenLoginModal}) {
 
     return(
         <>
+            {message && (<span>{message}</span>)}
             <button 
                 className="modal__close-button" 
                 onClick={() => setOpenLoginModal(false)}
@@ -113,7 +120,7 @@ export default function Login({setOpenLoginModal}) {
                 type="button"
                 onClick={()=> signIn(formik.values.email, formik.values.password)}
             >
-                Login
+                {loading ? <ClipLoader color={'white'} size={20}/> : 'Login'}
             </button>
         </>
     )

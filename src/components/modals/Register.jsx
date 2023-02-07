@@ -6,9 +6,14 @@ import postRegister from '../../services/api/register';
 import { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { register } from '../../actions/auth';
 
 export default function Register({setOpenRegisterModal}) {
     const [passwordShown, setPasswordShown] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const togglePassword = () => {
         setPasswordShown(!passwordShown);
@@ -46,21 +51,41 @@ export default function Register({setOpenRegisterModal}) {
         },
     });
 
-    useEffect(()=> {
-        postRegister(formik.values.email, formik.values.password, formik.values.phone, formik.values.fullName)
-        .then((response) =>{
-            console.log(response);
-        }).catch(error => console.log(error))
-            .finally(() => {
-            console.log('Expirement completed')
-         })
-    }, [])
+    // useEffect(()=> {
+    //     postRegister(formik.values.email, formik.values.password, formik.values.phone, formik.values.fullName)
+    //     .then((response) =>{
+    //         console.log(response);
+    //     }).catch(error => console.log(error))
+    //         .finally(() => {
+    //         console.log('Expirement completed')
+    //      })
+    // }, [])
 
-    const onClick = () => {
-        formik.handleSubmit() ? setOpenRegisterModal(false) : console.log('check')
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const {message} = useSelector(state => state.message)
+    const {isLoggedIn} = useSelector(state => state.auth)
+
+
+    const signUp = (email, password, phone, fullName) => {
+        setLoading(true);
+        formik.handleSubmit() ? 
+            setLoading(false)
+            : 
+            dispatch(register(email, password, phone, fullName))
+                .then(() => {
+                    navigate('/account')
+                    setLoading(false)
+                    setOpenRegisterModal(false)
+                })
+                .catch(() => {
+                    setLoading(false);
+                })
     }
     return(
         <>
+            {message && (<span>{message}</span>)}
             <button 
                 className="modal__close-button" 
                 onClick={() => setOpenRegisterModal(false)}
@@ -122,7 +147,7 @@ export default function Register({setOpenRegisterModal}) {
             </div>
             <button 
                 type="button"
-                onClick={onClick}
+                onClick={() => signUp(formik.values.email, formik.values.password, formik.values.phone, formik.values.fullName)}
             >
                 Register
             </button>
