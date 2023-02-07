@@ -111,7 +111,7 @@ export default function Login({setOpenLoginModal}) {
             </div>
             <button
                 type="button"
-                onClick={signIn}
+                onClick={()=> signIn(formik.values.email, formik.values.password)}
             >
                 Login
             </button>
