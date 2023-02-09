@@ -65,16 +65,6 @@ export default function Login({setOpenLoginModal}) {
         },
     });
 
-    // useEffect(() => {
-    //     postLogin(formik.values.email, formik.values.password).then(response => {
-    //         console.log(response.data);
-    //         setToken(response.data.token);
-    //     }).catch(error => console.log(error))
-    //         .finally(() => {
-    //         console.log('Experiment completed');
-    //     })
-    // }, [])
-
     return(
         <>
             {message && (<span>{message}</span>)}

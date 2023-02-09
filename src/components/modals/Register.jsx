@@ -3,6 +3,8 @@ import '../../assets/styles/ModalRegister.css';
 
 import postRegister from '../../services/api/register';
 
+import { ClipLoader } from 'react-spinners';
+
 import { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -50,16 +52,6 @@ export default function Register({setOpenRegisterModal}) {
             return(JSON.stringify(data, null, 2));
         },
     });
-
-    // useEffect(()=> {
-    //     postRegister(formik.values.email, formik.values.password, formik.values.phone, formik.values.fullName)
-    //     .then((response) =>{
-    //         console.log(response);
-    //     }).catch(error => console.log(error))
-    //         .finally(() => {
-    //         console.log('Expirement completed')
-    //      })
-    // }, [])
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -149,7 +141,7 @@ export default function Register({setOpenRegisterModal}) {
                 type="button"
                 onClick={() => signUp(formik.values.email, formik.values.password, formik.values.phone, formik.values.fullName)}
             >
-                Register
+                {loading ? <ClipLoader color={'white'} size={20}/> : 'Register'}
             </button>
         </>
     )
