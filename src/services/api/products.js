@@ -1,10 +1,10 @@
 import axios from "axios";
+import { baseUrl, headers } from ".";
+
 export default async function getProducts() {
     return await axios({
         method: 'GET',
-        url: 'https://demo-api.apiko.academy/api/products?offset=0&limit=20&sortBy=latest',
-        headers: {
-            'accept': 'application/json'
-        }
+        url: `${baseUrl}products?offset=0&limit=20&sortBy=latest`,
+        headers: {headers}
     })
 }

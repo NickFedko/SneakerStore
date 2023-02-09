@@ -5,8 +5,10 @@ import '../assets/styles/Header.css'
 import { Link } from 'react-router-dom';
 import UserBar from './UserBar';
 
+import { useSelector } from 'react-redux';
 
-export default function Header({openModal, openLoginModal, isLogined, setLogined}) {    
+export default function Header({openModal, openLoginModal, isLogined, setLogined}) {  
+    const {isLoggedIn} = useSelector(state => state.auth)
     return(
         <header>
             <div className='header__logo__block'>
@@ -19,7 +21,7 @@ export default function Header({openModal, openLoginModal, isLogined, setLogined
                 <Link to={'/orders'}>
                     <button className='header__basket__button'><img src={basket} /></button>
                 </Link>
-                {isLogined ?
+                {isLoggedIn ?
                     <UserBar setLogined={setLogined} />
                     :
                     <>
