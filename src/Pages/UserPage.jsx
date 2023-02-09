@@ -9,8 +9,6 @@ import { ClipLoader } from 'react-spinners';
 import putUserAccountInfo from '../services/user-service'
 import putUserAccountPassword from '../services/user-service'
 
-import axios from 'axios';
-
 export default function UserPage() {
     const [loading, setLoading] = useState(false);
     const [loadingPassword, setLoadingPassword] =  useState(false);
@@ -52,7 +50,7 @@ export default function UserPage() {
     
     const validationSchemaPassword = Yup.object().shape({
         oldPassword: Yup.string()
-        .required("Old Password is required")
+        .required("Current Password is required")
         .min(8, "Password must be at least 8 characters")
         .max(36, "Password must not exceed 36 characters")
         .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,36}$/,
@@ -64,7 +62,7 @@ export default function UserPage() {
         .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,36}$/,
         'Must contain one uppercase character, one lowercase and one special symbol'),
         newPasswordRepeat: Yup.string()
-        .required("New Password repeat is required")
+        .required("Confirm Password is required")
         .min(8, "Password must be at least 8 characters")
         .max(36, "Password must not exceed 36 characters")
         .oneOf([Yup.ref('newPassword'), null], 'Passwords must match')

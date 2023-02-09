@@ -1,11 +1,9 @@
 import close from '../../assets/images/close.svg';
 import '../../assets/styles/ModalRegister.css';
 
-import postRegister from '../../services/api/register';
-
 import { ClipLoader } from 'react-spinners';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
