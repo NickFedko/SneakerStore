@@ -32,8 +32,7 @@ export default function UserBar({setLogined} ) {
     const logOut = useCallback(() => {
         dispatch(logout());
         navigate("/")
-    }, 
-    [dispatch],);
+    }, [dispatch, navigate]);
 
     return (
         <div className='user__ui'>
