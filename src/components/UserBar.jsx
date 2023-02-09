@@ -1,10 +1,14 @@
 import dropDown from '../assets/images/drop_down.svg';
-import { useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { Link } from 'react-router-dom';
 
 import '../assets/styles/LoginedUI.css'
+
+import { useDispatch } from 'react-redux';
+
+import { logout } from '../actions/auth';
 
 export default function UserBar({setLogined} ) {
     const [open, setOpen] = useState(false);
@@ -12,16 +16,22 @@ export default function UserBar({setLogined} ) {
         rotate: { rotate: 0 , transition: { duration:0.5 } },
         stop: { rotate: 180 , transition: { duration: 0.5 } }
     }
-    const data = JSON.parse(localStorage.getItem('data'))
+    const data = JSON.parse(localStorage.getItem('user'))
 
-    const fullName = data.fullName;
-    const email = data.email;
+    const fullName = data.account.fullName;
+    const email = data.account.email;
     const firstLettersOfFullname = fullName.split(' ')[0].split('')[0] + fullName.split(' ')[1].split('')[0]
 
-    const onClick = () => {
-        localStorage.removeItem('token');
-        setLogined(false);
-    }
+    useEffect(() => {
+        console.log('use Effect')
+    })
+
+    const dispatch = useDispatch();
+
+    const logOut = useCallback(() => {
+        dispatch(logout());
+    }, 
+    [dispatch],);
 
     return (
         <div className='user__ui'>
@@ -59,7 +69,7 @@ export default function UserBar({setLogined} ) {
                                 Settings
                             </li>
                         </Link>
-                        <li className='drop_down__li logout' onClick={() => onClick()}>
+                        <li className='drop_down__li logout' onClick={logOut}>
                             Log Out
                         </li>
                     </motion.ul>
