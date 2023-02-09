@@ -2,7 +2,7 @@ import dropDown from '../assets/images/drop_down.svg';
 import { useEffect, useState, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import '../assets/styles/LoginedUI.css'
 
@@ -27,9 +27,11 @@ export default function UserBar({setLogined} ) {
     })
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const logOut = useCallback(() => {
         dispatch(logout());
+        navigate("/")
     }, 
     [dispatch],);
 
