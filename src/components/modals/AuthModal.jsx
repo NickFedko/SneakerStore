@@ -1,9 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from 'react';
-
-import close from '../../assets/images/close.svg';
 import '../../assets/styles/ModalLogin.css';
-import postLogin from "../../services/api/login";
 import Login from "./Login";
 import Register from "./Register";
 
