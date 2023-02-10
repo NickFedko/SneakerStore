@@ -18,7 +18,7 @@ export default function ProductItems () {
         <div className='items'>
             {items.map(item => (
                 <div key={item.id} className="item__block" id={item.id}>   
-                   <img className="item__block__image" src={item.picture} />
+                   <img className="item__block__image" src={item.picture} alt=" "/>
                     <p className="item__block__name">{item.title.split(' ').slice(0,5).join(' ')}</p>
                     <p className="item__block__price">${item.price}</p>
                     <button type="button" className={`item__block__button ${item.favourite ? 'favourite' : ''}`} />

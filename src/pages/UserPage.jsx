@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../assets/styles/UserPage.css'
 import { useFormik } from 'formik';
-import { useSelector, useDispatch } from 'react-redux';
+import {  useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 
 import { ClipLoader } from 'react-spinners';
@@ -14,7 +14,6 @@ export default function UserPage() {
     const [loadingPassword, setLoadingPassword] =  useState(false);
 
     const user = JSON.parse(localStorage.getItem('user'));
-    const token = user.token
 
     const fullName = user.account.fullName;
     const email = user.account.email;
@@ -24,7 +23,8 @@ export default function UserPage() {
     const address = user.account.address;
     const firstLettersOfFullname = fullName.split(' ')[0].split('')[0] + fullName.split(' ')[1].split('')[0];
 
-    const {message} = useSelector(state => state.message);
+    // TODO
+    // const {message} = useSelector(state => state.message);
     const dispatch = useDispatch();
 
     const validationSchema = Yup.object().shape({

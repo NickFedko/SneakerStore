@@ -44,8 +44,8 @@ export default function AuthModal({ openLoginModal, setOpenLoginModal, openRegis
                 transition={{duration:0.5}}
                 exit={{scale:0}}
             >
-                {openLoginModal &&(<p>I have no account, <a onClick={e => loginTransfer()}>Register now</a> </p>)}
-                {openRegisterModal && (<p>I already have an account, <a onClick={e => registerTransfer()}>Log In</a></p>)}
+                {openLoginModal &&(<p>I have no account, <span onClick={e => loginTransfer()}>Register now</span> </p>)}
+                {openRegisterModal && (<p>I already have an account, <span onClick={e => registerTransfer()}>Log In</span></p>)}
             </motion.div>
         </motion.div>
     )
