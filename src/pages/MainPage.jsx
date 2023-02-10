@@ -6,7 +6,6 @@ export default function MainPage() {
     <div>
         <SearchBar />
         <ProductItems />
-        <p>Test</p>
     </div>
     )
 }
