@@ -1,4 +1,3 @@
-import close from '../../assets/images/close.svg';
 import '../../assets/styles/ModalRegister.css';
 
 import { ClipLoader } from 'react-spinners';
@@ -11,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { register } from '../../store/actions/auth';
 
-export default function Register({setOpenRegisterModal}) {
+export default function RegisterForm({setOpenRegisterModal}) {
     const [passwordShown, setPasswordShown] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -76,12 +75,6 @@ export default function Register({setOpenRegisterModal}) {
     return(
         <>
             {message && (<span>{message}</span>)}
-            <button 
-                className="modal__close-button" 
-                onClick={() => setOpenRegisterModal(false)}
-            >
-                <img src={close} />
-            </button>
             <h2>Register</h2>
             <div className='input__container'>
                 <input 
@@ -139,7 +132,7 @@ export default function Register({setOpenRegisterModal}) {
                 type="button"
                 onClick={() => signUp(formik.values.email, formik.values.password, formik.values.phone, formik.values.fullName)}
             >
-                {loading ? <ClipLoader color={'white'} size={20}/> : 'Register'}
+                {loading ? <ClipLoader color={'white'} size={20}/> : 'RegisterForm'}
             </button>
         </>
     )

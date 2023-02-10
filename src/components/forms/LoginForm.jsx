@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import close from '../../assets/images/close.svg';
 import '../../assets/styles/ModalLogin.css';
 
 import { login } from '../../store/actions/auth'
@@ -12,7 +11,7 @@ import { ClipLoader } from 'react-spinners';
 
 import * as Yup from 'yup'
 
-export default function Login({setOpenLoginModal}) {
+export default function LoginForm({setOpenLoginModal}) {
     const [passwordShown, setPasswordShown] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -65,13 +64,7 @@ export default function Login({setOpenLoginModal}) {
 
     return(
         <>
-            {message && (<span>{message}</span>)}
-            <button 
-                className="modal__close-button" 
-                onClick={() => setOpenLoginModal(false)}
-            >
-                <img src={close} alt={'close icon'}/>
-            </button>
+            {message && <span>{message}</span>}
             <h2>Login</h2>
             <div className='input__container'>
                 <input 
@@ -105,7 +98,7 @@ export default function Login({setOpenLoginModal}) {
                 />
             </div>
             <button type="button" onClick={()=> signIn(formik.values.email, formik.values.password)}>
-                {loading ? <ClipLoader color={'white'} size={20}/> : 'Login'}
+                {loading ? <ClipLoader color={'white'} size={20}/> : 'LoginForm'}
             </button>
         </>
     )

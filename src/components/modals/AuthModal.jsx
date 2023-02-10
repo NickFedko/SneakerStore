@@ -2,8 +2,9 @@ import { motion } from "framer-motion";
 
 
 import '../../assets/styles/ModalLogin.css';
-import Login from "./Login";
-import Register from "./Register";
+import LoginForm from "../forms/LoginForm";
+import RegisterForm from "../forms/RegisterForm";
+import closeIcon from "../../assets/images/close.svg";
 
 export default function AuthModal({ openLoginModal, setOpenLoginModal, openRegisterModal, setOpenRegisterModal }) {
     const loginTransfer = () => {
@@ -34,8 +35,15 @@ export default function AuthModal({ openLoginModal, setOpenLoginModal, openRegis
                     }}
                     exit={{scale:0}}
                 >
-                    {openRegisterModal && <Register setOpenRegisterModal={setOpenRegisterModal}/>} 
-                    {openLoginModal && <Login  setOpenLoginModal={setOpenLoginModal}/>} 
+                    <button
+                        className="modal__close-button"
+                        onClick={() => setOpenLoginModal(false)}
+                        style={{border: '1px solid red'}}
+                    >
+                        <img src={closeIcon} alt={'close icon'}/>
+                    </button>
+                    {openRegisterModal && <RegisterForm setOpenRegisterModal={setOpenRegisterModal}/>}
+                    {openLoginModal && <LoginForm setOpenLoginModal={setOpenLoginModal}/>}
                 </motion.div>   
             <motion.div 
                 className="modal__login__transfer" 
