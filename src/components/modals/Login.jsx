@@ -1,11 +1,10 @@
 import { useFormik } from 'formik';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import close from '../../assets/images/close.svg';
 import '../../assets/styles/ModalLogin.css';
-import postLogin from "../../services/api/login";
 
 import { login } from '../../actions/auth'
 

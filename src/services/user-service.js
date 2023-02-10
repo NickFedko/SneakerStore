@@ -14,9 +14,9 @@ const putUserAccountInfo = (fullname, email, phone, country, city, address) => {
 const putUserAccountPassword = (oldPassword, password) => {
     return putAccountPassword(authHeader, oldPassword, password)
 }
-
-export default {
+const UserService = {
     getUserAccount,
     putUserAccountInfo,
     putUserAccountPassword,
 }
+export default UserService;
