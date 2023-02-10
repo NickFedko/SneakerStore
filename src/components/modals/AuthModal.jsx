@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+
+
 import '../../assets/styles/ModalLogin.css';
 import Login from "./Login";
 import Register from "./Register";
