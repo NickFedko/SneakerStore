@@ -34,7 +34,13 @@ header .header__interaction__block a {
 header .header__interaction__block a:nth-last-child(1) {
   margin: 0px;
 }
-header .header__interaction__block span {
+header .header__interaction__block span.header__register__link {
+  margin: 0 20px;
+}
+header .header__interaction__block span.header__register__link:first-of-type {
+  margin: 0 0 0 20px;
+}
+header .header__interaction__block span.header__vertical__line {
   border: 1px solid #FD7114;
   margin: 0 20px;
   height: 13px;

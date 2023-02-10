@@ -38,7 +38,6 @@ export default function AuthModal({ openLoginModal, setOpenLoginModal, openRegis
                     <button
                         className="modal__close-button"
                         onClick={() => setOpenLoginModal(false)}
-                        style={{border: '1px solid red'}}
                     >
                         <img src={closeIcon} alt={'close icon'}/>
                     </button>

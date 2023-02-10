@@ -81,9 +81,10 @@ export default function RegisterForm({setOpenRegisterModal}) {
                     placeholder=' '
                     value={formik.values.fullName}
                     onChange={formik.handleChange}
+                    className={formik.errors.fullName && formik.touched.fullName ? 'error' : ''}
                     required 
                 />
-                <span className="label__span">Full Name</span>
+                <span className={formik.errors.fullName && formik.touched.fullName ? 'error' : ''}>Full Name</span>
                 <label>{formik.errors.fullName && formik.touched.fullName ? formik.errors.fullName : null}</label>
             </div>
             <div className='input__container'>
@@ -93,9 +94,10 @@ export default function RegisterForm({setOpenRegisterModal}) {
                     placeholder=' '
                     value={formik.values.email}
                     onChange={formik.handleChange}
+                    className={formik.errors.email && formik.touched.email ? 'error' : ''}
                     required 
                 />
-                <span>Email</span>
+                <span className={formik.errors.email && formik.touched.email ? 'error' : ''}>Email</span>
                 <label>{formik.errors.email && formik.touched.email ? formik.errors.email : null}</label>
             </div>
             <div className='input__container'>
@@ -106,8 +108,9 @@ export default function RegisterForm({setOpenRegisterModal}) {
                     value={formik.values.phone}
                     onChange={formik.handleChange} 
                     required 
+                    className={formik.errors.phone && formik.touched.phone ? 'error' : ''}
                 />
-                <span>Phone</span>
+                <span className={formik.errors.phone && formik.touched.phone ? 'error' : ''}>Phone</span>
                 <label>{formik.errors.phone && formik.touched.phone ? formik.errors.phone : null}</label>
             </div>
             <div className='input__container'>
@@ -118,8 +121,9 @@ export default function RegisterForm({setOpenRegisterModal}) {
                     value={formik.values.password}
                     onChange={formik.handleChange} 
                     required 
+                    className={formik.errors.password && formik.touched.password ? 'error' : ''}
                 />
-                <span>Password</span>
+                <span className={formik.errors.password && formik.touched.password ? 'error' : ''}>Password</span>
                 <label>{formik.errors.password && formik.touched.password ? formik.errors.password : null}</label>
                 <button 
                     className='input__container__password__button'
@@ -130,7 +134,7 @@ export default function RegisterForm({setOpenRegisterModal}) {
                 type="button"
                 onClick={() => signUp(formik.values.email, formik.values.password, formik.values.phone, formik.values.fullName)}
             >
-                {loading ? <ClipLoader color={'white'} size={20}/> : 'RegisterForm'}
+                {loading ? <ClipLoader color={'white'} size={20}/> : 'Register'}
             </button>
         </>
     )

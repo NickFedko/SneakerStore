@@ -72,8 +72,9 @@ export default function LoginForm({setOpenLoginModal}) {
                     required
                     value={formik.values.email}
                     onChange={formik.handleChange}
+                    className={formik.errors.email && formik.touched.email ? 'error' : ''}
                 />
-                <span>Email</span>
+                <span className={formik.errors.email && formik.touched.email ? 'error' : ''}>Email</span>
                 <label>
                     {formik.errors.email && formik.touched.email ? formik.errors.email : null}
               </label>
@@ -86,8 +87,9 @@ export default function LoginForm({setOpenLoginModal}) {
                     required 
                     value={formik.values.password}
                     onChange={formik.handleChange}
+                    className={formik.errors.password && formik.touched.password ? 'error' : ''}
                 />
-                <span>Password</span>
+                <span className={formik.errors.password && formik.touched.password ? 'error' : ''}>Password</span>
                 <label>{formik.errors.password && formik.touched.password ? formik.errors.password : null}</label>
                 <button 
                     type="button"
@@ -96,7 +98,7 @@ export default function LoginForm({setOpenLoginModal}) {
                 />
             </div>
             <button type="button" onClick={()=> signIn(formik.values.email, formik.values.password)}>
-                {loading ? <ClipLoader color={'white'} size={20}/> : 'LoginForm'}
+                {loading ? <ClipLoader color={'white'} size={20}/> : 'Login'}
             </button>
         </>
     )

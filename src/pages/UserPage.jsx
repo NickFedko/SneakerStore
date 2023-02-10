@@ -23,8 +23,8 @@ export default function UserPage() {
     const address = user.account.address;
     const firstLettersOfFullname = fullName.split(' ')[0].split('')[0] + fullName.split(' ')[1].split('')[0];
 
-    // TODO
-    // const {message} = useSelector(state => state.message);
+    //TODO API RESPONSE MESSAGE
+    //const {message} = useSelector(state => state.message);
     const dispatch = useDispatch();
 
     const validationSchema = Yup.object().shape({

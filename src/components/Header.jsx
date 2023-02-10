@@ -31,7 +31,7 @@ export default function Header({openModal, openLoginModal, setLogined}) {
                         >
                             register
                         </span>
-                        <span />
+                        <span className='header__vertical__line' />
                         <span
                             className='header__login__link'
                             onClick={() => openLoginModal(true)}

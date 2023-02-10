@@ -45,17 +45,7 @@
     font-size: 16px;
 }
 
-.modal__container .input__container .modal__container__input_error {
-    color: red;
-    font-size: 12px;
-    display: none;
-    align-self: flex-start;
-    margin-left: 5px;
-}
 
-.modal__container .input__container input:invalid ~ label{
-    display: block;
-}
 
 .modal__container p {
     font-size: 12px;
@@ -128,24 +118,21 @@
     transition: 0.5s;
 }
 
-.modal__container .input__container input:invalid {
-    border-color: red;
-}
-
-.modal__container .input__container input:invalid ~ span {
-    color: red;
-}
-
 .modal__container .input__container {
     text-align: left;
 }
+
+.modal__container .input__container .error {
+    border-color:red;
+    color: red;
+}
+
 .modal__container .input__container label {
     color:red;
     font-size: 14px;
 }
 
 
-.modal__container .input__container input:valid ~ span,
 .modal__container .input__container input:focus ~ span,
 .modal__container .input__container input:not(:placeholder-shown) ~ span {
     font-weight: 600;
