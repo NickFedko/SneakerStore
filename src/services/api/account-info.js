@@ -4,7 +4,7 @@ import { baseUrl } from ".";
 export default async function putAccountInfo(header, fullName, email, phone, country, city, address) {
     return await axios({
         method: 'PUT',
-        url:`${baseUrl}account`,
+        url:`${baseUrl}/account`,
         headers: {header},
         data: {
             fullName,
