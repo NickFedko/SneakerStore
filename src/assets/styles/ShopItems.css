@@ -55,11 +55,8 @@
     right: 10px;
     border-radius: 50%;
     border: none;
-    background: #FFFFFF;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.163407);
-    background-image: url('../images/favourite\ \(2\).svg');
-    background-repeat: no-repeat;
-    background-position: center;
+    background: #FFFFFF url('../images/icons/favourite_unactive.svg') no-repeat center;
     transition: 0.5;
 }
 

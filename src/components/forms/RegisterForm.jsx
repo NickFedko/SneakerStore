@@ -54,8 +54,6 @@ export default function RegisterForm({setOpenRegisterModal}) {
     const navigate = useNavigate();
 
     const {message} = useSelector(state => state.message)
-    const {isLoggedIn} = useSelector(state => state.auth)
-
 
     const signUp = (email, password, phone, fullName) => {
         setLoading(true);

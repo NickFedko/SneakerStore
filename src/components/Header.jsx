@@ -7,37 +7,37 @@ import UserBar from './UserBar';
 
 import { useSelector } from 'react-redux';
 
-export default function Header({openModal, openLoginModal, isLogined, setLogined}) {  
+export default function Header({openModal, openLoginModal, setLogined}) {
     const {isLoggedIn} = useSelector(state => state.auth)
     return(
         <header>
             <div className='header__logo__block'>
                 <Link to={'/'}>    
-                    <img className='header__logo' src={logo} />
+                    <img className='header__logo' src={logo} alt={'logo'}/>
                 </Link>
             </div>
             <div className='header__interaction__block'>
-                <button className='header__favourite__button'><img src={favourite} /></button>
+                <button className='header__favourite__button'><img src={favourite} alt={'favourite__button'}/></button>
                 <Link to={'/orders'}>
-                    <button className='header__basket__button'><img src={basket} /></button>
+                    <button className='header__basket__button'><img src={basket} alt={'basket__button'}/></button>
                 </Link>
                 {isLoggedIn ?
                     <UserBar setLogined={setLogined} />
                     :
                     <>
-                        <a 
+                        <span
                             className='header__register__link' 
                             onClick={() => openModal(true)} 
                         >
                             register
-                        </a>
+                        </span>
                         <span />
-                        <a 
+                        <span
                             className='header__login__link'
                             onClick={() => openLoginModal(true)}
                         >
                             login
-                        </a>
+                        </span>
                     </>
                 }
             </div>
