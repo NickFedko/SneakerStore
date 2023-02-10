@@ -2,12 +2,10 @@ import { useFormik } from 'formik';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { login } from '../../store/actions/auth'
+import { ClipLoader } from 'react-spinners';
 
 import '../../assets/styles/ModalLogin.css';
-
-import { login } from '../../store/actions/auth'
-
-import { ClipLoader } from 'react-spinners';
 
 import * as Yup from 'yup'
 

@@ -1,6 +1,6 @@
-import logo from '../assets/images/logo.svg';
-import favourite from '../assets/images/favourite.svg';
-import basket from '../assets/images/basket.svg';
+import logo from '../assets/images/icons/logo.svg';
+import favourite from '../assets/images/icons/favourite_active.svg';
+import basket from '../assets/images/icons/basket.svg';
 import '../assets/styles/Header.css'
 import { Link } from 'react-router-dom';
 import UserBar from './UserBar';

@@ -64,6 +64,6 @@
 }
 
 .items .item__block .item__block__button.favourite {
-    background-image: url('../images/favourite_clicked.svg');
+    background-image: url('../images/icons/favourite_clicked.svg');
     transition: 0.5s;
 }

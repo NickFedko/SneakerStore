@@ -1,4 +1,4 @@
-import dropDown from '../assets/images/drop_down.svg';
+import dropDown from '../assets/images/icons/drop_down.svg';
 import { useEffect, useState, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 

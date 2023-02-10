@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import '../../assets/styles/ModalLogin.css';
 import LoginForm from "../forms/LoginForm";
 import RegisterForm from "../forms/RegisterForm";
-import closeIcon from "../../assets/images/close.svg";
+import closeIcon from "../../assets/images/icons/close.svg";
 
 export default function AuthModal({ openLoginModal, setOpenLoginModal, openRegisterModal, setOpenRegisterModal }) {
     const loginTransfer = () => {
