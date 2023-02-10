@@ -16,6 +16,11 @@ export default function AuthModal({ openLoginModal, setOpenLoginModal, openRegis
         setOpenLoginModal(true);
     }
 
+    const closeAuthModal = () => {
+        setOpenLoginModal(false);
+        setOpenRegisterModal(false);
+    }
+
     return(
             <motion.div 
                 className='modal__overlay' 
@@ -37,7 +42,7 @@ export default function AuthModal({ openLoginModal, setOpenLoginModal, openRegis
                 >
                     <button
                         className="modal__close-button"
-                        onClick={() => setOpenLoginModal(false)}
+                        onClick={() => closeAuthModal()}
                     >
                         <img src={closeIcon} alt={'close icon'}/>
                     </button>

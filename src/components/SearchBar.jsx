@@ -15,7 +15,6 @@ export default function SearchBar() {
             setCategories(response.data);
         }).catch(error => console.log(error))
             .finally(() => {
-            console.log('Experiment completed');
          })
     }, [])
 
