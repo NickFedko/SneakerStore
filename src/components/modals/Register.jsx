@@ -9,7 +9,7 @@ import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { register } from '../../actions/auth';
+import { register } from '../../store/actions/auth';
 
 export default function Register({setOpenRegisterModal}) {
     const [passwordShown, setPasswordShown] = useState(false);

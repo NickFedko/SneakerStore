@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import close from '../../assets/images/close.svg';
 import '../../assets/styles/ModalLogin.css';
 
-import { login } from '../../actions/auth'
+import { login } from '../../store/actions/auth'
 
 import { ClipLoader } from 'react-spinners';
 
@@ -23,7 +23,6 @@ export default function Login({setOpenLoginModal}) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const {isLoggedIn} = useSelector(state => state.auth)
     const {message} = useSelector(state => state.message)
 
     const signIn = (email, password) => {
@@ -71,7 +70,7 @@ export default function Login({setOpenLoginModal}) {
                 className="modal__close-button" 
                 onClick={() => setOpenLoginModal(false)}
             >
-                <img src={close} />
+                <img src={close} alt={'close icon'}/>
             </button>
             <h2>Login</h2>
             <div className='input__container'>
@@ -105,10 +104,7 @@ export default function Login({setOpenLoginModal}) {
                     onClick={togglePassword}
                 />
             </div>
-            <button
-                type="button"
-                onClick={()=> signIn(formik.values.email, formik.values.password)}
-            >
+            <button type="button" onClick={()=> signIn(formik.values.email, formik.values.password)}>
                 {loading ? <ClipLoader color={'white'} size={20}/> : 'Login'}
             </button>
         </>

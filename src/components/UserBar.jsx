@@ -8,7 +8,7 @@ import '../assets/styles/LoginedUI.css'
 
 import { useDispatch } from 'react-redux';
 
-import { logout } from '../actions/auth';
+import { logout } from '../store/actions/auth';
 
 export default function UserBar({setLogined} ) {
     const [open, setOpen] = useState(false);
