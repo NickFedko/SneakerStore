@@ -4,8 +4,7 @@ import { useState, useEffect } from "react";
 import getProducts from "../services/api/products";
 
 export default function MainPage() {
-
-    const [items, setItems] = useState([]);
+    const [items, setItems] = useState([]); //  rename array
     
     useEffect(() => {
         getProducts().then((response) => {

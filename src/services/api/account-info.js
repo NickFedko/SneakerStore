@@ -1,18 +1,14 @@
 import axios from "axios";
 import { baseUrl } from ".";
+import authHeader from "../auth-header";
 
-export default async function putAccountInfo(header, fullName, email, phone, country, city, address) {
-    return await axios({
+export default function putAccountInfo(userInfo) {
+    return axios({
         method: 'PUT',
         url:`${baseUrl}/account`,
-        headers: {header},
+        headers: authHeader(),
         data: {
-            fullName,
-            email,
-            phone,
-            country,
-            city,
-            address
+            ...userInfo
         }
     })
 }
