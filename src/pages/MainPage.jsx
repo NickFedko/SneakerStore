@@ -18,13 +18,14 @@ export default function MainPage() {
     return(
     <div>
         <SearchBar />
-        <div>
+        <div className="list__items">
             {items.map(item => (
                 <ProductItem 
                     key={item.id} 
                     id={item.id} 
                     title={item.title} 
                     picture={item.picture} 
+                    price={item.price}
                 />
             ))}
         </div>

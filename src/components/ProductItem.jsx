@@ -1,5 +1,5 @@
-import '../assets/styles/ShopItems.css'
-export default function ProductItem (...props) {
+import '../assets/styles/ProductItem.css'
+export default function ProductItem (props) {
 
     return (
         <div key={props.key} className="item__block" id={props.id}>   
