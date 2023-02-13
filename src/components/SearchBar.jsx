@@ -11,7 +11,6 @@ export default function SearchBar() {
 
     useEffect(()=> {
         getCategories().then(response => {
-            console.log(response);
             setCategories(response.data);
         }).catch(error => console.log(error))
             .finally(() => {

@@ -9,7 +9,7 @@ import { ClipLoader } from 'react-spinners';
 import putUserAccountInfo from '../services/user-service'
 import putUserAccountPassword from '../services/user-service'
 
-export default function UserPage() {
+export default function AccountPage() {
     const [loading, setLoading] = useState(false);
     const [loadingPassword, setLoadingPassword] =  useState(false);
 

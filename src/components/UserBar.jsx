@@ -1,5 +1,5 @@
 import dropDown from '../assets/images/icons/drop_down.svg';
-import { useEffect, useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { Link, useNavigate } from 'react-router-dom';
@@ -21,10 +21,6 @@ export default function UserBar({setLogined} ) {
     const fullName = data.account.fullName;
     const email = data.account.email;
     const firstLettersOfFullname = fullName.split(' ')[0].split('')[0] + fullName.split(' ')[1].split('')[0]
-
-    useEffect(() => {
-        console.log('use Effect')
-    })
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -66,7 +62,7 @@ export default function UserBar({setLogined} ) {
                         </li>
                         <hr className='drop_down__hr' />
                         <Link to='/account'>
-                            <li className='drop_down__li'>
+                            <li className='drop_down__li' onClick={() => setOpen(false)}>
                                 Settings
                             </li>
                         </Link>

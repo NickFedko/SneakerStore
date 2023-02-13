@@ -6,7 +6,7 @@ import { AnimatePresence } from 'framer-motion';
 import { Route, Routes } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import CardPage from './pages/CardPage';
-import UserPage from './pages/UserPage';
+import AccountPage from './pages/AccountPage';
 import AuthModal from "./components/modals/AuthModal";
 
 function App() {
@@ -39,7 +39,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<MainPage />} />
         <Route exact path='/orders' element={<CardPage />} />
-        <Route exact path='/account' element={<UserPage/>} />
+        <Route exact path='/account' element={<AccountPage/>} />
       </Routes>
       <Footer />
     </div>
