@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 import getProducts from "../services/api/products";
 
 export default function MainPage() {
-    const [items, setItems] = useState([]); //  rename array
+    const [products, setProducts] = useState([]); //  rename array
     
     useEffect(() => {
         getProducts().then((response) => {
-            setItems(response.data);
+            setProducts(response.data);
         }).catch(error => console.log(error))
             .finally(() => {
         })
@@ -18,13 +18,13 @@ export default function MainPage() {
     <div>
         <SearchBar />
         <div className="list__items">
-            {items.map(item => (
+            {products.map(product => (
                 <ProductItem 
-                    key={item.id} 
-                    id={item.id} 
-                    title={item.title} 
-                    picture={item.picture} 
-                    price={item.price}
+                    key={product.id} 
+                    id={product.id} 
+                    title={product.title} 
+                    picture={product.picture} 
+                    price={product.price}
                 />
             ))}
         </div>

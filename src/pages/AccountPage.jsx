@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../assets/styles/UserPage.css'
 import { useFormik } from 'formik';
-import {  useDispatch } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import * as Yup from 'yup';
 
 import { ClipLoader } from 'react-spinners';
@@ -13,11 +13,11 @@ export default function AccountPage() {
 
     //TODO API RESPONSE MESSAGE
     //const {message} = useSelector(state => state.message);
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
-    const { account } = JSON.parse(localStorage.getItem('user')); // переделать на redux
+    const { data } = useSelector(state => state.auth.user); // переделать на redux
 
-    const { fullName, email, phone, country, city, address } = account;
+    const { fullName, email, phone, country, city, address } = data;    
 
     const initials = fullName.split(' ')[0].split('')[0] + fullName.split(' ')[1].split('')[0];
 

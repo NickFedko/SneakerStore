@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import '../assets/styles/LoginedUI.css'
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { logout } from '../store/actions/auth';
 
@@ -16,10 +16,9 @@ export default function UserBar({setLogined} ) {
         rotate: { rotate: 0 , transition: { duration:0.5 } },
         stop: { rotate: 180 , transition: { duration: 0.5 } }
     }
-    const data = JSON.parse(localStorage.getItem('user'))
+    const { data } = useSelector(state => state.auth.user)
 
-    const fullName = data.account.fullName;
-    const email = data.account.email;
+    const {fullName, email} = data
     const firstLettersOfFullname = fullName.split(' ')[0].split('')[0] + fullName.split(' ')[1].split('')[0]
 
     const dispatch = useDispatch();

@@ -6,9 +6,9 @@ import {
     LOGOUT
 } from '../actions/types';
 
-const user = JSON.parse(localStorage.getItem('user'));
+const access_token = JSON.parse(localStorage.getItem('access_token'));
 
-const initialState = user ? {isLoggedIn: true, user} : {isLoggedIn: false, user: null};
+const initialState = access_token ? {isLoggedIn: true, access_token} : {isLoggedIn: false, access_token: null};
 
 export default function authorization(state = initialState, action) {
     const { type, payload } = action;
@@ -28,7 +28,7 @@ export default function authorization(state = initialState, action) {
             return {
                 ...state,
                 isLoggedIn: true,
-                user: payload.user 
+                user: payload
             };
         case LOGIN_FAIL: 
             return {
