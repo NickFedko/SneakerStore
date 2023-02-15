@@ -8,7 +8,9 @@ import {
 
 const accessToken = JSON.parse(localStorage.getItem('access_token'));
 
-const initialState = accessToken ? {isLoggedIn: true, accessToken} : {isLoggedIn: false, accessToken: null};
+const initialState = accessToken
+                        ? { isLoggedIn: true, accessToken }
+                        : { isLoggedIn: false, accessToken: null };
 
 export default function authorization(state = initialState, action) {
     const { type, payload } = action;

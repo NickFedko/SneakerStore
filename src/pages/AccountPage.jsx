@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import '../assets/styles/UserPage.css'
 import { useFormik } from 'formik';
 import {  useSelector, useDispatch } from 'react-redux';
@@ -9,13 +9,17 @@ import { accountUpdate } from '../store/actions/account_update';
 
 export default function AccountPage() {
     const [loading, setLoading] = useState(false);
-    // const [loadingPassword, setLoadingPassword] =  useState(false);
+    const [accountInfo, setAccountInfo] = useState({}) // use this
+
+    useEffect(() => {
+        // get account info from API
+    }, [])
 
     //TODO API RESPONSE MESSAGE
     //const {message} = useSelector(state => state.message);
     // const dispatch = useDispatch();
 
-    const { data } = useSelector(state => state.auth.user)  ; // переделать на redux
+    const { data } = useSelector(state => state.auth.user)  ;
 
     const { fullName, email, phone, country, city, address } = data;    
 
