@@ -20,11 +20,8 @@ export default function MainPage() {
         <div className="list__items">
             {products.map(product => (
                 <ProductItem 
-                    key={product.id} 
-                    id={product.id} 
-                    title={product.title} 
-                    picture={product.picture} 
-                    price={product.price}
+                    key={product.id}
+                    product={product}
                 />
             ))}
         </div>
