@@ -6,9 +6,9 @@ import {
     LOGOUT
 } from '../actions/types';
 
-const access_token = JSON.parse(localStorage.getItem('access_token'));
+const accessToken = JSON.parse(localStorage.getItem('access_token'));
 
-const initialState = access_token ? {isLoggedIn: true, access_token} : {isLoggedIn: false, access_token: null};
+const initialState = accessToken ? {isLoggedIn: true, accessToken} : {isLoggedIn: false, accessToken: null};
 
 export default function authorization(state = initialState, action) {
     const { type, payload } = action;

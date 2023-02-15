@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import '../assets/styles/UserPage.css'
 import { useFormik } from 'formik';
-import {  useSelector } from 'react-redux';
+import {  useSelector, useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 
 import { ClipLoader } from 'react-spinners';
-import putAccountInfo from "../services/api/account-info";
+import { accountUpdate } from '../store/actions/account_update';
 
 export default function AccountPage() {
     const [loading, setLoading] = useState(false);
@@ -15,7 +15,7 @@ export default function AccountPage() {
     //const {message} = useSelector(state => state.message);
     // const dispatch = useDispatch();
 
-    const { data } = useSelector(state => state.auth.user); // переделать на redux
+    const { data } = useSelector(state => state.auth.user)  ; // переделать на redux
 
     const { fullName, email, phone, country, city, address } = data;    
 
@@ -42,6 +42,15 @@ export default function AccountPage() {
             .min(3, "At least 3 character"),
     });
 
+    const dispatch = useDispatch();
+
+    const handleClickUpdateAccountInfo = () => {
+        setLoading(true);
+        dispatch(accountUpdate(formik.values))
+            .then((response) => console.log(response))
+            .finally(() => setLoading(false))  
+    }
+
     const formik = useFormik({
         initialValues: {
             fullName,
@@ -51,7 +60,8 @@ export default function AccountPage() {
             city: city || '',
             address: address || ''
         },
-        validationSchema
+        validationSchema,
+        onSubmit: handleClickUpdateAccountInfo
     });
 
     // const validationSchemaPassword = Yup.object().shape({
@@ -86,20 +96,7 @@ export default function AccountPage() {
     //     }
     // })
 
-    // const changePasswordHandleSubmit = (oldPassword, newPassword) => {
-    //     setLoadingPassword(true);
-    //     formikPassword.handleSubmit()
-    //         ?
-    //         setLoadingPassword(false)
-    //         :
-    //         dispatch(putUserAccountPassword(oldPassword, newPassword))
-    //             .then(() => {
-    //                 setLoadingPassword(false)
-    //             })
-    //             .catch(() => {
-    //                 setLoadingPassword(false);
-    //             })
-    // }
+
 
     return(
         <div className="user_page">
@@ -182,11 +179,7 @@ export default function AccountPage() {
                 </div>
                 <button 
                     type="button"
-                    onClick={() => {
-                        //todo винести в функцію
-                        setLoading(true);
-                        putAccountInfo(formik.values).finally(() => setLoading(false))
-                    }}
+                    onClick={() => formik.handleSubmit()}
                 >{loading ? <ClipLoader color={'white'} size={20}/> : 'Save'}</button>
             </div>
             {/*<section id='profile-password-section'>*/}

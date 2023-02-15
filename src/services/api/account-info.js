@@ -10,5 +10,7 @@ export default function putAccountInfo(userInfo) {
         data: {
             ...userInfo
         }
+    }).then(response => {
+        return response.data
     })
 }

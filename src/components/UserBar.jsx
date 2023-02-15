@@ -18,7 +18,7 @@ export default function UserBar({setLogined} ) {
     }
     const { data } = useSelector(state => state.auth.user)
 
-    const {fullName, email} = data
+    const { fullName, email } = data
     const firstLettersOfFullname = fullName.split(' ')[0].split('')[0] + fullName.split(' ')[1].split('')[0]
 
     const dispatch = useDispatch();
