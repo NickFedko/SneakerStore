@@ -26,17 +26,6 @@ export default function SearchBar() {
         })
     }, [id])
 
-    // async function getCategory(id) {
-    //     let result = await axios ({
-    //         method: 'GET',
-    //         url: `https://demo-api.apiko.academy/api/categories/${id}`,
-    //         headers: {
-    //             'accept': 'application/json'
-    //         }
-    //     });
-    //     console.log(result);
-    // }
-
 
     return(
         <form className="sorting__form">

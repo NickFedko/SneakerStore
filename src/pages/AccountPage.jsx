@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import { useState, useEffect } from 'react';
 import '../assets/styles/UserPage.css'
 import { useFormik } from 'formik';
 import {  useSelector, useDispatch } from 'react-redux';
@@ -6,22 +6,29 @@ import * as Yup from 'yup';
 
 import { ClipLoader } from 'react-spinners';
 import { accountUpdate } from '../store/actions/account_update';
+import getAccount from '../services/api/account';
 
 export default function AccountPage() {
     const [loading, setLoading] = useState(false);
-    const [accountInfo, setAccountInfo] = useState({}) // use this
-
-    useEffect(() => {
-        // get account info from API
-    }, [])
+    // const [loadingPassword, setLoadingPassword] =  useState(false);
 
     //TODO API RESPONSE MESSAGE
     //const {message} = useSelector(state => state.message);
     // const dispatch = useDispatch();
 
-    const { data } = useSelector(state => state.auth.user)  ;
+    const [account, setAccount] = useState({});
 
-    const { fullName, email, phone, country, city, address } = data;    
+    const { data } = useSelector(state => state.auth.user)  ; // переделать на redux
+
+    useEffect(() => {
+        getAccount().then(response => {
+            setAccount(response.data);
+            console.log(response.data);
+        })
+    },[])
+
+
+    const { fullName, email, phone, country, city, address } = data;
 
     const initials = fullName.split(' ')[0].split('')[0] + fullName.split(' ')[1].split('')[0];
 
