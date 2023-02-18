@@ -238,6 +238,6 @@ export default function AccountPage() {
             {/*    >{loadingPassword ? <ClipLoader color={'white'} size={20}/> : 'Change'}</button>*/}
             {/*</div>*/}
             {/*</section>*/}
-        </div>
+        </div> 
     )
 }

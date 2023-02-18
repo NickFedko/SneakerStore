@@ -4,10 +4,10 @@ import getCategories from '../services/api/categories';
 
 import '../assets/styles/Sorting.css'
 import getCategory from '../services/api/category';
+import getSearchProducts from '../services/api/search_products';
 
-export default function SearchBar() {
+export default function SearchBar({searchProducts, setSearchProducts, setIdCategory}) {
     const [categories, setCategories] = useState([]);
-    const [id, setId] = useState('');
 
     useEffect(()=> {
         getCategories().then(response => {
@@ -17,20 +17,10 @@ export default function SearchBar() {
          })
     }, [])
 
-    useEffect(() => {
-        getCategory(id).then(respone => {
-            console.log(respone)
-        }).catch(error => console.log(error))
-            .finally(() => {
-            console.log('Example completed')
-        })
-    }, [id])
-
-
     return(
         <form className="sorting__form">
-            <input className="sorting__form__search" type="search" placeholder="Search products by name"/>
-            <select className="sorting__form__category" placeholder="Choose category" onChange={(e) => setId(e.target[e.target.selectedIndex].id)}>
+            <input className="sorting__form__search" onChange={(e) => setSearchProducts(e.target.value)} type="search" placeholder="Search products by name"/>
+            <select className="sorting__form__category" placeholder="Choose category" onChange={(e) => setIdCategory(e.target[e.target.selectedIndex].id)}>
                 {categories.map(item => (
                     <option key={item.id} value={item.name} id={item.id}> 
                         {item.name}
