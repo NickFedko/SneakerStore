@@ -5,14 +5,15 @@ import getProducts from "../services/api/products";
 
 export default function MainPage() {
     const [products, setProducts] = useState([]); //  rename array
+    const [maxLimitOfProducts, setMaxLimitOfProducts] = useState(20);
     
     useEffect(() => {
-        getProducts().then((response) => {
+        getProducts(maxLimitOfProducts).then((response) => {
             setProducts(response.data);
         }).catch(error => console.log(error))
             .finally(() => {
         })
-    }, [])
+    }, [maxLimitOfProducts])
 
     return(
     <div>
@@ -25,6 +26,7 @@ export default function MainPage() {
                 />
             ))}
         </div>
+        <button onClick={() => setMaxLimitOfProducts(maxLimitOfProducts + 20)}>Load more</button>
     </div>
     )
 }
