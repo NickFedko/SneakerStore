@@ -3,8 +3,6 @@ import { useState, useEffect } from 'react';
 import getCategories from '../services/api/categories';
 
 import '../assets/styles/Sorting.css'
-import getCategory from '../services/api/category';
-import getSearchProducts from '../services/api/search_products';
 
 export default function SearchBar({searchProducts, setSearchProducts, setIdCategory}) {
     const [categories, setCategories] = useState([]);

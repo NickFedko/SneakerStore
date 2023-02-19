@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import '../assets/styles/UserPage.css'
 import { useFormik } from 'formik';
 import {  useSelector, useDispatch } from 'react-redux';
@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 
 import { ClipLoader } from 'react-spinners';
 import { accountUpdate } from '../store/actions/account_update';
-import getAccount from '../services/api/account';
+// import getAccount from '../services/api/account';
 
 export default function AccountPage() {
     const [loading, setLoading] = useState(false);
@@ -16,16 +16,16 @@ export default function AccountPage() {
     //const {message} = useSelector(state => state.message);
     // const dispatch = useDispatch();
 
-    const [account, setAccount] = useState({});
+    // const [account, setAccount] = useState({});
 
     const { data } = useSelector(state => state.auth.user)  ; // переделать на redux
 
-    useEffect(() => {
-        getAccount().then(response => {
-            setAccount(response.data);
-            console.log(response.data);
-        })
-    },[])
+    // useEffect(() => {
+    //     getAccount().then(response => {
+    //         setAccount(response.data);
+    //         console.log(response.data);
+    //     })
+    // },[])
 
 
     const { fullName, email, phone, country, city, address } = data;    
