@@ -23,6 +23,12 @@ export default function MainPage() {
         })
     }, [maxLimitOfProducts, idCategory, searchProducts, category, search])
 
+    useEffect(() => {
+        setMaxLimitOfProducts(20);
+    },[idCategory])
+
+   const loadMoreButton = products.length%20 ? false : true
+
     return(
     <div>
         <SearchBar searchProducts={searchProducts} setSearchProducts={setSearchProducts} setIdCategory={setIdCategory}/>
@@ -34,11 +40,13 @@ export default function MainPage() {
                 />
             ))}
         </div>
-        {products.length===0 && searchProducts.length>=3 ? <h1>Not found</h1> : <button className="load_more__button" onClick={() => setMaxLimitOfProducts(maxLimitOfProducts + 20)}>Load more...</button>}
+        {products.length===0 && searchProducts.length>=3 ? <h1>Not found</h1> : null}
+        {loadMoreButton ? <button className="load_more__button" onClick={() => setMaxLimitOfProducts(maxLimitOfProducts + 20)}>Load more...</button>: null}
         {loading &&
-        <div className="loader__overlay">
-            <ClipLoader className="loader_icon" size={200} color={'white'}/>
-        </div>}
+            <div className="loader__overlay">
+                <ClipLoader className="loader_icon" size={200} color={'white'}/>
+            </div>
+        }
     </div>
     )
 }
