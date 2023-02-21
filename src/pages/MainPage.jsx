@@ -14,9 +14,13 @@ export default function MainPage() {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        setLoading(true);
+        setOffset(0);
+    },[idCategory, searchProductsValue])
 
+    useEffect(() => {
         if (searchProductsValue && searchProductsValue.length >= 3) {
+            setLoading(true);
+
             searchProducts({offset, limit, keywords: searchProductsValue})
                 .then((response) => {
                     setProducts((prevState) => {
@@ -28,20 +32,18 @@ export default function MainPage() {
             return
         }
 
-        getProducts({offset, limit, sortBy})
-            .then((response) => {
-                setProducts((prevState) => {
-                    return offset ? [...prevState, ...response.data] : response.data;
-                });
-            }).finally(() => {
-            setLoading(false);
-        });
-    }, [offset, searchProductsValue])
-
-    useEffect(() => {
-        setOffset(0);
-    },[idCategory, searchProductsValue])
-
+        if (searchProductsValue === '') {
+            setLoading(true);
+            getProducts({offset, limit, sortBy})
+                .then((response) => {
+                    setProducts((prevState) => {
+                        return offset ? [...prevState, ...response.data] : response.data;
+                    });
+                }).finally(() => {
+                setLoading(false);
+            });
+        }
+    }, [offset, limit, searchProductsValue])
    const renderLoadMoreBtn = () => {
         if(!(products.length % limit) && products.length !== 0) {
             return <button
@@ -63,9 +65,9 @@ export default function MainPage() {
                 setIdCategory={setIdCategory}
             />
             <div className="list__items">
-                {products.map(product => (
+                {products.map((product, index) => (
                     <ProductItem
-                        key={product.id}
+                        key={index}
                         product={product}
                     />
                 ))}
