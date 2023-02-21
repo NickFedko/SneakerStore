@@ -15,10 +15,11 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     padding: 4px;
     background-color: white;
     width: 209px;
-    min-height: 212px;
+    min-height: 260px;
     box-sizing: border-box;
     margin: 4px;
     border: 1px solid #E4E4E4;
@@ -27,8 +28,9 @@
 }
 
 .list__items .item__block .item__block__image {
-    max-width: 201px;
-    max-height: 147px;
+    width: 201px;
+    height: 147px;
+    object-fit: contain;
 }
 
 .list__items .item__block .item__block__name {
