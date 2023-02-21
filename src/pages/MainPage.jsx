@@ -48,7 +48,9 @@ export default function MainPage() {
         if(!(products.length % limit) && products.length !== 0) {
             return <button
                 className="load_more__button"
-                onClick={() => setOffset((prevValue) => prevValue + 1 )}
+                onClick={() => setOffset((prevValue) =>
+                    searchProductsValue ? prevValue + limit : prevValue + 1
+                )}
             >
                 Load more...
             </button>
