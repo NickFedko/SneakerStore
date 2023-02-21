@@ -1,40 +1,65 @@
 import SearchBar from "../components/SearchBar";
 import ProductItem from "../components/ProductItem";
 import { useState, useEffect } from "react";
-import getProducts from "../services/api/products";
+import {getProducts, searchProducts} from "../services/api/products";
 import { ClipLoader } from 'react-spinners';
 
 export default function MainPage() {
     const [products, setProducts] = useState([]);
-    const [maxLimitOfProducts, setMaxLimitOfProducts] = useState(20);
-    const [searchProducts, setSearchProducts] = useState('');
+    const [offset, setOffset] = useState(0);
+    const [limit, setLimit] = useState(10);
+    const [sortBy, setSortBy] = useState(undefined)
+    const [searchProductsValue, setSearchProductsValue] = useState('');
     const [idCategory, setIdCategory] = useState(1);
     const [loading, setLoading] = useState(false);
 
-    const category = idCategory ? `/categories/${idCategory}`: '';
-    const search =  (searchProducts.length >= 3) ? `/search?keywords=${searchProducts}` : ''
-
     useEffect(() => {
         setLoading(true);
-        getProducts(maxLimitOfProducts, category, search).then((response) => {
-            setProducts(response.data);
-        }).catch(error => console.log(error))
-            .finally(() => {
-                setLoading(false)
-        })
-    }, [maxLimitOfProducts, idCategory, category, search])
+
+        if (searchProductsValue && searchProductsValue.length >= 3) {
+            searchProducts({offset, limit, keywords: searchProductsValue})
+                .then((response) => {
+                    setProducts((prevState) => {
+                        return offset ? [...prevState, ...response.data] : response.data;
+                    });
+                }).finally(() => {
+                setLoading(false);
+            });
+            return
+        }
+
+        getProducts({offset, limit, sortBy})
+            .then((response) => {
+                setProducts((prevState) => {
+                    return offset ? [...prevState, ...response.data] : response.data;
+                });
+            }).finally(() => {
+            setLoading(false);
+        });
+    }, [offset, searchProductsValue])
 
     useEffect(() => {
-        setMaxLimitOfProducts(20);
-    },[idCategory])
+        setOffset(0);
+    },[idCategory, searchProductsValue])
 
-   const loadMoreButton = !(products.length % 20);
+   const renderLoadMoreBtn = () => {
+        if(!(products.length % limit) && products.length !== 0) {
+            return <button
+                className="load_more__button"
+                onClick={() => setOffset((prevValue) => prevValue + 1 )}
+            >
+                Load more...
+            </button>
+        }
+
+        return
+   }
 
     return (
         <div>
             <SearchBar
-                searchProducts={searchProducts}
-                setSearchProducts={setSearchProducts}
+                searchProducts={searchProductsValue}
+                setSearchProducts={setSearchProductsValue}
                 setIdCategory={setIdCategory}
             />
             <div className="list__items">
@@ -46,17 +71,9 @@ export default function MainPage() {
                 ))}
             </div>
             {
-               (products.length === 0 && searchProducts.length >= 3) && <h1>Not found</h1>
+               (products.length === 0 && searchProductsValue.length >= 3) && <h1>Not found</h1>
             }
-            {
-                (loadMoreButton && products.length!==0)
-                && <button
-                    className="load_more__button"
-                    onClick={() => setMaxLimitOfProducts(maxLimitOfProducts + 20)}
-                    >
-                        Load more...
-                    </button>
-            }
+            {renderLoadMoreBtn()}
             {
                 loading &&
                 <div className="loader__overlay">

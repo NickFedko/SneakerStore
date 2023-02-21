@@ -1,13 +1,20 @@
 import axios from "axios";
 import { baseUrl, headers } from ".";
 
-export default async function getProducts(max=20, category='', search) {
-    const sort = search ? '' : '&sortBy=latest'
-    const categories = search ? '' : `${category}`
-    const searchText = search ? '&': '?'
+export async function getProducts(params) {
     return await axios({
         method: 'GET',
-        url: `${baseUrl}${categories}/products${search}${searchText}offset=0&limit=${max}${sort}`,
+        url: `${baseUrl}/products`,
+        params,
+        headers: {headers}
+    })
+}
+
+export async function searchProducts(params) {
+    return await axios({
+        method: 'GET',
+        url: `${baseUrl}/products/search`,
+        params,
         headers: {headers}
     })
 }
