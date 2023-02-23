@@ -93,3 +93,8 @@
 .loader_icon {
     position: relative;
 }
+
+.error__message__no_result {
+    margin: auto;
+    width: 360px;
+}

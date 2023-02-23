@@ -18,3 +18,12 @@ export async function searchProducts(params) {
         headers: {headers}
     })
 }
+
+export async function categoryProducts(params, id) {
+    return await axios({
+        method: 'GET',
+        url: `${baseUrl}/categories/${id}/products`,
+        params,
+        headers: {headers}
+    })
+}

@@ -1,7 +1,7 @@
 import SearchBar from "../components/SearchBar";
 import ProductItem from "../components/ProductItem";
 import { useState, useEffect } from "react";
-import {getProducts, searchProducts} from "../services/api/products";
+import {categoryProducts, getProducts, searchProducts} from "../services/api/products";
 import { ClipLoader } from 'react-spinners';
 
 export default function MainPage() {
@@ -10,7 +10,7 @@ export default function MainPage() {
     const [limit, setLimit] = useState(10);
     const [sortBy, setSortBy] = useState(undefined)
     const [searchProductsValue, setSearchProductsValue] = useState('');
-    const [idCategory, setIdCategory] = useState(1);
+    const [idCategory, setIdCategory] = useState(0);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -18,6 +18,10 @@ export default function MainPage() {
     },[idCategory, searchProductsValue])
 
     useEffect(() => {
+        if (sortBy === 'default') {
+            setSortBy(undefined)
+        }
+        
         if (searchProductsValue && searchProductsValue.length >= 3) {
             setLoading(true);
 
@@ -32,7 +36,19 @@ export default function MainPage() {
             return
         }
 
-        if (searchProductsValue === '') {
+        if (idCategory>=1) {
+            setLoading(true);
+            categoryProducts({offset, limit, sortBy}, idCategory)
+                .then((response) => {
+                    setProducts((prevState) => {
+                        return offset ? [...prevState, ...response.data] : response.data;
+                    });
+                }).finally(() => {
+                setLoading(false);
+            });
+        } 
+
+        if (searchProductsValue === '' && idCategory === 0) {
             setLoading(true);
             getProducts({offset, limit, sortBy})
                 .then((response) => {
@@ -43,7 +59,7 @@ export default function MainPage() {
                 setLoading(false);
             });
         }
-    }, [offset, limit, searchProductsValue])
+    }, [offset, limit, searchProductsValue, idCategory, sortBy])
    const renderLoadMoreBtn = () => {
         if(!(products.length % limit) && products.length !== 0) {
             return <button
@@ -65,6 +81,8 @@ export default function MainPage() {
                 searchProducts={searchProductsValue}
                 setSearchProducts={setSearchProductsValue}
                 setIdCategory={setIdCategory}
+                setSortBy={setSortBy}
+                setLimit={setLimit}
             />
             <div className="list__items">
                 {products.map((product, index) => (
@@ -75,7 +93,20 @@ export default function MainPage() {
                 ))}
             </div>
             {
-               (products.length === 0 && searchProductsValue.length >= 3) && <h1>Not found</h1>
+                (products.length === 0 && searchProductsValue.length >= 3) && 
+                <>
+                    <h1>No Results Found</h1>
+                    <p className="error__message__no_result">We did not find any article that matches this search
+                       Make sure that the search text is entered correctly
+                       Try using other search criteria
+                    </p>
+                </>
+            }
+            {
+                (products.length === 0 && idCategory >= 0) && 
+                <>
+                    <h1>No items in this category yet</h1>
+                </>
             }
             {renderLoadMoreBtn()}
             {
