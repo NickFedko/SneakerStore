@@ -5,7 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 980px;
+    width: 940px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
@@ -28,6 +28,14 @@
     background-repeat: no-repeat;
     padding-left: 39px;
     background-position: 10px 8px;
+}
+
+.sorting__form .sorting__form__search:focus,
+.sorting__form .sorting__form__category:focus,
+.sorting__form .sorting__form__sorter:focus,
+.sorting__form .sorting__form__amount:focus {
+    border-color: #5e5e5e;
+    outline: none;
 }
 
 .sorting__form .sorting__form__category {
@@ -57,17 +65,29 @@
     background-position: 10px 10px;
     color: #707070;
 }
-.sorting__form span {
-    font-size: 12px;
-    width: 48px;
-    line-height: 16px;
-    color: #707070;
-    text-align: justify;
-}
+
 .sorting__form .sorting__form__amount {
+    width: 80px;
     height: 37px;
+    box-sizing: border-box;
+    background-image:url('../images/icons/icon_limit.svg');
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: 10px, 10px;
+    padding-left: 30px;
     background-color: #F9FAFB;
     border: 1px solid #DEDEE0;
     border-radius: 5px;
     color: #707070;
+}
+
+
+input[type="search"]::-webkit-search-cancel-button { 
+    -webkit-appearance: none;
+    content: url('../images/icons/close.svg');
+    cursor: pointer;
+    height: 13px;
+    width: 13px;
+    background: transparent;
+    padding: 10px;
 }

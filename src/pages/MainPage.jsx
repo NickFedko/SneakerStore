@@ -12,13 +12,13 @@ export default function MainPage() {
     const [searchProductsValue, setSearchProductsValue] = useState('');
     const [idCategory, setIdCategory] = useState(0);
     const [loading, setLoading] = useState(false);
-
+    
     useEffect(() => {
         setOffset(0);
     },[idCategory, searchProductsValue])
 
     useEffect(() => {
-        if (sortBy === 'default') {
+        if (sortBy === 'Default') {
             setSortBy(undefined)
         }
         
@@ -48,7 +48,7 @@ export default function MainPage() {
             });
         } 
 
-        if (searchProductsValue === '' && idCategory === 0) {
+        if (searchProductsValue === '' && +idCategory === 0) {
             setLoading(true);
             getProducts({offset, limit, sortBy})
                 .then((response) => {
@@ -78,8 +78,8 @@ export default function MainPage() {
     return (
         <div>
             <SearchBar
-                searchProducts={searchProductsValue}
-                setSearchProducts={setSearchProductsValue}
+                searchProductsValue={searchProductsValue}
+                setSearchProductsValue={setSearchProductsValue}
                 setIdCategory={setIdCategory}
                 setSortBy={setSortBy}
                 setLimit={setLimit}
@@ -103,10 +103,8 @@ export default function MainPage() {
                 </>
             }
             {
-                (products.length === 0 && idCategory >= 0) && 
-                <>
+                (idCategory > 0 && products.length === 0) && 
                     <h1>No items in this category yet</h1>
-                </>
             }
             {renderLoadMoreBtn()}
             {

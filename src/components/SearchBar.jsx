@@ -4,30 +4,45 @@ import getCategories from '../services/api/categories';
 
 import '../assets/styles/Sorting.css'
 
-export default function SearchBar({ setSearchProducts, setIdCategory, setSortBy, setLimit }) {
+export default function SearchBar({ searchProductsValue, setSearchProductsValue, setIdCategory, setSortBy, setLimit }) {
     const [categories, setCategories] = useState([]);
-    const [focus, setFocus] = useState(false);
+    const [onSearchVisibility, setOnSearchVisibility] = useState(false);
+    const [searchFocus, setSearchFocus] = useState(false);
+    useEffect(() => {
+        (searchProductsValue.length > 0) 
+            ? setOnSearchVisibility(true)
+            : setOnSearchVisibility(false) 
+    },[searchProductsValue])
 
     useEffect(()=> {
         getCategories().then(response => {
-            setCategories([{name: 'All', id:0}, ...response.data]);
+            setCategories([
+                {name: 'All', id:0}, 
+                ...response.data
+            ]);
         })
     }, [])
 
-    console.log(focus)
+    const sortByArray = [
+        {name:undefined, title: 'Default'},
+        {name:'latest', title: 'Latest'},
+        {name:'popular', title: 'Popular'}
+    ];
+
+    const amountSortArray = [10, 15, 20];
 
     return(
         <form className="sorting__form">
             <input
                 className="sorting__form__search"
-                onChange={(e) => setSearchProducts(e.target.value)}
+                onChange={(e) => setSearchProductsValue(e.target.value)}
                 type="search"
-                onFocus={() => setFocus(!focus)}
-                onBlur={() => setFocus(!focus)}
-                placeholder={focus ? 'Enter product name' : 'Search product...'}
+                onFocus={() => setSearchFocus(!searchFocus)}
+                onBlur={() => setSearchFocus(!searchFocus)}
+                placeholder={searchFocus ? 'Enter product name' : 'Search product...'}
             />
             <select
-                className={`sorting__form__category ${focus ? 'hidden': 'visible'}`}
+                className={`sorting__form__category ${onSearchVisibility ? 'hidden': ''}`}
                 onChange={(e) => setIdCategory(e.target[e.target.selectedIndex].id)}
             >
                 {
@@ -39,27 +54,24 @@ export default function SearchBar({ setSearchProducts, setIdCategory, setSortBy,
                 }
             </select>
             <select 
-                className={`sorting__form__sorter ${focus ? 'hidden': 'visible'}`} 
-                onChange={(e) => setSortBy(e.target.value.toLowerCase())}
+                className={`sorting__form__sorter ${onSearchVisibility ? 'hidden': ''}`} 
+                onChange={(e) => setSortBy(e.target.value)}
             >
-                <option>
-                    Default
-                </option>
-                <option>
-                    Latest
-                </option>
-                <option>
-                    Popular
-                </option>
+                {sortByArray.map((el, index) => (
+                    <option key={index} value={el.name}>
+                        {el.title}
+                    </option>
+                ))}
             </select>
-            <span className={focus ? 'hidden': 'visible'}>Limit of Products</span>
             <select
-                className={`sorting__form__amount ${focus ? 'hidden': 'visible'}`}
+                className='sorting__form__amount'
                 onChange={(e) => setLimit(e.target.value)}
             >
-                <option>10</option>
-                <option>15</option>
-                <option>20</option>
+                {amountSortArray.map((el, index) => (
+                    <option key={index}>
+                        {el}
+                    </option>
+                ))}
             </select>
         </form>
     )
