@@ -15,12 +15,10 @@ export default function MainPage() {
     
     useEffect(() => {
         setOffset(0);
+        setSortBy(undefined);
     },[idCategory, searchProductsValue])
 
     useEffect(() => {
-        if (sortBy === 'Default') {
-            setSortBy(undefined)
-        }
         
         if (searchProductsValue && searchProductsValue.length >= 3) {
             setLoading(true);
@@ -103,7 +101,7 @@ export default function MainPage() {
                 </>
             }
             {
-                (idCategory > 0 && products.length === 0) && 
+                (+idCategory >= 0 && products.length === 0 && searchProductsValue.length === 0) && 
                     <h1>No items in this category yet</h1>
             }
             {renderLoadMoreBtn()}

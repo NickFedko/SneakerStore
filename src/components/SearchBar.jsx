@@ -24,7 +24,7 @@ export default function SearchBar({ searchProductsValue, setSearchProductsValue,
     }, [])
 
     const sortByArray = [
-        {name:undefined, title: 'Default'},
+        {name: undefined , title: 'Default'},
         {name:'latest', title: 'Latest'},
         {name:'popular', title: 'Popular'}
     ];
@@ -35,7 +35,7 @@ export default function SearchBar({ searchProductsValue, setSearchProductsValue,
         <form className="sorting__form">
             <input
                 className="sorting__form__search"
-                onChange={(e) => setSearchProductsValue(e.target.value)}
+                onChange={(e) => setSearchProductsValue(e.target.getAttribute('name'))}
                 type="search"
                 onFocus={() => setSearchFocus(!searchFocus)}
                 onBlur={() => setSearchFocus(!searchFocus)}
@@ -47,7 +47,7 @@ export default function SearchBar({ searchProductsValue, setSearchProductsValue,
             >
                 {
                     categories.map(item => (
-                        <option key={item.id} value={item.name} id={item.id}>
+                        <option key={item.id} name={item.name} id={item.id}>
                             {item.name}
                         </option>
                     ))
