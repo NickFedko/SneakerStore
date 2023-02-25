@@ -5,7 +5,7 @@ import Header from './components/Header';
 import { AnimatePresence } from 'framer-motion';
 import { Route, Routes } from 'react-router-dom';
 import MainPage from './pages/MainPage';
-import CardPage from './pages/CardPage';
+import CartPage from './pages/CartPage';
 import AccountPage from './pages/AccountPage';
 import AuthModal from "./components/modals/AuthModal";
 
@@ -38,7 +38,7 @@ function App() {
       </AnimatePresence>
       <Routes>
         <Route exact path='/' element={<MainPage />} />
-        <Route exact path='/orders' element={<CardPage />} />
+        <Route exact path='/orders' element={<CartPage />} />
         <Route exact path='/account' element={<AccountPage/>} />
       </Routes>
       <Footer />
