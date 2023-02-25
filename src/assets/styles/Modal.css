@@ -179,11 +179,20 @@
     font-size: 14px;
     color: black;
     text-transform: uppercase;
+    width: 220px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+}
+
+.modal__container__product__description p.price__label span {
+    align-self: flex-end;
 }
 
 .modal__container__product__description span {
     color: black;
     font-weight: 700;
+    margin-left: 10px;
 }
 
 .modal__container__product__description .modal__container__product__description__row button {
@@ -232,6 +241,7 @@
     width: 20px;
     line-height: 36px;
     text-align: center;
+    margin: 0;
 }
 
 .modal__container__product__description__row {
@@ -239,4 +249,6 @@
     justify-content: flex-start;
     align-items: center;
 }
+
+
 

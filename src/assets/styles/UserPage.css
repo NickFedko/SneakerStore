@@ -10,7 +10,7 @@
 }
 
 .user_page .user_page__image {
-    margin: 60px 0;
+    margin-top: 60px;
     width: 88px;
     height: 88px;
     border-radius: 50%;
@@ -31,6 +31,13 @@
     box-sizing: border-box;
     background-color: white;
     border: 1.3px solid #DEDEE0;
+    transition: 0.5s;
+}
+
+.user_page .user_page__nav .user_page__nav_button.active {
+    background: #FD7114;
+    color: white;
+    transition: 0.5s;
 }
 
 .user_page .user_page__info, .user_page .user_page__password_change {
@@ -78,6 +85,7 @@
     color:red;  
     max-width: 362px;
     font-size: 14px;
+    text-align: left;
 }
 
 .info__form__input_block input:not(:placeholder-shown) ~ span,
@@ -99,4 +107,31 @@
     background-color: #FD7114;
     color: white;
     font-weight: 500;
+}
+
+.user_page__password_change__form {
+    padding-bottom: 120px;
+}
+
+/* Order History */
+
+.order_history__container {
+    margin: 60px 0;
+    border: 1px solid #ECEEF0;
+    box-shadow: 0px 4px 14px rgba(121, 121, 121, 0.0527344);
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    width: 486px;
+    padding: 20px;
+}
+
+.order_history__container p {
+    color: #707070;
+}
+
+.order_history__container span {
+    color: black;
+    margin-left: 20px;
 }

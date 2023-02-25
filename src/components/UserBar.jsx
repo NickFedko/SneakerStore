@@ -60,8 +60,8 @@ export default function UserBar({setLogined} ) {
                             </p>
                         </li>
                         <hr className='drop_down__hr' />
-                        <Link to='/account'>
-                            <li className='drop_down__li' onClick={() => setOpen(false)}>
+                        <Link to='/account' onClick={() => setOpen(false)}>
+                            <li className='drop_down__li'>
                                 Settings
                             </li>
                         </Link>

@@ -30,7 +30,7 @@ export default function SearchBar({ searchProductsValue, setSearchProductsValue,
     // ];
 
     const sortByObj = {
-        'Default': null,
+        'Default': undefined,
         'Latest': 'latest',
         'Popular': 'popular'
     }
@@ -61,10 +61,10 @@ export default function SearchBar({ searchProductsValue, setSearchProductsValue,
             </select>
             <select 
                 className={`sorting__form__sorter ${onSearchVisibility ? 'hidden': ''}`} 
-                onChange={(e) => setSortBy(e.target.value)}
+                onChange={(e) => setSortBy(Object.values(sortByObj)[e.target.selectedIndex])}
             >
                 {Object.entries(sortByObj).map((el, index) => (
-                    <option key={index} value={el[1]}>
+                    <option key={index} >
                         {el[0]}
                     </option>
                 ))}

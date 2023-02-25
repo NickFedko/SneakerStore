@@ -19,7 +19,6 @@ export default function MainPage() {
     
     useEffect(() => {
         setOffset(0);
-        setSortBy(undefined);
     },[idCategory, searchProductsValue])
 
     useEffect(() => {

@@ -3,14 +3,20 @@ import '../assets/styles/UserPage.css'
 import { useFormik } from 'formik';
 import {  useSelector, useDispatch } from 'react-redux';
 import * as Yup from 'yup';
-
+import OrderHistory from '../components/OrderHistory';
+import Favourite from '../components/Favourite';
 import { ClipLoader } from 'react-spinners';
 import { accountUpdate } from '../store/actions/account_update';
+import putAccountPassword from '../services/api/account-password';
 // import getAccount from '../services/api/account';
 
 export default function AccountPage() {
     const [loading, setLoading] = useState(false);
-    // const [loadingPassword, setLoadingPassword] =  useState(false);
+    const [loadingPassword, setLoadingPassword] =  useState(false);
+    const [editAccountSection, setEditAccountSection] = useState(true);
+    const [orderHistorySection, setOrderHistorySection] = useState(false);
+    const [favouritesSection, setFavouritesSection] = useState(false);
+
 
     //TODO API RESPONSE MESSAGE
     //const {message} = useSelector(state => state.message);
@@ -75,169 +81,215 @@ export default function AccountPage() {
         onSubmit: handleClickUpdateAccountInfo
     });
 
-    // const validationSchemaPassword = Yup.object().shape({
-    //     oldPassword: Yup.string()
-    //     .required("Current Password is required")
-    //     .min(8, "Password must be at least 8 characters")
-    //     .max(36, "Password must not exceed 36 characters")
-    //     .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,36}$/,
-    //     'Must contain one uppercase character, one lowercase and one special symbol'),
-    //     newPassword: Yup.string()
-    //     .required("New Password is required")
-    //     .min(8, "Password must be at least 8 characters")
-    //     .max(36, "Password must not exceed 36 characters")
-    //     .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,36}$/,
-    //     'Must contain one uppercase character, one lowercase and one special symbol'),
-    //     newPasswordRepeat: Yup.string()
-    //     .required("Confirm Password is required")
-    //     .min(8, "Password must be at least 8 characters")
-    //     .max(36, "Password must not exceed 36 characters")
-    //     .oneOf([Yup.ref('newPassword'), null], 'Passwords must match')
-    // })
+    const validationSchemaPassword = Yup.object().shape({
+        oldPassword: Yup.string()
+        .required("Current Password is required")
+        .min(8, "Password must be at least 8 characters")
+        .max(36, "Password must not exceed 36 characters")
+        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,36}$/,
+        'Must contain one uppercase character, one lowercase and one special symbol'),
+        newPassword: Yup.string()
+        .required("New Password is required")
+        .min(8, "Password must be at least 8 characters")
+        .max(36, "Password must not exceed 36 characters")
+        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,36}$/,
+        'Must contain one uppercase character, one lowercase and one special symbol'),
+        newPasswordRepeat: Yup.string()
+        .required("Confirm Password is required")
+        .min(8, "Password must be at least 8 characters")
+        .max(36, "Password must not exceed 36 characters")
+        .oneOf([Yup.ref('newPassword'), null], 'Passwords must match')
+    })
+    
+    const handleClickUpdateAccountPassword = () => {
+        setLoadingPassword(true);
+        putAccountPassword(oldPassword, newPassword)
+            .then((response) => console.log(response))
+            .finally(() => setLoadingPassword(false))  
+    }
+    
+    const formikPassword = useFormik({
+        initialValues: {
+            oldPassword: '',
+            newPassword: '',
+            newPasswordRepeat: ''
+        },
+        validationSchema:validationSchemaPassword,
+        onSubmit: handleClickUpdateAccountPassword,
+    })
 
-    // const formikPassword = useFormik({
-    //     initialValues: {
-    //         oldPassword: '',
-    //         newPassword: '',
-    //         newPasswordRepeat: ''
-    //     },
-    //     validationSchema:validationSchemaPassword,
-    //     onSubmit: (data) => {
-    //         return(JSON.stringify(data, null, 2));
-    //     }
-    // })
+    const {newPassword, newPasswordRepeat, oldPassword} = formikPassword.values
 
+    const showEditAccountSection = () => {
+        setEditAccountSection(true);
+        setFavouritesSection(false);
+        setOrderHistorySection(false);
+    }
 
+    const showOrderHistorySection = () => {
+        setEditAccountSection(false);
+        setFavouritesSection(false);
+        setOrderHistorySection(true);
+    }
+
+    const showFavouritesSection = () => {
+        setEditAccountSection(false);
+        setFavouritesSection(true);
+        setOrderHistorySection(false);
+    }
 
     return(
         <div className="user_page">
             <div className="user_page__image">
                 {initials}
             </div>
+            <h3>{fullName}</h3>
             <div className="user_page__nav">
-                <button className='user_page__nav_button'>Edit Account</button>
-                <button className='user_page__nav_button'>Orders History</button>
-                <button className='user_page__nav_button'>Favourites</button>
-            </div>
-            <p className="user_page__info">Main information</p>
-            <div className="user_page__info__form" >
-                <div className="info__form__input_block">
-                    <input 
-                        className="input_block__input" 
-                        placeholder=' '
-                        name='fullName'
-                        value={formik.values.fullName}
-                        onChange={formik.handleChange}
-                    />
-                    <span>Full Name</span>
-                    <label>{formik.errors.fullName && formik.touched.fullName? formik.errors.fullName : null}</label>
-                </div>
-                <div className="info__form__input_block">
-                    <input
-                        type="email" 
-                        className="input_block__input"
-                        placeholder=' '
-                        name='email'
-                        onChange={formik.handleChange}
-                        value={formik.values.email}
-                    />
-                    <span>Email</span>
-                    <label>{formik.errors.email && formik.touched.email? formik.errors.email : null}</label>
-                </div>
-                <div className="info__form__input_block">
-                    <input 
-                        className="input_block__input" 
-                        placeholder=' '
-                        name='phone'
-                        onChange={formik.handleChange}
-                        value={formik.values.phone}
-                    />
-                    <span>Phone</span>
-                    <label>{formik.errors.phone && formik.touched.phone? formik.errors.phone : null}</label>
-                </div>
-                <div className="info__form__input_block">
-                    <input 
-                        className="input_block__input" 
-                        placeholder=' '
-                        name='country'
-                        onChange={formik.handleChange}
-                        value={formik.values.country}
-                    />
-                    <span>Country</span>
-                    <label>{formik.errors.country && formik.touched.country? formik.errors.country : null}</label>
-                </div>
-                <div className="info__form__input_block">
-                    <input 
-                        className="input_block__input" 
-                        placeholder=' '
-                        name='city'
-                        onChange={formik.handleChange}
-                        value={formik.values.city}
-                    />
-                    <span>City</span>
-                    <label>{formik.errors.city && formik.touched.city? formik.errors.city : null}</label>
-                </div>
-                <div className="info__form__input_block">
-                    <input 
-                        className="input_block__input" 
-                        placeholder=' '
-                        name='address'
-                        onChange={formik.handleChange}
-                        value={formik.values.address}
-                    />
-                    <span>Address</span>
-                    <label>{formik.errors.address && formik.touched.address? formik.errors.address : null}</label>
-                </div>
                 <button 
-                    type="button"
-                    onClick={() => formik.handleSubmit()}
-                >{loading ? <ClipLoader color={'white'} size={20}/> : 'Save'}</button>
+                    className={`user_page__nav_button ${editAccountSection && 'active'}`}
+                    onClick={showEditAccountSection}
+                >
+                    Edit Account
+                </button>
+                <button 
+                    className={`user_page__nav_button ${orderHistorySection && 'active'}`}
+                    onClick={showOrderHistorySection}
+                >
+                    Orders History
+                </button>
+                <button 
+                    className={`user_page__nav_button ${favouritesSection && 'active'}`}
+                    onClick={showFavouritesSection}
+                >
+                    Favourites
+                </button>
             </div>
-            {/*<section id='profile-password-section'>*/}
-            {/*    <p className="user_page__password_change">Change Password</p>*/}
-            {/*    <div className="user_page__password_change__form" >*/}
-            {/*    <div className="password_change__form__input_block">*/}
-            {/*        <input */}
-            {/*            type="password"*/}
-            {/*            className="input_block__input"*/}
-            {/*            placeholder=' '*/}
-            {/*            name='oldPassword'*/}
-            {/*            value={formikPassword.values.oldPassword}*/}
-            {/*            onChange={formikPassword.handleChange}*/}
-            {/*        />*/}
-            {/*        <span>Current password</span>*/}
-            {/*        <label>{formikPassword.errors.oldPassword && formikPassword.touched.oldPassword? formikPassword.errors.oldPassword : null}</label>*/}
-            {/*    </div>*/}
-            {/*    <div className="password_change__form__input_block">*/}
-            {/*        <input */}
-            {/*            type="password"*/}
-            {/*            className="input_block__input" */}
-            {/*            placeholder=' '*/}
-            {/*            name='newPassword'*/}
-            {/*            value={formikPassword.values.newPassword}*/}
-            {/*            onChange={formikPassword.handleChange}*/}
-            {/*        />*/}
-            {/*        <span>New Password</span>*/}
-            {/*        <label>{formikPassword.errors.newPassword && formikPassword.touched.newPassword? formikPassword.errors.newPassword : null}</label>*/}
-            {/*    </div>*/}
-            {/*    <div className="password_change__form__input_block">*/}
-            {/*        <input */}
-            {/*            type="password"*/}
-            {/*            className="input_block__input" */}
-            {/*            placeholder=' '*/}
-            {/*            name='newPasswordRepeat'*/}
-            {/*            value={formikPassword.values.newPasswordRepeat}*/}
-            {/*            onChange={formikPassword.handleChange} */}
-            {/*        />*/}
-            {/*        <span>Confirm password</span>*/}
-            {/*        <label>{formikPassword.errors.newPasswordRepeat && formikPassword.touched.newPasswordRepeat? formikPassword.errors.newPasswordRepeat : null}</label>*/}
-            {/*    </div>*/}
-            {/*    <button */}
-            {/*        type="button"*/}
-            {/*        onClick={() => changePasswordHandleSubmit(formikPassword.values.oldPassword, formikPassword.values.newPassword)}*/}
-            {/*    >{loadingPassword ? <ClipLoader color={'white'} size={20}/> : 'Change'}</button>*/}
-            {/*</div>*/}
-            {/*</section>*/}
+            { editAccountSection &&
+            <>
+                <p className="user_page__info">Main information</p>
+                <div className="user_page__info__form" >
+                    <div className="info__form__input_block">
+                        <input 
+                            className="input_block__input" 
+                            placeholder=' '
+                            name='fullName'
+                            value={formik.values.fullName}
+                            onChange={formik.handleChange}
+                        />
+                        <span>Full Name</span>
+                        <label>{formik.errors.fullName && formik.touched.fullName? formik.errors.fullName : null}</label>
+                    </div>
+                    <div className="info__form__input_block">
+                        <input
+                            type="email" 
+                            className="input_block__input"
+                            placeholder=' '
+                            name='email'
+                            onChange={formik.handleChange}
+                            value={formik.values.email}
+                        />
+                        <span>Email</span>
+                        <label>{formik.errors.email && formik.touched.email? formik.errors.email : null}</label>
+                    </div>
+                    <div className="info__form__input_block">
+                        <input 
+                            className="input_block__input" 
+                            placeholder=' '
+                            name='phone'
+                            onChange={formik.handleChange}
+                            value={formik.values.phone}
+                        />
+                        <span>Phone</span>
+                        <label>{formik.errors.phone && formik.touched.phone? formik.errors.phone : null}</label>
+                    </div>
+                    <div className="info__form__input_block">
+                        <input 
+                            className="input_block__input" 
+                            placeholder=' '
+                            name='country'
+                            onChange={formik.handleChange}
+                            value={formik.values.country}
+                        />
+                        <span>Country</span>
+                        <label>{formik.errors.country && formik.touched.country? formik.errors.country : null}</label>
+                    </div>
+                    <div className="info__form__input_block">
+                        <input 
+                            className="input_block__input" 
+                            placeholder=' '
+                            name='city'
+                            onChange={formik.handleChange}
+                            value={formik.values.city}
+                        />
+                        <span>City</span>
+                        <label>{formik.errors.city && formik.touched.city? formik.errors.city : null}</label>
+                    </div>
+                    <div className="info__form__input_block">
+                        <input 
+                            className="input_block__input" 
+                            placeholder=' '
+                            name='address'
+                            onChange={formik.handleChange}
+                            value={formik.values.address}
+                        />
+                        <span>Address</span>
+                        <label>{formik.errors.address && formik.touched.address? formik.errors.address : null}</label>
+                    </div>
+                    <button 
+                        type="button"
+                        onClick={() => formik.handleSubmit()}
+                    >{loading ? <ClipLoader color={'white'} size={20}/> : 'Save'}</button>
+                </div>
+                <p className="user_page__password_change">Change Password</p>
+                <div className="user_page__password_change__form" >
+                    <div className="password_change__form__input_block">
+                        <input
+                            type="password"
+                            className="input_block__input"
+                            placeholder=' '
+                            name='oldPassword'
+                            value={oldPassword}
+                            onChange={formikPassword.handleChange}
+                        />
+                        <span>Current password</span>
+                        <label>{formikPassword.errors.oldPassword && formikPassword.touched.oldPassword? formikPassword.errors.oldPassword : null}</label>
+                    </div>
+                    <div className="password_change__form__input_block">
+                        <input
+                            type="password"
+                            className="input_block__input"
+                            placeholder=' '
+                            name='newPassword'
+                            value={newPassword}
+                            onChange={formikPassword.handleChange}
+                        />
+                        <span>New Password</span>
+                        <label>{formikPassword.errors.newPassword && formikPassword.touched.newPassword? formikPassword.errors.newPassword : null}</label>
+                    </div>
+                    <div className="password_change__form__input_block">
+                        <input
+                            type="password"
+                            className="input_block__input"
+                            placeholder=' '
+                            name='newPasswordRepeat'
+                            value={newPasswordRepeat}
+                            onChange={formikPassword.handleChange}
+                        />
+                        <span>Confirm password</span>
+                        <label>{formikPassword.errors.newPasswordRepeat && formikPassword.touched.newPasswordRepeat? formikPassword.errors.newPasswordRepeat : null}</label>
+                    </div>
+                    <button
+                        type="button"
+                        onClick={() => formikPassword.handleSubmit()}
+                    >{loadingPassword ? <ClipLoader color={'white'} size={20}/> : 'Change'}</button>
+                </div>
+            </>}
+            { orderHistorySection &&
+                <OrderHistory />
+            }
+            { favouritesSection &&
+                <Favourite />
+            }
         </div> 
     )
 }
