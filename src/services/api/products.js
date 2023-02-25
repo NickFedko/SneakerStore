@@ -1,6 +1,14 @@
 import axios from "axios";
 import { baseUrl, headers } from ".";
 
+export async function getSingleProduct(id) {
+    return await axios ({
+        method: 'GET',
+        url: `${baseUrl}/products/${id}`,
+        headers: {headers}
+    })
+}
+
 export async function getProducts(params) {
     return await axios({
         method: 'GET',

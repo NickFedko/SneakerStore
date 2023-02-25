@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
 
-import '../../assets/styles/ModalLogin.css';
+import '../../assets/styles/Modal.css';
 import LoginForm from "../forms/LoginForm";
 import RegisterForm from "../forms/RegisterForm";
 import closeIcon from "../../assets/images/icons/close.svg";

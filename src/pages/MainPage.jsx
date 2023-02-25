@@ -3,9 +3,13 @@ import ProductItem from "../components/ProductItem";
 import { useState, useEffect } from "react";
 import {categoryProducts, getProducts, searchProducts} from "../services/api/products";
 import { ClipLoader } from 'react-spinners';
+import ProductItemModal from "../components/modals/ProductItemModal";
+import { AnimatePresence } from "framer-motion";
 
 export default function MainPage() {
     const [products, setProducts] = useState([]);
+    const [clickedProductId, setClickedProductId] = useState(0);
+    const [openProductModal, setOpenProductModal] = useState(false);
     const [offset, setOffset] = useState(0);
     const [limit, setLimit] = useState(10);
     const [sortBy, setSortBy] = useState(undefined)
@@ -58,6 +62,7 @@ export default function MainPage() {
             });
         }
     }, [offset, limit, searchProductsValue, idCategory, sortBy])
+
    const renderLoadMoreBtn = () => {
         if(!(products.length % limit) && products.length !== 0) {
             return <button
@@ -85,6 +90,8 @@ export default function MainPage() {
             <div className="list__items">
                 {products.map((product, index) => (
                     <ProductItem
+                        setClickedProductId={setClickedProductId}
+                        setOpenProductModal={setOpenProductModal}
                         key={index}
                         product={product}
                     />
@@ -111,6 +118,14 @@ export default function MainPage() {
                     <ClipLoader className="loader_icon" size={200} color={'white'}/>
                 </div>
             }
+            <AnimatePresence>
+                {openProductModal && 
+                    <ProductItemModal 
+                        clickedProductId={clickedProductId}
+                        setOpenProductModal={setOpenProductModal}
+                    />
+                }
+            </AnimatePresence>
         </div>
     );
 }

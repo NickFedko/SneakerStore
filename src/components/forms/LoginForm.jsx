@@ -5,8 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import { login } from '../../store/actions/auth'
 import { ClipLoader } from 'react-spinners';
 
-import '../../assets/styles/ModalLogin.css';
-
 import * as Yup from 'yup'
 
 export default function LoginForm({setOpenLoginModal}) {

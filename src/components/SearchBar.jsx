@@ -23,11 +23,17 @@ export default function SearchBar({ searchProductsValue, setSearchProductsValue,
         })
     }, [])
 
-    const sortByArray = [
-        {name: undefined , title: 'Default'},
-        {name:'latest', title: 'Latest'},
-        {name:'popular', title: 'Popular'}
-    ];
+    // const sortByArray = [
+    //     {name: undefined , title: 'Default'},
+    //     {name:'latest', title: 'Latest'},
+    //     {name:'popular', title: 'Popular'}
+    // ];
+
+    const sortByObj = {
+        'Default': null,
+        'Latest': 'latest',
+        'Popular': 'popular'
+    }
 
     const amountSortArray = [10, 15, 20];
 
@@ -35,7 +41,7 @@ export default function SearchBar({ searchProductsValue, setSearchProductsValue,
         <form className="sorting__form">
             <input
                 className="sorting__form__search"
-                onChange={(e) => setSearchProductsValue(e.target.getAttribute('name'))}
+                onChange={(e) => setSearchProductsValue(e.target.value)}
                 type="search"
                 onFocus={() => setSearchFocus(!searchFocus)}
                 onBlur={() => setSearchFocus(!searchFocus)}
@@ -57,9 +63,9 @@ export default function SearchBar({ searchProductsValue, setSearchProductsValue,
                 className={`sorting__form__sorter ${onSearchVisibility ? 'hidden': ''}`} 
                 onChange={(e) => setSortBy(e.target.value)}
             >
-                {sortByArray.map((el, index) => (
-                    <option key={index} value={el.name}>
-                        {el.title}
+                {Object.entries(sortByObj).map((el, index) => (
+                    <option key={index} value={el[1]}>
+                        {el[0]}
                     </option>
                 ))}
             </select>

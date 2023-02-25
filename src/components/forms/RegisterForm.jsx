@@ -1,5 +1,3 @@
-import '../../assets/styles/ModalRegister.css';
-
 import { ClipLoader } from 'react-spinners';
 
 import { useState } from 'react';
