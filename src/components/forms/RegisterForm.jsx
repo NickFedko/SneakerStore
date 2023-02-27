@@ -3,8 +3,9 @@ import { ClipLoader } from 'react-spinners';
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+
+import { toast } from 'react-toastify';
 
 import { register } from '../../store/actions/auth';
 
@@ -15,6 +16,12 @@ export default function RegisterForm({setOpenRegisterModal}) {
     const togglePassword = () => {
         setPasswordShown(!passwordShown);
     }
+
+    const notify = () => toast('You are registered!', {
+        type: 'success',
+        autoClose: 1000,
+        theme: 'colored'
+    })
 
     const validationSchema = Yup.object().shape({
         email: Yup.string().required("Email is required").email("Email is invalid"),
@@ -34,8 +41,12 @@ export default function RegisterForm({setOpenRegisterModal}) {
         .min(10, "At least 10 numbers")
         .matches(/^(\+)?([0-9]){10,14}$/, 'Should contain 10-14 numbers, can have optional + at the beginning')
       });
+    const dispatch = useDispatch();
+  
+    const {message} = useSelector(state => state.message)
 
-      const formik = useFormik({
+      
+    const formik = useFormik({
         initialValues: {
             email: '',
             password: '',
@@ -43,31 +54,24 @@ export default function RegisterForm({setOpenRegisterModal}) {
             phone: ''
         },
         validationSchema,
-        onSubmit: (data) => {
-            return(JSON.stringify(data, null, 2));
-        },
+        onSubmit: signUp
     });
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
 
-    const {message} = useSelector(state => state.message)
-
-    const signUp = (email, password, phone, fullName) => {
+    function signUp() {
         setLoading(true);
-        formik.handleSubmit() ? 
-            setLoading(false)
-            : 
-            dispatch(register(email, password, phone, fullName))
-                .then(() => {
-                    navigate('/account')
-                    setLoading(false)
-                    setOpenRegisterModal(false)
-                })
-                .catch(() => {
-                    setLoading(false);
-                })
+        dispatch(register(formik.values))
+            .then(() => {
+                setLoading(false);
+                setOpenRegisterModal(false);
+                notify();
+            })
+            .catch(() => {
+                setLoading(false);
+            })
     }
+        
+
     return(
         <>
             {message && (<span>{message}</span>)}
@@ -130,7 +134,7 @@ export default function RegisterForm({setOpenRegisterModal}) {
             </div>
             <button 
                 type="button"
-                onClick={() => signUp(formik.values.email, formik.values.password, formik.values.phone, formik.values.fullName)}
+                onClick={() => formik.handleSubmit()}
             >
                 {loading ? <ClipLoader color={'white'} size={20}/> : 'Register'}
             </button>

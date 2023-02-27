@@ -8,6 +8,7 @@ import MainPage from './pages/MainPage';
 import CartPage from './pages/CartPage';
 import AccountPage from './pages/AccountPage';
 import AuthModal from "./components/modals/AuthModal";
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const [openRegisterModal, setOpenRegisterModal] = useState(false);
@@ -22,6 +23,7 @@ function App() {
         isLogined={isLogined}
         setLogined={setLogined}
       />
+      <ToastContainer />
       <AnimatePresence>
         {openRegisterModal && <AuthModal
           openRegisterModal={openRegisterModal}

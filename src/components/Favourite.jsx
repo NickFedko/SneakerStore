@@ -6,7 +6,7 @@ export default function Favourite() {
         title: "American Posh Baby Short Sleeve Onesie", 
         price: 499, 
         picture: "http://ecx.images-amazon.com/images/I/41jog0WawgL._SX342_.jpg"
-}
+    }
 
     return (
         <div className='list__items'>

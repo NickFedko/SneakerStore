@@ -5,6 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { login } from '../../store/actions/auth'
 import { ClipLoader } from 'react-spinners';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import * as Yup from 'yup'
 
 export default function LoginForm({setOpenLoginModal}) {
@@ -18,24 +21,13 @@ export default function LoginForm({setOpenLoginModal}) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const notify = () => toast('You are loggined!', {
+        type: 'success',
+        autoClose: 1000,
+        theme: 'colored'
+    })
+
     const {message} = useSelector(state => state.message)
-
-    const signIn = (email, password) => {
-        setLoading(true);
-        formik.handleSubmit() ? 
-            setLoading(false)
-            : 
-            dispatch(login(email, password))
-                .then(() => {
-                    navigate('/account')
-                    setLoading(false)
-                    setOpenLoginModal(false)
-                })
-                .catch(() => {
-                    setLoading(false);
-                })
-    }
-
     const validationSchema = Yup.object().shape({
         email: Yup.string().required("Email is required").email("Email is invalid"),
         password: Yup.string()
@@ -50,13 +42,26 @@ export default function LoginForm({setOpenLoginModal}) {
     const formik = useFormik({
         initialValues: {
             email: '',
-            password: ''
+            password: '',
         },
         validationSchema,
-        onSubmit: (data) => {
-            return(JSON.stringify(data, null, 2));
-        },
+        onSubmit: signIn
     });
+
+    function signIn() {
+        setLoading(true);
+        dispatch(login(formik.values))
+            .then(() => {
+                notify()
+                navigate('/account');
+                setLoading(false);
+                setOpenLoginModal(false);
+            })
+            .finally(() => {
+                setLoading(false);
+        })
+    }
+
 
     return(
         <>
@@ -95,7 +100,7 @@ export default function LoginForm({setOpenLoginModal}) {
                     onClick={togglePassword}
                 />
             </div>
-            <button type="button" onClick={()=> signIn(formik.values.email, formik.values.password)}>
+            <button type="button" onClick={()=> formik.handleSubmit()}>
                 {loading ? <ClipLoader color={'white'} size={20}/> : 'Login'}
             </button>
         </>

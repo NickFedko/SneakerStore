@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 
 export default function Header({openModal, openLoginModal, setLogined}) {
     const {isLoggedIn} = useSelector(state => state.auth)
+
     return(
         <header>
             <div className='header__logo__block'>

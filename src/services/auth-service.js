@@ -1,8 +1,8 @@
 import postRegister from './api/register'
 import postLogin from './api/login'
 
-const register = (email, password, phone, fullName) => {
-    return postRegister(email, password, phone, fullName);
+const register = (userInfo) => {
+    return postRegister(userInfo);
 };
 
 const login = (email, password) => {
