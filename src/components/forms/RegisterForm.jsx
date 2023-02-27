@@ -17,8 +17,8 @@ export default function RegisterForm({setOpenRegisterModal}) {
         setPasswordShown(!passwordShown);
     }
 
-    const notify = () => toast('You are registered!', {
-        type: 'success',
+    const notify = (message, type) => toast(message, {
+        type,
         autoClose: 1000,
         theme: 'colored'
     })
@@ -64,17 +64,17 @@ export default function RegisterForm({setOpenRegisterModal}) {
             .then(() => {
                 setLoading(false);
                 setOpenRegisterModal(false);
-                notify();
+                notify('You are Registered', 'success');
             })
             .catch(() => {
                 setLoading(false);
+                notify(message, 'error')
             })
     }
         
 
     return(
         <>
-            {message && (<span>{message}</span>)}
             <h2>Register</h2>
             <div className='input__container'>
                 <input 

@@ -1,6 +1,14 @@
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import getCountries from "../../services/api/countries";
 
 export default function CartForm() {
+    const [selectCounties, setSelectCountries] = useState([]);
+
+    useEffect(() => {
+        getCountries().then(res => console.log(res))
+    }, [])
+
     return(
         <form className="cart__form">
             <div className="input__block">

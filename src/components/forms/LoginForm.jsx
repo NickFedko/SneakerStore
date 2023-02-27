@@ -21,8 +21,8 @@ export default function LoginForm({setOpenLoginModal}) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const notify = () => toast('You are loggined!', {
-        type: 'success',
+    const notify = (message, type) => toast(message, {
+        type,
         autoClose: 1000,
         theme: 'colored'
     })
@@ -52,11 +52,12 @@ export default function LoginForm({setOpenLoginModal}) {
         setLoading(true);
         dispatch(login(formik.values))
             .then(() => {
-                notify()
+                notify('You are loggined', 'success')
                 navigate('/account');
                 setLoading(false);
                 setOpenLoginModal(false);
             })
+            .catch(() => notify(message, 'error'))
             .finally(() => {
                 setLoading(false);
         })
@@ -65,7 +66,6 @@ export default function LoginForm({setOpenLoginModal}) {
 
     return(
         <>
-            {message && <span>{message}</span>}
             <h2>Login</h2>
             <div className='input__container'>
                 <input 
