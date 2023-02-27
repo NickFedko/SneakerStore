@@ -6,7 +6,8 @@ export default function CartForm() {
     const [selectCounties, setSelectCountries] = useState([]);
 
     useEffect(() => {
-        getCountries().then(res => console.log(res))
+        getCountries()
+            .then((response) => setSelectCountries(response.data))
     }, [])
 
     return(
@@ -21,7 +22,9 @@ export default function CartForm() {
             </div>
             <div className="select__block">
                 <select>
-                    <option>Ukraine</option>
+                    {selectCounties.map((country, index) => (
+                        <option key={index}>{country}</option>
+                    ))}
                 </select>
                 <span>Country</span>
             </div>
