@@ -285,7 +285,11 @@ export default function AccountPage() {
                 </div>
             </>}
             { orderHistorySection &&
-                <OrderHistory />
+                <>
+                    <OrderHistory />
+                    <OrderHistory />
+                    <OrderHistory />
+                </>
             }
             { favouritesSection &&
                 <Favourite />

@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import getCountries from "../../services/api/countries";
+import PurchaseModal from "../modals/PurchaseModal";
+import { AnimatePresence } from "framer-motion";
 
 export default function CartForm() {
     const [selectCounties, setSelectCountries] = useState([]);
+    const [openPurchaseModal, setOpenPurchaseModal] = useState(false);
 
     useEffect(() => {
         getCountries()
@@ -38,10 +41,20 @@ export default function CartForm() {
             </div>
             <p>Items <span>3</span></p>
             <p>Total <span>$ 575.19</span></p>
-            <button type="button">Confirms the purchase</button>
+            <button 
+                type="button"
+                onClick={() => setOpenPurchaseModal(true)}
+            >
+                Confirms the purchase
+            </button>
             <Link to={'/'}>
                 <button type="button">Continue shopping</button>
             </Link>
+            <AnimatePresence>
+                {openPurchaseModal && 
+                    <PurchaseModal setOpenPurchaseModal={setOpenPurchaseModal} />
+                }
+            </AnimatePresence>
         </form>
     )
 }

@@ -250,5 +250,111 @@
     align-items: center;
 }
 
+/* Modal Purchase */
 
+.modal__container__purchase {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
 
+.modal__container__purchase .modal__close-button{
+    width: 18px;
+    height: 18px;
+    right: 30px;
+    top: 10px;
+}
+
+.modal__container .modal__container__purchase p {
+    width: 340px;
+    text-align: center;
+    align-self: center;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.modal__container .modal__container__purchase button.modal__container__purchase__button {
+    width: 220px;
+    margin-top: 20px;
+}
+
+/* Modal Orders */
+
+.orders__item__container {
+    border: 1px solid #ECEEF0;
+    box-shadow: 0px 4px 14px rgba(121, 121, 121, 0.0527344);
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 16px;
+    width: 560px;
+    max-height: 160px;
+    margin-right: 40px;
+    margin-bottom: 20px;
+}
+
+.orders__item__container img {
+    width: 125px;
+    height: 125px;
+    object-fit: contain;
+    border-radius: 3px;
+    box-shadow: 0px 4px 14px rgb(121 121 121 / 5%);
+    border: 1px solid lightgray;
+}
+
+.orders__item__container__info__price {
+    border-left: 1px solid #ECEEF0;
+    padding: 20px;
+}
+
+ .modal__container .orders__item__container__info__price p {
+    color:black;
+}
+
+.orders__item__container__info {
+    padding: 0 20px;
+    align-self: flex-start;
+    margin-top: 30px;
+}
+
+.modal__container .orders__item__container__info p {
+    color: black;
+}
+
+.modal__container .orders__item__container__info p span {
+    font-weight: 700;
+}
+
+.orders__item__container__info__price p:nth-child(2) {
+    font-weight: 700;
+}
+
+.modal__container__orders {
+    display: flex;
+    flex-direction: column;
+    max-width: 904px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal__container__orders__info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 520px;
+}
+
+.modal__container__orders p {
+    width: auto;
+}
+
+.modal__container__orders__info div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
