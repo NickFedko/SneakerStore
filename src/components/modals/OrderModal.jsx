@@ -5,8 +5,24 @@ import OrderItem from '../OrderItem';
 
 export default function OrderModal( {setOpenOrderModal} ) {
     return(
-        <div className="modal__overlay">
-            <div className="modal__container">
+        <motion.div 
+            className="modal__overlay"
+            initial={{opacity:0}}
+            animate={{
+                opacity:1,
+                transition:{duration:0.5}
+            }}
+            exit={{opacity:0}}
+        >
+            <motion.div 
+                className="modal__container"
+                initial={{scale:0}}
+                animate={{
+                    scale:1,
+                    transition: {duration:0.5}
+                }}
+                exit={{scale:0}}
+            >
                 <div className="modal__container__orders">
                     <button 
                         className="modal__close-button"
@@ -28,7 +44,7 @@ export default function OrderModal( {setOpenOrderModal} ) {
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </motion.div>
+        </motion.div>
     )
 }

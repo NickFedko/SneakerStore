@@ -9,6 +9,8 @@ import CartPage from './pages/CartPage';
 import AccountPage from './pages/AccountPage';
 import AuthModal from "./components/modals/AuthModal";
 import { ToastContainer } from 'react-toastify';
+import OrderHistory from './components/OrderHistory';
+import Favourite from './components/Favourite';
 
 function App() {
   const [openRegisterModal, setOpenRegisterModal] = useState(false);
@@ -42,6 +44,8 @@ function App() {
         <Route exact path='/' element={<MainPage />} />
         <Route exact path='/orders' element={<CartPage />} />
         <Route exact path='/account' element={<AccountPage/>} />
+        <Route exact path='/account/order_history' element={<OrderHistory />} />
+        <Route exact path='/account/favourite' element={<Favourite/>} />
       </Routes>
       <Footer />
     </div>
