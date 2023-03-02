@@ -1,3 +1,38 @@
+:root{
+    --font-color-black: #000000;
+    --font-color-orange: #FD7114;
+    --font-color-gray: #707070;
+    --font-color-red: #ff0000;
+    --font-color-white: #ffffff;
+
+    --font-size-smallest: 12px;
+    --font-size-small: 14px;
+    --font-size-medium: 16px; 
+    --font-size-large: 18px;
+    --font-size-largest: 20px;
+
+    --orange-bg: #FD7114;
+    --white-bg: #ffffff;
+
+    --modal-container-border-radius: 10px;
+    --modal-container-input-border: 1px solid #d3d3d3;
+    --modal-container-input-border-radius: 5px;
+    --modal-container-img-border-radius: ;
+    --modal-container-focus-input-border: 2px solid #707070;
+
+    --modal-container-product-info-img: 4px solid #f0f0f0;
+    --modal-container-product-action-button-border: 2px solid #FD7114;
+    --modal-container-product-info-img-box-shadow: 0px 4px 14px rgba(53, 53, 53, 0.053);
+    --modal-container-product-description-button-bg: ;
+
+    --orders-item-container-border: 1px solid #ECEEF0;
+    --orders-item-container-box-shadow: 0px 4px 14px rgba(53, 53, 53, 0.053);
+    --orders-item-container-img-border: 1px solid #d3d3d3;
+    --orders-item-container-img-box-shadow: 0px 4px 14px rgb(121 121 121 / 5%);
+    --orders-item-container-info-price-border-left: 1px solid #ECEEF0;
+    --orders-item-container-info-price-border: 1px solid #ECEEF0;
+}
+
 .modal__overlay {
     position: fixed;
     background-color: rgba(0, 0, 0, 0.7);
@@ -18,9 +53,9 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: white;
+    background-color: var(--white-bg);
     padding: 30px;
-    border-radius: 10px;
+    border-radius: var(--modal-container-border-radius);
 }
 
 .modal__container .modal__close-button {
@@ -35,14 +70,14 @@
 .modal__container input {
     box-sizing: border-box;
     background-color: transparent;
-    border:1px solid lightgray;
-    width:362px;
+    border: var(--modal-container-input-border);
+    width: 362px;
     height: 40px;
     margin: 10px 0px;
     padding: 0px 10px;
-    border-radius: 5px;
+    border-radius: var(--modal-container-input-border-radius);
     outline: none;
-    font-size: 16px;
+    font-size: var(--font-size-medium);
 }
 
 .modal__container .input__container input:invalid ~ label{
@@ -50,41 +85,41 @@
 }
 
 .modal__container p {
-    font-size: 12px;
+    font-size: var(--font-size-smallest);
     width: 278px;
     text-align: left;
     align-self: flex-start;
     float: left;
-    color:#707070;
+    color: var(--font-color-gray);
     margin: 0px;
 }
 
 .modal__container button:last-child {
     box-sizing: border-box;
-    width:362px;
+    width: 362px;
     height: 40px;
     border: none;
-    border-radius: 5px;
-    background-color: #FD7114;
-    color: white;
+    border-radius: var(--modal-container-input-border-radius);
+    background-color: var(--orange-bg);
+    color: var(--font-color-white);
     cursor: pointer;
     margin-top: 50px;
 }
 
 .modal__login__transfer {
-    background-color: white;
-    border-radius: 10px;
+    background-color: var(--white-bg);
+    border-radius: var(--modal-container-border-radius);
     padding: 20px 95px;
     margin-top: 15px;
 }
 
 .modal__login__transfer a {
     cursor: pointer;
-    color:#FD7114;
+    color: var(--font-color-orange);
 }
 
 .modal__container .input__container {
-    display:flex;
+    display: flex;
     flex-direction: column;
     text-align: left;
     position:relative;
@@ -95,21 +130,21 @@
     text-align: left;
 }
 .modal__container .input__container label {
-    color:red;
-    font-size: 14px;
+    color: var(--font-color-red);
+    font-size: var(--font-size-small);
 }
 
 .modal__container .input__container input:focus {
-    border: 2px solid #707070;
+    border: var(--modal-container-focus-input-border);
     transition: 0.5s;
 }
 
 .modal__container .input__container .input__container__password__button {
     position: absolute;
     right: 10px;
-    top:-27px;
+    top: -27px;
     width: 22px;
-    height: 16px;
+    height: var(--font-size-medium);
     background-color: transparent;
     background-image: url(../images/icons/visibility.svg);
     opacity: 0.7;
@@ -123,7 +158,7 @@
 .modal__container .input__container span {
     position: absolute;
     left: 0;
-    top:20px;
+    top: 20px;
     padding: 0px 10px;
     pointer-events: none;
     color: rgba(0, 0, 0, 0.6);
@@ -134,30 +169,30 @@
 .modal__container .input__container input:not(:placeholder-shown) ~ span {
     font-weight: 600;
     transform: translateX(10px) translateY(-20px);
-    font-size: 14px;
-    background: white;
+    font-size: var(--font-size-small);
+    background: var(--white-bg);
 }
 
 /* Modal Product Item */
 
-.modal__coontainer__product__info {
+.modal__container__product__info {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 40px;
 }
 
-.modal__coontainer__product__info img {
+.modal__container__product__info img {
     width: 400px;
     height: 296px;
-    border: 4px solid rgb(240, 240, 240);
-    box-shadow: 0px 4px 14px rgba(53, 53, 53, 0.053);
-    border-radius: 4px;
+    border: var(--modal-container-product-info-img);
+    box-shadow: var(--modal-container-product-info-img-box-shadow);
+    border-radius: var(--modal-container-img-border-radius);
     object-fit: contain;
 }
 
-.modal__coontainer__product__info h2 {
-    font-size: 18px;
+.modal__container__product__info h2 {
+    font-size: var(--font-size-large);
     width: 260px;
     text-align: left;
 }
@@ -172,12 +207,12 @@
 
 .modal__container__product__description p {
     margin-bottom: 5px;
-    font-size: 14px;
+    font-size: var(--font-size-small);
 }
 
 .modal__container__product__description p.price__label {
-    font-size: 14px;
-    color: black;
+    font-size: var(--font-size-small);
+    color: var(--font-color-black);
     text-transform: uppercase;
     width: 220px;
     display: flex;
@@ -190,7 +225,7 @@
 }
 
 .modal__container__product__description span {
-    color: black;
+    color: var(--font-color-black);
     font-weight: 700;
     margin-left: 10px;
 }
@@ -199,13 +234,13 @@
     width: 26px;
     height: 26px;
     border-radius: 50%;
-    color: #707070;
-    background-color: #E0E0E0;
+    color: var(--font-color-gray);
+    background-color: var(--modal-container-product-description-button-bg);
     display: flex;
     align-items: center;
     justify-content: center;
     border: none;
-    font-size: 20px;
+    font-size: var(--font-size-largest);
     padding: 0px;
     line-height: 26px;
     margin: 0px;
@@ -223,9 +258,9 @@
 .modal__container__product__action button {
     width: 220px; 
     height: 36px;
-    border: 2px #FD7114 solid ;
-    border-radius: 4px;
-    color: #FD7114;
+    border: var(--modal-container-product-action-button-border);
+    border-radius: var(--modal-container-input-border-radius);
+    color: var(--font-color-orange);
     text-transform: uppercase;
     margin-right: 20px;
 }
@@ -272,7 +307,7 @@
     width: 340px;
     text-align: center;
     align-self: center;
-    color: black;
+    color: var(--font-color-black);
     margin-bottom: 20px;
 }
 
@@ -284,9 +319,9 @@
 /* Modal Orders */
 
 .orders__item__container {
-    border: 1px solid #ECEEF0;
-    box-shadow: 0px 4px 14px rgba(121, 121, 121, 0.0527344);
-    border-radius: 4px;
+    border: var(--orders-item-container-border);
+    box-shadow: var(--orders-item-container-box-shadow);
+    border-radius: var(--modal-container-img-border-radius);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -302,18 +337,18 @@
     width: 125px;
     height: 125px;
     object-fit: contain;
-    border-radius: 3px;
-    box-shadow: 0px 4px 14px rgb(121 121 121 / 5%);
-    border: 1px solid lightgray;
+    border-radius: var(--modal-container-img-border-radius);
+    box-shadow: var(--orders-item-container-img-box-shadow);
+    border: var(--orders-item-container-img-border);
 }
 
 .orders__item__container__info__price {
-    border-left: 1px solid #ECEEF0;
+    border-left: var(--orders-item-container-info-price-border);
     padding: 20px;
 }
 
  .modal__container .orders__item__container__info__price p {
-    color:black;
+    color: var(--font-color-black);
 }
 
 .orders__item__container__info {
@@ -323,7 +358,7 @@
 }
 
 .modal__container .orders__item__container__info p {
-    color: black;
+    color: var(--font-color-black);
 }
 
 .modal__container .orders__item__container__info p span {

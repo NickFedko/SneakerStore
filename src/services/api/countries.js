@@ -1,5 +1,5 @@
 import axios from "axios";
-import { baseUrl, headers } from ".";
+import { baseUrl } from ".";
 
 export default async function getCountries() {
     return await axios ({

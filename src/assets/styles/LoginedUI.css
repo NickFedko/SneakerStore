@@ -1,8 +1,25 @@
+:root {
+    --black-font-color: #000000;
+    --red-font-color: #ff0000;
+
+    --white-bg: #ffffff;
+
+    --font-size-small: 12px;
+    --font-size-medium: 14px;
+
+    --user-icon-bg: #DEDEE0;
+    --user-icon-border: 2px solid #FD7114;
+
+    --drop-down-ul-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+    --drop-down-ul-border-radius: 4px;
+    --drop-down-ul-hr-border: 1px solid #E4E4E4;
+}
+
 .user__ui {
     position: relative;
     display: flex;
     text-transform: none;
-    font-size: 12px;
+    font-size: var(--font-size-small);
     margin-left: 30px;
 }
 
@@ -10,17 +27,17 @@
     width: 40px;
     cursor: pointer;
     height: 40px;
-    background-color: #DEDEE0;
+    background-color: var(--user-icon-bg);
     border-radius: none;
     box-sizing: border-box;
-    border: 2px solid orange;
+    border: var(--user-icon-border);
     border-radius: 50%;
-    margin-left: 15px;
+    margin-left: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: black;
-    font-size: 14px;
+    color: var(--black-font-color);
+    font-size: var(--font-size-medium);
 }
 
 .user__ui .user__drop_down {
@@ -28,16 +45,16 @@
 }
 
 .user__ui .drop_down__ul {
-    top:60px;
+    top: 60px;
     right: 0px;
     z-index: 1;
     min-width: 234px;
     box-sizing: border-box;
     position: absolute;
-    background-color: white;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
-    border-radius: 4px;
-    color: black;
+    background-color: var(--white-bg);
+    box-shadow: var(--drop-down-ul-box-shadow);
+    border-radius: var(--drop-down-ul-border-radius);
+    color: var(--black-font-color);
     list-style: none;
     display: flex;
     flex-direction: column;
@@ -51,12 +68,12 @@
 .user__ui .drop_down__ul a {
     margin: 0;
     text-decoration: none;
-    color: black;
+    color: var(--black-font-color);
 }
 
 .drop_down__ul .drop_down__li {
-    font-size: 13px;
-    margin: 15px;
+    font-size: var(--font-size-small);
+    margin: 16px;
     cursor: pointer;
 }
 
@@ -66,9 +83,9 @@
 
 .drop_down__ul .drop_down__hr {
     width: 100%;
-    border: 1px solid#E4E4E4;
+    border: var(--drop-down-ul-hr-border);
 }
 
 .drop_down__ul .drop_down__li.logout {
-    color: red;
+    color: var(--red-font-color);
 }

@@ -1,20 +1,32 @@
+:root {
+  --header-bg: #110F21;
+
+  --white-font-color: #ffffff;
+
+  --vertical-line-bg: #FD7114;
+  --vertical-line-border: 1px solid #FD7114;
+}
+
 header {
-  background-color: #110F21;
-  color: white;
+  background-color: var(--header-bg);
+  color: var(--white-font-color);
   display: flex;
   align-items: center;
   padding: 15px;
   justify-content: space-between;
 }
+
 header .header__logo__block {
   margin-left: 10%;
 }
+
 header .header__interaction__block {
   margin-right: 5%;
   text-transform: uppercase;
   display: flex;
   align-items: center;
 }
+
 header .header__interaction__block button {
   background-color: transparent;
   border: none;
@@ -24,6 +36,7 @@ header .header__interaction__block button {
   align-items: center;
   justify-content: center;
 }
+
 header .header__interaction__block a {
   margin-left: 25px;
   align-items: center;
@@ -31,18 +44,22 @@ header .header__interaction__block a {
   justify-content: center;
   cursor: pointer;
 }
+
 header .header__interaction__block a:nth-last-child(1) {
   margin: 0px;
 }
+
 header .header__interaction__block span.header__register__link {
   margin: 0 20px;
 }
+
 header .header__interaction__block span.header__register__link:first-of-type {
   margin: 0 0 0 20px;
 }
+
 header .header__interaction__block span.header__vertical__line {
-  border: 1px solid #FD7114;
+  border: var(--vertical-line-border);
   margin: 0 20px;
-  height: 13px;
-  background-color: #FD7114;
-}/*# sourceMappingURL=Header.css.map */
+  height: 12px;
+  background-color: var(--vertical-line-bg)
+}

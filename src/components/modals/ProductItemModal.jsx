@@ -47,7 +47,7 @@ export default function ProductItemModal( {clickedProductId, setOpenProductModal
                 {contentLoading 
                 ? <ClipLoader size={200} color='black' />
                 :<>
-                    <div className='modal__coontainer__product__info'>
+                    <div className='modal__container__product__info'>
                         <img src={picture} alt='product_img' />
                         <div className='modal__container__product__description'>
                             <h2>{title}</h2>

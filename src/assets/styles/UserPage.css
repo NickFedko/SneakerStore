@@ -1,9 +1,30 @@
+:root {
+    --font-color-white: #ffffff;
+    --font-color-black: #000000;
+    --font-color-gray: #707070;
+    --font-color-red: #ff0000;
+
+    --white-bg: #ffffff;
+    --orange-bg: #FD7114;
+
+    --user-page-nav-button-border: 1.3px solid #DEDEE0;
+    --user-page-img-bg: #DEDEE0;
+
+    --input-border: 1px solid #d3d3d3;
+    --input-border-radius: 5px;
+    --input-focus-border: 2px solid #707070;
+
+    --order-history-border: 1px solid #ECEEF0;
+    --order-history-border-radius: 4px;
+    --order-history-box-shadow: 0px 4px 14px rgba(121, 121, 121, 0.0527344);
+}
+
 .user_page {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    background-color: white;
+    background-color: var(--white-bg);
     max-width: 904px;
     margin-left: auto;
     margin-right: auto;
@@ -18,7 +39,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #DEDEE0;
+    background-color: var(--user-page-img-bg);
     font-size: 24px;
 }
 
@@ -27,17 +48,17 @@
 }
 
 .user_page .user_page__nav .user_page__nav_button{
-    width: 163px;
+    width: 164px;
     height: 74px;
     box-sizing: border-box;
-    background-color: white;
-    border: 1.3px solid #DEDEE0;
+    background-color: var(--white-bg);
+    border: var(--user-page-nav-button-border);
     position: relative;
 }
 
 .user_page .user_page__nav .user_page__nav_button.active {
-    background: #FD7114;
-    color: white;
+    background: var(--orange-bg);
+    color: var(--font-color-white);
 }
 
 .user_page .user_page__nav .user_page__nav_button.active::after {
@@ -47,7 +68,7 @@
 	width: 25px;
 	bottom: -9px;
 	left: 69px;
-	background-color: #FD7114;
+	background-color: var(--orange-bg);
 	clip-path: polygon(50% 100%, 100% 0, 0 0);
 }
 
@@ -68,17 +89,17 @@
     height: 40px;
     box-sizing: border-box;
     background-color: transparent;
-    border:1px solid lightgray;
+    border: var(--input-border);
     margin: 10px 0px;
     padding: 0px 10px;
-    border-radius: 5px;
+    border-radius: var(--input-border-radius);
     outline: none;
     font-size: 16px;
 
 }
 
 .input_block__input:focus {
-    border: 2px solid #707070;
+    border: var(--input-focus-border);
     transition: 0.5s;
     outline: none;
 }
@@ -93,7 +114,7 @@
     transition: 0.5s;
 }
 .info__form__input_block label, .password_change__form__input_block label {
-    color:red;  
+    color: var(--font-color-red);  
     max-width: 362px;
     font-size: 14px;
     text-align: left;
@@ -103,20 +124,20 @@
 .info__form__input_block input:focus ~ span,
 .password_change__form__input_block input:not(:placeholder-shown) ~ span,
 .password_change__form__input_block input:focus ~  span{
-    color:black;
+    color: var(--font-color-black);
     font-weight: 600;
     transform: translateX(10px) translateY(-20px);
     font-size: 14px;
-    background: white;
+    background: var(--white-bg);
 }
 
 .user_page__info__form button, .user_page__password_change__form button {
     width: 362px;
     height: 40px;
-    border-radius: 5px;
+    border-radius: var(--input-border-radius);
     border: none;
-    background-color: #FD7114;
-    color: white;
+    background-color: var(--orange-bg);
+    color: var(--font-color-white);
     font-weight: 500;
 }
 
@@ -128,9 +149,9 @@
 
 .order_history__container {
     margin: 40px 0 0 0;
-    border: 1px solid #ECEEF0;
-    box-shadow: 0px 4px 14px rgba(121, 121, 121, 0.0527344);
-    border-radius: 4px;
+    border: var(--order-history-border);
+    box-shadow: var(--order-history-box-shadow);
+    border-radius: var(--order-history-border-radius);
     display: flex;
     justify-content: space-between;
     box-sizing: border-box;
@@ -139,10 +160,10 @@
 }
 
 .order_history__container p {
-    color: #707070;
+    color: var(--font-color-gray);
 }
 
 .order_history__container span {
-    color: black;
+    color: var(--font-color-black);
     margin-left: 20px;
 }

@@ -1,3 +1,20 @@
+:root {
+    --font-size-medium: 16px;
+    --font-size-large: 18px;
+
+    --font-color-white: #ffffff;
+
+    --white-bg: #ffffff;
+
+    --border-radius-item: 4px;
+
+    --load-more-button-bg: #55adff;
+
+    --item-block-border: 1px solid #E4E4E4;
+    --item-block-box-shadow: 0px 4px 14px rgba(121, 121, 121, 0.0527344);
+    --item-block-button-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.163407);
+}
+
 .list__items {
     margin-left: auto;
     margin-right: auto;
@@ -17,14 +34,14 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 4px;
-    background-color: white;
-    width: 209px;
+    background-color: var(--white-bg);
+    width: 208px;
     min-height: 260px;
     box-sizing: border-box;
     margin: 4px;
-    border: 1px solid #E4E4E4;
-    box-shadow: 0px 4px 14px rgba(121, 121, 121, 0.0527344);
-    border-radius: 4px;
+    border: var(--item-block-border);
+    box-shadow: var(--item-block-box-shadow);
+    border-radius: var(--border-radius-item);
 }
 
 .list__items .item__block .item__block__image {
@@ -34,14 +51,14 @@
 }
 
 .list__items .item__block .item__block__name {
-    font-size: 15px;
+    font-size: var(--font-size-medium);
     text-align: left;
     margin: 0;
     padding: 10px 10px;
 }
 
 .list__items .item__block .item__block__price {
-    font-size: 18px;
+    font-size: var(--font-size-large);
     text-align: left;
     margin: 0;
     margin-top: 10px;
@@ -51,7 +68,7 @@
 
 .list__items .item__block .item__block__button {
     position: absolute;
-    top:135px;
+    top: 135px;
     height: 30px;
     width: 30px;
     right: 10px;
@@ -68,14 +85,14 @@
 }
 
 .load_more__button {
-    width: 150px;
+    width: 160px;
     height: 40px;
     margin-bottom: 100px;
-    color: white;
-    background-color: rgb(85, 173, 255);
-    border-radius: 4px;
+    color: var(--font-color-white);
+    background-color: var(--load-more-button-bg);
+    border-radius: var(--border-radius-item);
     border: none;
-    font-size: 18px;
+    font-size: var(--font-size-large);
 }
 
 .loader__overlay {
