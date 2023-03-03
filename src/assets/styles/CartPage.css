@@ -1,32 +1,3 @@
-:root {
-    --font-size-small: 14px;
-    --font-size-medium: 16px;
-    --font-size-large: 18px;
-
-    --white-bg: #ffffff;
-    --grey-font-color: #707070;
-    --black-font-color: #000000;
-    --white-font-color: #ffffff;
-
-    --cart-item-container-border: 1px solid #ECEEF0;
-    --cart-item-container-box-shadow: 0px 4px 14px rgba(121, 121, 121, 0.053);
-    --cart-item-container-border-radius: 4px;
-    --cart-item-containte-info-price-border: 1px solid #ECEEF0;
-
-    --cart-item-container-img-border: 1px solid #d3d3d3;
-    --cart-item-container-img-box-shadow: 0px 4px 14px rgba(121 121 121 / 5%);
-    --cart-item-container-img-border-radius: 3px;
-
-    --cart-form-border-left: 1px solid #DEDEE0;
-    --cart-form-button-bg: #FD7114;
-    --cart-form-button-border-radius: 5px;
-
-    --input-block-border: 1px solid #d3d3d3;
-    --inpit-block-border-radius: 5px;
-    --input-block-focus-border: 2px solid #707070;
-    --input-block-span-color: #373738;
-}
-
 .cart__page {
     background-color: var(--white-bg);
     position: relative;
@@ -93,7 +64,7 @@
     height: 26px;
     width: 26px;
     border: none;
-    color: var(--grey-font-color);
+    color: var(--font-color-gray);
     text-align: center;
 }
 
@@ -109,12 +80,12 @@
 }
 
 .cart__item__container__info__price p {
-    color: var(--grey-font-color);
+    color: var(--font-color-gray);
 }
 
 .cart__item__container__info__price p:nth-child(2) {
     font-weight: 700;
-    color: var(--black-font-color);
+    color: var(--font-color-black);
 }
 
 .cart__form {
@@ -207,7 +178,7 @@
 }
 
 .cart__form p {
-    color: var(--grey-font-color);
+    color: var(--font-color-grey);
     font-size: var(--font-size-large);
     width: 220px;
     display: flex;
@@ -216,7 +187,7 @@
 }
 
 .cart__form span {
-    color: var(--black-font-color);
+    color: var(--font-color-black);
 }
 
 .cart__form button {
@@ -224,7 +195,7 @@
     border-radius: var(--cart-form-button-border-radius);
     border: none;
     box-sizing: border-box;
-    color: var(--white-font-color);
+    color: var(--font-color-white);
     width: 220px;
     height: 36px;
     margin-top: 18px;

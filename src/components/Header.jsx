@@ -13,13 +13,15 @@ export default function Header({openModal, openLoginModal, setLogined}) {
     return(
         <header>
             <div className='header__logo__block'>
-                <Link to={'/'}>    
+                <Link to='/'>    
                     <img className='header__logo' src={logo} alt={'logo'}/>
                 </Link>
             </div>
             <div className='header__interaction__block'>
-                <button className='header__favourite__button'><img src={favourite} alt={'favourite__button'}/></button>
-                <Link to={'/orders'}>
+                <Link to='/account/favourite'>
+                    <button className='header__favourite__button'><img src={favourite} alt={'favourite__button'}/></button>
+                </Link>
+                <Link to='/orders'>
                     <button className='header__basket__button'><img src={basket} alt={'basket__button'}/></button>
                 </Link>
                 {isLoggedIn ?

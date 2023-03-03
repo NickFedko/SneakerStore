@@ -1,3 +1,97 @@
+:root {
+    --font-size-smallest: 12px;
+    --font-size-small: 14px;
+    --font-size-medium: 16px;
+    --font-size-large: 18px;
+    --font-size-largest: 20px;
+
+    --font-color-black: #000000;
+    --font-color-orange: #FD7114;
+    --font-color-gray: #707070;
+    --font-color-red: #ff0000;
+    --font-color-white: #ffffff;
+
+    --white-bg: #ffffff;
+    --orange-bg: #FD7114;
+    --header-bg: #110F21;
+
+    --vertical-line-bg: #FD7114;
+    --vertical-line-border: 1px solid #FD7114;
+
+    --cart-item-container-border: 1px solid #ECEEF0;
+    --cart-item-container-box-shadow: 0px 4px 14px rgba(121, 121, 121, 0.053);
+    --cart-item-container-border-radius: 4px;
+    --cart-item-containte-info-price-border: 1px solid #ECEEF0;
+
+    --cart-item-container-img-border: 1px solid #d3d3d3;
+    --cart-item-container-img-box-shadow: 0px 4px 14px rgba(121 121 121 / 5%);
+    --cart-item-container-img-border-radius: 3px;
+
+    --cart-form-border-left: 1px solid #DEDEE0;
+    --cart-form-button-bg: #FD7114;
+    --cart-form-button-border-radius: 5px;
+
+    --input-block-border: 1px solid #d3d3d3;
+    --inpit-block-border-radius: 5px;
+    --input-block-focus-border: 2px solid #707070;
+    --input-block-span-color: #373738;
+
+    --user-icon-bg: #DEDEE0;
+    --user-icon-border: 2px solid #FD7114;
+
+    --drop-down-ul-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+    --drop-down-ul-border-radius: 4px;
+    --drop-down-ul-hr-border: 1px solid #E4E4E4;
+
+    --modal-container-border-radius: 10px;
+    --modal-container-input-border: 1px solid #d3d3d3;
+    --modal-container-input-border-radius: 5px;
+    --modal-container-img-border-radius: ;
+    --modal-container-focus-input-border: 2px solid #707070;
+
+    --modal-container-product-info-img: 4px solid #f0f0f0;
+    --modal-container-product-action-button-border: 2px solid #FD7114;
+    --modal-container-product-info-img-box-shadow: 0px 4px 14px rgba(53, 53, 53, 0.053);
+    --modal-container-product-description-button-bg: ;
+
+    --orders-item-container-border: 1px solid #ECEEF0;
+    --orders-item-container-box-shadow: 0px 4px 14px rgba(53, 53, 53, 0.053);
+    --orders-item-container-img-border: 1px solid #d3d3d3;
+    --orders-item-container-img-box-shadow: 0px 4px 14px rgb(121 121 121 / 5%);
+    --orders-item-container-info-price-border-left: 1px solid #ECEEF0;
+    --orders-item-container-info-price-border: 1px solid #ECEEF0;
+
+    --border-radius-item: 4px;
+
+    --load-more-button-bg: #55adff;
+
+    --item-block-border: 1px solid #E4E4E4;
+    --item-block-box-shadow: 0px 4px 14px rgba(121, 121, 121, 0.0527344);
+    --item-block-button-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.163407);
+
+    --sorting-form-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+    --sorting-form-border-radius: 4px; 
+
+    --sorting-form-input-border: 1px solid #DEDEE0;
+    --sorting-form-input-border-radius: 5px;
+    --sorting-form-input-font-color:#707070;
+    --sorting-form-input-focus-border-color: #5e5e5e;
+
+    --user-page-nav-button-border: 1.3px solid #DEDEE0;
+    --user-page-img-bg: #DEDEE0;
+
+    --input-border: 1px solid #d3d3d3;
+    --input-border-radius: 5px;
+    --input-focus-border: 2px solid #707070;
+
+    --order-history-border: 1px solid #ECEEF0;
+    --order-history-border-radius: 4px;
+    --order-history-box-shadow: 0px 4px 14px rgba(121, 121, 121, 0.0527344);
+
+    --footer-color: #707070;
+    --footer-bg: #F1F1F3;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

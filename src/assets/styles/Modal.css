@@ -1,38 +1,3 @@
-:root{
-    --font-color-black: #000000;
-    --font-color-orange: #FD7114;
-    --font-color-gray: #707070;
-    --font-color-red: #ff0000;
-    --font-color-white: #ffffff;
-
-    --font-size-smallest: 12px;
-    --font-size-small: 14px;
-    --font-size-medium: 16px; 
-    --font-size-large: 18px;
-    --font-size-largest: 20px;
-
-    --orange-bg: #FD7114;
-    --white-bg: #ffffff;
-
-    --modal-container-border-radius: 10px;
-    --modal-container-input-border: 1px solid #d3d3d3;
-    --modal-container-input-border-radius: 5px;
-    --modal-container-img-border-radius: ;
-    --modal-container-focus-input-border: 2px solid #707070;
-
-    --modal-container-product-info-img: 4px solid #f0f0f0;
-    --modal-container-product-action-button-border: 2px solid #FD7114;
-    --modal-container-product-info-img-box-shadow: 0px 4px 14px rgba(53, 53, 53, 0.053);
-    --modal-container-product-description-button-bg: ;
-
-    --orders-item-container-border: 1px solid #ECEEF0;
-    --orders-item-container-box-shadow: 0px 4px 14px rgba(53, 53, 53, 0.053);
-    --orders-item-container-img-border: 1px solid #d3d3d3;
-    --orders-item-container-img-box-shadow: 0px 4px 14px rgb(121 121 121 / 5%);
-    --orders-item-container-info-price-border-left: 1px solid #ECEEF0;
-    --orders-item-container-info-price-border: 1px solid #ECEEF0;
-}
-
 .modal__overlay {
     position: fixed;
     background-color: rgba(0, 0, 0, 0.7);

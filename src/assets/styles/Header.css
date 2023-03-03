@@ -1,15 +1,6 @@
-:root {
-  --header-bg: #110F21;
-
-  --white-font-color: #ffffff;
-
-  --vertical-line-bg: #FD7114;
-  --vertical-line-border: 1px solid #FD7114;
-}
-
 header {
   background-color: var(--header-bg);
-  color: var(--white-font-color);
+  color: var(--font-color-white);
   display: flex;
   align-items: center;
   padding: 15px;
