@@ -14,7 +14,7 @@ const login = (email, password) => {
 };
 
 const logout = () => {
-    localStorage.removeItem('user')
+    localStorage.removeItem('access_token')
 };
 
 const AuthService = {
