@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import '../assets/styles/UserPage.css'
 import { useFormik } from 'formik';
-import {  useSelector, useDispatch } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import { ClipLoader } from 'react-spinners';
-import { accountUpdate } from '../store/actions/account_update';
 import putAccountPassword from '../services/api/account-password';
 import { useNavigate } from 'react-router-dom';
+import putAccountInfo from '../services/api/account-info';
 // import getAccount from '../services/api/account';
 
 export default function AccountPage() {
@@ -19,9 +19,9 @@ export default function AccountPage() {
 
     // const [account, setAccount] = useState({});
 
-    const { data } = useSelector(state => state.auth.user); 
+    const { user } = useSelector(state => state.auth); 
 
-    const { fullName, email, phone, country, city, address } = data;
+    const { fullName, email, phone, country, city, address } = user;
 
     const initials = fullName.split(' ')[0].split('')[0] + fullName.split(' ')[1].split('')[0];
 
@@ -48,11 +48,10 @@ export default function AccountPage() {
             .min(3, "At least 3 character"),
     });
 
-    const dispatch = useDispatch();
 
     const handleClickUpdateAccountInfo = () => {
         setLoading(true);
-        dispatch(accountUpdate(formik.values))
+        putAccountInfo(formik.values)
             .then((response) => console.log(response))
             .finally(() => setLoading(false))  
     }

@@ -16,9 +16,9 @@ export default function UserBar({setLogined} ) {
         rotate: { rotate: 0 , transition: { duration:0.5 } },
         stop: { rotate: 180 , transition: { duration: 0.5 } }
     }
-    const { data } = useSelector(state => state.auth.user)
+    const { user } = useSelector(state => state.auth)
 
-    const { fullName, email } = data
+    const { fullName, email } = user
     const firstLettersOfFullname = fullName.split(' ')[0].split('')[0] + fullName.split(' ')[1].split('')[0]
 
     const dispatch = useDispatch();

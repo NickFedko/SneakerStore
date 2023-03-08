@@ -4,11 +4,27 @@ import basket from '../assets/images/icons/basket.svg';
 import '../assets/styles/Header.css'
 import { Link } from 'react-router-dom';
 import UserBar from './UserBar';
+import { useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
+import AuthModal from './modals/AuthModal';
 
 import { useSelector } from 'react-redux';
 
-export default function Header({openModal, openLoginModal, setLogined}) {
-    const {isLoggedIn} = useSelector(state => state.auth)
+export default function Header() {
+    const { isLoggedIn } = useSelector(state => state.auth)
+
+    const [openAuthModal, setOpenAuthModal] = useState(false);
+    const [formType, setFormType] = useState('');
+
+    const openLoginModal = () => {
+        setOpenAuthModal(true);
+        setFormType('login');
+    }
+
+    const openRegisterModal = () => {
+        setOpenAuthModal(true);
+        setFormType('register');
+    }
 
     return(
         <header>
@@ -25,25 +41,34 @@ export default function Header({openModal, openLoginModal, setLogined}) {
                     <button className='header__basket__button'><img src={basket} alt={'basket__button'}/></button>
                 </Link>
                 {isLoggedIn ?
-                    <UserBar setLogined={setLogined} />
+                    <UserBar />
                     :
                     <>
                         <span
                             className='header__register__link' 
-                            onClick={() => openModal(true)} 
+                            onClick={() => openRegisterModal()} 
                         >
                             register
                         </span>
                         <span className='header__vertical__line' />
                         <span
                             className='header__login__link'
-                            onClick={() => openLoginModal(true)}
+                            onClick={() => openLoginModal()}
                         >
                             login
                         </span>
                     </>
                 }
             </div>
+            <AnimatePresence>
+                {openAuthModal && 
+                <AuthModal
+                    type={formType}
+                    setType={setFormType}
+                    setOpenAuthModal={setOpenAuthModal}
+                />
+                }
+            </AnimatePresence>
         </header>
     )
 }

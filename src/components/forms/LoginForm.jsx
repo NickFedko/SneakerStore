@@ -1,7 +1,6 @@
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { login } from '../../store/actions/auth'
 import { ClipLoader } from 'react-spinners';
 
@@ -10,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import * as Yup from 'yup'
 
-export default function LoginForm({setOpenLoginModal}) {
+export default function LoginForm( {setOpenAuthModal} ) {
     const [passwordShown, setPasswordShown] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -19,7 +18,6 @@ export default function LoginForm({setOpenLoginModal}) {
     }
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const notify = (message, type) => toast(message, {
         type,
@@ -53,9 +51,8 @@ export default function LoginForm({setOpenLoginModal}) {
         dispatch(login(formik.values))
             .then(() => {
                 notify('You are loggined', 'success')
-                navigate('/account');
                 setLoading(false);
-                setOpenLoginModal(false);
+                setOpenAuthModal(false);
             })
             .catch(() => notify(message, 'error'))
             .finally(() => {

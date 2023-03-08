@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 
 import { register } from '../../store/actions/auth';
 
-export default function RegisterForm({setOpenRegisterModal}) {
+export default function RegisterForm( {setOpenAuthModal} ) {
     const [passwordShown, setPasswordShown] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -63,7 +63,7 @@ export default function RegisterForm({setOpenRegisterModal}) {
         dispatch(register(formik.values))
             .then(() => {
                 setLoading(false);
-                setOpenRegisterModal(false);
+                setOpenAuthModal(false);
                 notify('You are Registered', 'success');
             })
             .catch(() => {

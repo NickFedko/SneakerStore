@@ -12,7 +12,7 @@
     flex-direction: column;
 }
 
-.modal__container {
+header .modal__container {
     position: relative;
     display: flex;
     align-items: center;
@@ -21,6 +21,7 @@
     background-color: var(--white-bg);
     padding: 30px;
     border-radius: var(--modal-container-border-radius);
+    color: var(--font-color-black)
 }
 
 .modal__container .modal__close-button {
@@ -74,11 +75,12 @@
 .modal__login__transfer {
     background-color: var(--white-bg);
     border-radius: var(--modal-container-border-radius);
+    color: var(--font-color-black);
     padding: 20px 95px;
     margin-top: 15px;
 }
 
-.modal__login__transfer a {
+.modal__login__transfer span {
     cursor: pointer;
     color: var(--font-color-orange);
 }

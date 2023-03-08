@@ -6,21 +6,7 @@ import LoginForm from "../forms/LoginForm";
 import RegisterForm from "../forms/RegisterForm";
 import closeIcon from "../../assets/images/icons/close.svg";
 
-export default function AuthModal({ openLoginModal, setOpenLoginModal, openRegisterModal, setOpenRegisterModal }) {
-    const loginTransfer = () => {
-        setOpenLoginModal(false);
-        setOpenRegisterModal(true);
-    }
-    const registerTransfer = () => {
-        setOpenRegisterModal(false);
-        setOpenLoginModal(true);
-    }
-
-    const closeAuthModal = () => {
-        setOpenLoginModal(false);
-        setOpenRegisterModal(false);
-    }
-
+export default function AuthModal({ setOpenAuthModal, type, setType }) {
     return(
             <motion.div 
                 className='modal__overlay' 
@@ -42,12 +28,14 @@ export default function AuthModal({ openLoginModal, setOpenLoginModal, openRegis
                 >
                     <button
                         className="modal__close-button"
-                        onClick={() => closeAuthModal()}
+                        onClick={() => setOpenAuthModal(false)}
                     >
                         <img src={closeIcon} alt={'close icon'}/>
                     </button>
-                    {openRegisterModal && <RegisterForm setOpenRegisterModal={setOpenRegisterModal}/>}
-                    {openLoginModal && <LoginForm setOpenLoginModal={setOpenLoginModal}/>}
+                    {type === 'login' 
+                        ? <LoginForm setOpenAuthModal={setOpenAuthModal}/> 
+                        : <RegisterForm setOpenAuthModal={setOpenAuthModal}/>
+                    }
                 </motion.div>   
             <motion.div 
                 className="modal__login__transfer" 
@@ -56,8 +44,10 @@ export default function AuthModal({ openLoginModal, setOpenLoginModal, openRegis
                 transition={{duration:0.5}}
                 exit={{scale:0}}
             >
-                {openLoginModal &&(<p>I have no account, <span onClick={e => loginTransfer()}>Register now</span> </p>)}
-                {openRegisterModal && (<p>I already have an account, <span onClick={e => registerTransfer()}>Log In</span></p>)}
+                { type === 'login' 
+                    ? (<p>I have no account, <span onClick={() => setType('register')}>Register now</span> </p>)
+                    : (<p>I already have an account, <span onClick={() => setType('login')} >Log In</span></p>)
+                }
             </motion.div>
         </motion.div>
     )
