@@ -24,6 +24,18 @@ header .modal__container {
     color: var(--font-color-black)
 }
 
+.modal__container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: var(--white-bg);
+    padding: 30px;
+    border-radius: var(--modal-container-border-radius);
+    color: var(--font-color-black)
+}
+
 .modal__container .modal__close-button {
     position: absolute;
     right: 20px;

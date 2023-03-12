@@ -59,12 +59,12 @@
     border: none;
     box-shadow: var(--item-block-button-box-shadow);
     background: #FFFFFF url('../images/icons/favourite_unactive.svg') no-repeat center;
-    transition: 0.5;
+    cursor: pointer;
 }
+
 
 .list__items .item__block .item__block__button.favourite {
     background-image: url('../images/icons/favourite_clicked.svg');
-    transition: 0.5s;
 }
 
 .load_more__button {
