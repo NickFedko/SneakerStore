@@ -41,7 +41,7 @@ export default function CartForm() {
             </div>
             <p>Items <span>3</span></p>
             <p>Total <span>$ 575.19</span></p>
-            <button 
+            <button
                 type="button"
                 onClick={() => setOpenPurchaseModal(true)}
             >
@@ -50,11 +50,11 @@ export default function CartForm() {
             <Link to={'/'}>
                 <button type="button">Continue shopping</button>
             </Link>
-            <AnimatePresence>
-                {openPurchaseModal && 
-                    <PurchaseModal setOpenPurchaseModal={setOpenPurchaseModal} />
-                }
-            </AnimatePresence>
+            {openPurchaseModal &&
+                <AnimatePresence>
+                    <PurchaseModal key={'PurchaseModal'} setOpenPurchaseModal={setOpenPurchaseModal} />
+                </AnimatePresence>
+            }
         </form>
     )
 }

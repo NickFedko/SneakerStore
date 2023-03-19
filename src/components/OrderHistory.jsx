@@ -15,7 +15,7 @@ export default function OrderHistory() {
     const initials = fullName.split(' ')[0].split('')[0] + fullName.split(' ')[1].split('')[0];
 
     const navigate = useNavigate();
-    
+
     return (
         <div className="user_page">
             <div className="user_page__image">
@@ -23,26 +23,26 @@ export default function OrderHistory() {
             </div>
             <h3>{fullName}</h3>
             <div className="user_page__nav">
-                <button 
+                <button
                     className='user_page__nav_button'
                     onClick={() => navigate('/account')}
                 >
                     Edit Account
                 </button>
-                <button 
+                <button
                     className='user_page__nav_button active'
                     onClick={() => navigate('/account/order_history')}
                 >
                     Orders History
                 </button>
-                <button 
+                <button
                     className='user_page__nav_button'
                     onClick={() => navigate('/account/favourite')}
                 >
                     Favourites
                 </button>
             </div>
-            <div 
+            <div
                 className="order_history__container"
                 onClick={() => setOpenOrderModal(true)}
             >
@@ -51,11 +51,11 @@ export default function OrderHistory() {
                     <p>Date: <span>06.04.2021</span></p>
                 </div>
                 <p>Price <span>$ 175.19</span></p>
-                <AnimatePresence>
-                    {openOrderModal && 
+                {openOrderModal &&
+                    <AnimatePresence>
                         <OrderModal setOpenOrderModal={setOpenOrderModal}/>
-                    }
-                </AnimatePresence>
+                    </AnimatePresence>
+                }
             </div>
         </div>
     )

@@ -29,7 +29,7 @@ export default function Header() {
     return(
         <header>
             <div className='header__logo__block'>
-                <Link to='/'>    
+                <Link to='/'>
                     <img className='header__logo' src={logo} alt={'logo'}/>
                 </Link>
             </div>
@@ -45,8 +45,8 @@ export default function Header() {
                     :
                     <>
                         <span
-                            className='header__register__link' 
-                            onClick={() => openRegisterModal()} 
+                            className='header__register__link'
+                            onClick={() => openRegisterModal()}
                         >
                             register
                         </span>
@@ -60,15 +60,14 @@ export default function Header() {
                     </>
                 }
             </div>
-            <AnimatePresence>
-                {openAuthModal && 
-                <AuthModal
-                    type={formType}
-                    setType={setFormType}
-                    setOpenAuthModal={setOpenAuthModal}
-                />
-                }
-            </AnimatePresence>
+            {openAuthModal && <AnimatePresence>
+                    <AuthModal
+                        type={formType}
+                        setType={setFormType}
+                        setOpenAuthModal={setOpenAuthModal}
+                    />
+                </AnimatePresence>
+            }
         </header>
     )
 }

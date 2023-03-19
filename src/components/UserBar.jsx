@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { logout } from '../store/actions/auth';
 
-export default function UserBar({setLogined} ) {
+export default function UserBar() {
     const [open, setOpen] = useState(false);
     const variants = {
         rotate: { rotate: 0 , transition: { duration:0.5 } },
@@ -43,9 +43,9 @@ export default function UserBar({setLogined} ) {
                 src={dropDown}
                 onClick={() => setOpen(!open)}
             />
-            <AnimatePresence>
-                {open && (
-                    <motion.ul 
+            {open && (<AnimatePresence>
+                    <motion.ul
+                        key={'UserBar'}
                         className='drop_down__ul'
                         initial={{opacity:0, scaleY:0, y:-120}}
                         animate={{opacity:1, scaleY:1, y:0, transition:{duration:0.5}}}
@@ -69,8 +69,8 @@ export default function UserBar({setLogined} ) {
                             Log Out
                         </li>
                     </motion.ul>
-                )}
             </AnimatePresence>
+            )}
         </div>
     )
 }
