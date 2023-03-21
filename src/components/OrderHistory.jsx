@@ -8,9 +8,9 @@ import { useNavigate } from "react-router-dom";
 export default function OrderHistory() {
     const [openOrderModal, setOpenOrderModal] = useState(false);
 
-    const { data } = useSelector(state => state.auth.user);
+    const { user } = useSelector(state => state.auth);
 
-    const { fullName } = data;
+    const { fullName } = user;
 
     const initials = fullName.split(' ')[0].split('')[0] + fullName.split(' ')[1].split('')[0];
 

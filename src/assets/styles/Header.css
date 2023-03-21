@@ -26,6 +26,21 @@ header .header__interaction__block button {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+
+header .header__interaction__block button span {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 12px;
+  top: -12px;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: var(--orange-bg);
+  color: var(--font-color-white);
 }
 
 header .header__interaction__block a {

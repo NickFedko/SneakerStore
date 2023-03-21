@@ -7,6 +7,9 @@ export default function authHeader() {
             'Authorization': `Bearer ${accessToken}`
         };
     } else {
-        return {}
+        return {
+            'Content-Type': 'application/json',
+            'accept': 'application/json'
+        }
     }
 }

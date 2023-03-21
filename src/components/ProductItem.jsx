@@ -7,6 +7,7 @@ export default function ProductItem (props) {
     const {product} = props;
     const {setClickedProductId} = props;
     const {setOpenProductModal} = props;
+    const {favoriteAdded, setFavoriteAdded} = props;
 
     const { isLoggedIn } = useSelector(state => state.auth)
 
@@ -17,9 +18,10 @@ export default function ProductItem (props) {
 
     const postFavouriteItem = (e, id = product.id) => {
         e.stopPropagation();
+        setFavoriteAdded(!favoriteAdded);
         product.favorite 
-        ? deleteFavorite(id).then(res => console.log(res.data))
-        : postFavorite(id).then(res => console.log(res.data))
+        ? deleteFavorite(id)
+        : postFavorite(id)
     }
 
     return (

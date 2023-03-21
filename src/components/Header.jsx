@@ -4,15 +4,16 @@ import basket from '../assets/images/icons/basket.svg';
 import '../assets/styles/Header.css'
 import { Link } from 'react-router-dom';
 import UserBar from './UserBar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import AuthModal from './modals/AuthModal';
 
 import { useSelector } from 'react-redux';
+import { getFavorites } from '../services/api/favorites';
 
 export default function Header() {
     const { isLoggedIn } = useSelector(state => state.auth)
-
+    const [amountOfFavoriteProducts, setAmountOfFavoriteProducts] = useState(0);
     const [openAuthModal, setOpenAuthModal] = useState(false);
     const [formType, setFormType] = useState('');
 
@@ -26,6 +27,13 @@ export default function Header() {
         setFormType('register');
     }
 
+    useEffect(() => {
+        if(isLoggedIn) {
+            getFavorites()
+                .then(res => setAmountOfFavoriteProducts(res.data.length))
+        }
+    },[amountOfFavoriteProducts, isLoggedIn])
+
     return(
         <header>
             <div className='header__logo__block'>
@@ -35,7 +43,10 @@ export default function Header() {
             </div>
             <div className='header__interaction__block'>
                 <Link to='/account/favourite'>
-                    <button className='header__favourite__button'><img src={favourite} alt={'favourite__button'}/></button>
+                    <button className='header__favourite__button'>
+                        <img src={favourite} alt={'favourite__button'}/>
+                        {isLoggedIn && amountOfFavoriteProducts > 0 &&<span>{amountOfFavoriteProducts}</span>}
+                    </button>
                 </Link>
                 <Link to='/orders'>
                     <button className='header__basket__button'><img src={basket} alt={'basket__button'}/></button>

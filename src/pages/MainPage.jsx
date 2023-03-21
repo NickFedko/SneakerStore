@@ -5,17 +5,21 @@ import {categoryProducts, getProducts, searchProducts} from "../services/api/pro
 import { ClipLoader } from 'react-spinners';
 import ProductItemModal from "../components/modals/ProductItemModal";
 import { AnimatePresence } from "framer-motion";
+import { useSelector } from "react-redux";
 
 export default function MainPage() {
     const [products, setProducts] = useState([]);
     const [clickedProductId, setClickedProductId] = useState(0);
     const [openProductModal, setOpenProductModal] = useState(false);
+    const [favoriteAdded, setFavoriteAdded] = useState(false);
     const [offset, setOffset] = useState(0);
     const [limit, setLimit] = useState(10);
     const [sortBy, setSortBy] = useState(undefined)
     const [searchProductsValue, setSearchProductsValue] = useState('');
     const [idCategory, setIdCategory] = useState(0);
     const [loading, setLoading] = useState(false);
+    const { isLoggedIn } = useSelector(state => state.auth)
+
 
     useEffect(() => {
         setOffset(0);
@@ -60,7 +64,7 @@ export default function MainPage() {
                 setLoading(false);
             });
         }
-    }, [offset, limit, searchProductsValue, idCategory, sortBy])
+    }, [offset, limit, searchProductsValue, idCategory, sortBy, isLoggedIn, favoriteAdded])
 
    const renderLoadMoreBtn = () => {
         if(!(products.length % limit) && products.length !== 0) {
@@ -93,6 +97,8 @@ export default function MainPage() {
                         setOpenProductModal={setOpenProductModal}
                         key={index}
                         product={product}
+                        favoriteAdded={favoriteAdded}
+                        setFavoriteAdded={setFavoriteAdded}
                     />
                 ))}
             </div>

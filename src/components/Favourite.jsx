@@ -8,13 +8,14 @@ import { getFavorites } from '../services/api/favorites';
 
 export default function Favourite() {
     const [favoritesProducts, setFavoritesProducts] = useState([]);
+    const [favoriteAdded, setFavoriteAdded] = useState(false);
     const [offset, setOffset] = useState(0);
     const [limit, setLimit] = useState(10);
 
     useEffect(() => {
         getFavorites({offset, limit})
             .then(res => setFavoritesProducts(res.data))
-    }, [limit, offset])
+    }, [limit, offset, favoritesProducts])
 
     const { user } = useSelector(state => state.auth);
 
@@ -51,8 +52,15 @@ export default function Favourite() {
                 </button>
             </div>
             <div className='list__items'>
-                { favoritesProducts.map((product, index) => (
-                    <ProductItem product={product} key={index}/> 
+                { favoritesProducts 
+                ? <h2>No Favorites Products</h2> 
+                : favoritesProducts.map((product, index) => (
+                    <ProductItem 
+                        product={product} 
+                        key={index}
+                        favoriteAdded={favoriteAdded}
+                        setFavoriteAdded={setFavoriteAdded}    
+                    /> 
                 ))}
             </div>
         </div>

@@ -1,11 +1,12 @@
 import axios from "axios";
-import { baseUrl, headers } from ".";
+import { baseUrl } from ".";
+import authHeader from "../auth-header";
 
 export async function getSingleProduct(id) {
     return await axios ({
         method: 'GET',
         url: `${baseUrl}/products/${id}`,
-        headers: {headers}
+        headers: authHeader(),
     })
 }
 
@@ -14,7 +15,7 @@ export async function getProducts(params) {
         method: 'GET',
         url: `${baseUrl}/products`,
         params,
-        headers: {headers}
+        headers: authHeader(),
     })
 }
 
@@ -23,7 +24,7 @@ export async function searchProducts(params) {
         method: 'GET',
         url: `${baseUrl}/products/search`,
         params,
-        headers: {headers}
+        headers: authHeader(),
     })
 }
 
@@ -32,6 +33,6 @@ export async function categoryProducts(params, id) {
         method: 'GET',
         url: `${baseUrl}/categories/${id}/products`,
         params,
-        headers: {headers}
+        headers: authHeader(),
     })
 }
