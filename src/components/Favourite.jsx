@@ -52,16 +52,17 @@ export default function Favourite() {
                 </button>
             </div>
             <div className='list__items'>
-                { favoritesProducts 
-                ? <h2>No Favorites Products</h2> 
-                : favoritesProducts.map((product, index) => (
+                { favoritesProducts.length > 0 
+                ? favoritesProducts.map((product, index) => (
                     <ProductItem 
                         product={product} 
                         key={index}
                         favoriteAdded={favoriteAdded}
                         setFavoriteAdded={setFavoriteAdded}    
                     /> 
-                ))}
+                ))
+                : <h2>No Favorites Products</h2> 
+                }
             </div>
         </div>
     )
