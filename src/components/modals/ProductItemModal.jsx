@@ -5,19 +5,23 @@ import { getSingleProduct } from '../../services/api/products';
 import { motion } from 'framer-motion';
 import { ClipLoader } from 'react-spinners';
 import { postFavorite, deleteFavorite } from '../../services/api/favorites';
-import { useDispatch } from 'react-redux';
-import { addToCart } from '../../services/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, removeFromCart } from '../../services/cartSlice';
 
 
 export default function ProductItemModal( {clickedProductId, setOpenProductModal, favoriteAdded, setFavoriteAdded} ) {
     const [productContent, setProductContent] = useState([]);
     const {title, picture, price, description, favorite} = productContent;
     const [contentLoading, setContentLoading] = useState(false);
+    const { cartItems } = useSelector(state => state.cartReducer);
+    const findedItem = cartItems.find(value => value.id === productContent.id)
 
     const dispatch = useDispatch();
 
-    const handleAddToCart = (product) => {
-        dispatch(addToCart(product))
+    const handleAddRemoveCart = (product) => {
+        findedItem 
+        ? dispatch(removeFromCart(product))
+        : dispatch(addToCart(product))
     }
 
     useEffect(() => {
@@ -79,8 +83,8 @@ export default function ProductItemModal( {clickedProductId, setOpenProductModal
                         </div>
                     </div>
                     <div className='modal__container__product__action'>
-                        <button onClick={() => handleAddToCart(productContent)}>
-                            add to cart
+                        <button onClick={() => handleAddRemoveCart(productContent)}>
+                            {findedItem ? 'remove from cart' : 'add to cart'}
                         </button>
                         <button onClick={(e) => postFavouriteItem(e, productContent.id)}>
                             {favorite ? 'remove from favorites' : 'add to favorite'}

@@ -210,18 +210,18 @@ header .modal__container {
 }
 
 .modal__container__product__description .modal__container__product__description__row button {
-    width: 26px;
-    height: 26px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     color: var(--font-color-gray);
     background-color: var(--modal-container-product-description-button-bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border: none;
     font-size: var(--font-size-largest);
     padding: 0px;
-    line-height: 26px;
+    line-height: 0px;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
     margin: 0px;
     cursor: pointer;
 }
@@ -242,6 +242,7 @@ header .modal__container {
     color: var(--font-color-orange);
     text-transform: uppercase;
     margin-right: 20px;
+    background-color: var(--white-bg);
 }
 
 .modal__container__product__action button.button__buy_now {

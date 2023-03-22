@@ -3,11 +3,14 @@ import { Link } from "react-router-dom"
 import getCountries from "../../services/api/countries";
 import PurchaseModal from "../modals/PurchaseModal";
 import { AnimatePresence } from "framer-motion";
+import { useSelector } from "react-redux";
 
 export default function CartForm() {
     const [selectCounties, setSelectCountries] = useState([]);
     const [openPurchaseModal, setOpenPurchaseModal] = useState(false);
 
+    const { cartTotalQuantity, cartTotalAmount } = useSelector(state => state.cartReducer);
+    
     useEffect(() => {
         getCountries()
             .then((response) => setSelectCountries(response.data))
@@ -39,8 +42,8 @@ export default function CartForm() {
                 <input placeholder=" "/>
                 <span>Address</span>
             </div>
-            <p>Items <span>3</span></p>
-            <p>Total <span>$ 575.19</span></p>
+            <p>Items <span>{cartTotalQuantity}</span></p>
+            <p>Total <span>$ {cartTotalAmount}</span></p>
             <button
                 type="button"
                 onClick={() => setOpenPurchaseModal(true)}

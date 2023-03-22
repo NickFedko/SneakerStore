@@ -1,11 +1,17 @@
 import CartItem from "../components/CartItem";
 import CartForm from "../components/forms/CartForm";
 import '../assets/styles/CartPage.css';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getTotals } from "../services/cartSlice";
 
 export default function CartPage() {
     const { cartItems } = useSelector(state => state.cartReducer)
+    const dispatch = useDispatch();
 
+    useEffect(() => {
+        dispatch(getTotals())
+    }, [cartItems])
 
     return(
         <div className="cart__page">
@@ -17,6 +23,7 @@ export default function CartPage() {
                             {cartItems.map((cartItem, index) => (
                                 <CartItem 
                                     product={cartItem}
+                                    key={index}
                                 />
                             ))}
                         </div>
