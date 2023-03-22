@@ -13,9 +13,11 @@ import { getFavorites } from '../services/api/favorites';
 
 export default function Header() {
     const { isLoggedIn } = useSelector(state => state.auth)
+    const { cartItems } = useSelector(state => state.cartReducer)
     const [amountOfFavoriteProducts, setAmountOfFavoriteProducts] = useState(0);
     const [openAuthModal, setOpenAuthModal] = useState(false);
     const [formType, setFormType] = useState('');
+    
 
     const openLoginModal = () => {
         setOpenAuthModal(true);
@@ -49,7 +51,10 @@ export default function Header() {
                     </button>
                 </Link>
                 <Link to='/orders'>
-                    <button className='header__basket__button'><img src={basket} alt={'basket__button'}/></button>
+                    <button className='header__basket__button'>
+                        <img src={basket} alt={'basket__button'}/>
+                        {isLoggedIn && cartItems.length > 0 &&<span>{cartItems.length}</span>}
+                    </button>
                 </Link>
                 {isLoggedIn ?
                     <UserBar />

@@ -4,11 +4,21 @@ import closeIcon from "../../assets/images/icons/close.svg";
 import { getSingleProduct } from '../../services/api/products';
 import { motion } from 'framer-motion';
 import { ClipLoader } from 'react-spinners';
+import { postFavorite, deleteFavorite } from '../../services/api/favorites';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../services/cartSlice';
 
-export default function ProductItemModal( {clickedProductId, setOpenProductModal} ) {
+
+export default function ProductItemModal( {clickedProductId, setOpenProductModal, favoriteAdded, setFavoriteAdded} ) {
     const [productContent, setProductContent] = useState([]);
-    const {title, picture, price, description} = productContent;
+    const {title, picture, price, description, favorite} = productContent;
     const [contentLoading, setContentLoading] = useState(false);
+
+    const dispatch = useDispatch();
+
+    const handleAddToCart = (product) => {
+        dispatch(addToCart(product))
+    }
 
     useEffect(() => {
         setContentLoading(true);
@@ -17,7 +27,15 @@ export default function ProductItemModal( {clickedProductId, setOpenProductModal
             setProductContent(response.data)
         })
         .finally(() => setContentLoading(false))
-    },[clickedProductId])
+    },[clickedProductId, productContent.favorite])
+
+    const postFavouriteItem = (e, id = productContent.id) => {
+        e.stopPropagation();
+        setFavoriteAdded(!favoriteAdded);
+        productContent.favorite 
+        ? deleteFavorite(id)
+        : postFavorite(id)
+    }
 
     return(
         <motion.div 
@@ -61,8 +79,12 @@ export default function ProductItemModal( {clickedProductId, setOpenProductModal
                         </div>
                     </div>
                     <div className='modal__container__product__action'>
-                        <button>add to cart</button>
-                        <button>add to favorites</button>
+                        <button onClick={() => handleAddToCart(productContent)}>
+                            add to cart
+                        </button>
+                        <button onClick={(e) => postFavouriteItem(e, productContent.id)}>
+                            {favorite ? 'remove from favorites' : 'add to favorite'}
+                        </button>
                         <button className='button__buy_now'>buy now</button>
                     </div>
                 </>}

@@ -2,6 +2,7 @@ import '../assets/styles/ProductItem.css';
 import { useSelector } from 'react-redux';
 
 import { deleteFavorite, postFavorite } from '../services/api/favorites';
+import { useEffect } from 'react';
 
 export default function ProductItem (props) {
     const {product} = props;

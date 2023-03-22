@@ -14,6 +14,11 @@
     padding-bottom: 100px;
 }
 
+.cart__page h1 {
+    align-self: center;
+    padding: 250px 200px;
+}
+
 .cart__page__list__items {
     display: flex;
     flex-direction: column;
@@ -66,10 +71,12 @@
     border: none;
     color: var(--font-color-gray);
     text-align: center;
+    cursor: pointer;
 }
 
 .cart__item__container__info__action button.cart__item__container__info__action__delete {
     background-image: url('../images/icons/icon_delete.svg');
+    cursor: pointer;
     background-color: transparent;
     border-radius: 0px;
 }

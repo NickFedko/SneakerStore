@@ -127,6 +127,8 @@ export default function MainPage() {
                     <ProductItemModal
                         clickedProductId={clickedProductId}
                         setOpenProductModal={setOpenProductModal}
+                        setFavoriteAdded={setFavoriteAdded}
+                        favoriteAdded={favoriteAdded}
                     />
             </AnimatePresence>
             }
