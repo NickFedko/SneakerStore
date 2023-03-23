@@ -12,9 +12,9 @@ import { useSelector } from 'react-redux';
 import { getFavorites } from '../services/api/favorites';
 
 export default function Header() {
-    const { isLoggedIn } = useSelector(state => state.auth)
-    const { cartItems } = useSelector(state => state.cartReducer)
-    const [amountOfFavoriteProducts, setAmountOfFavoriteProducts] = useState(0);
+    const { isLoggedIn } = useSelector(state => state.auth);
+    const { cartItems } = useSelector(state => state.cartReducer);
+    const { favoriteItems } = useSelector(state => state.favoriteReducer);
     const [openAuthModal, setOpenAuthModal] = useState(false);
     const [formType, setFormType] = useState('');
     
@@ -29,13 +29,6 @@ export default function Header() {
         setFormType('register');
     }
 
-    useEffect(() => {
-        if(isLoggedIn) {
-            getFavorites()
-                .then(res => setAmountOfFavoriteProducts(res.data.length))
-        }
-    },[amountOfFavoriteProducts, isLoggedIn])
-
     return(
         <header>
             <div className='header__logo__block'>
@@ -47,7 +40,7 @@ export default function Header() {
                 <Link to='/account/favourite'>
                     <button className='header__favourite__button'>
                         <img src={favourite} alt={'favourite__button'}/>
-                        {isLoggedIn && amountOfFavoriteProducts > 0 &&<span>{amountOfFavoriteProducts}</span>}
+                        {isLoggedIn && favoriteItems.length > 0 &&<span>{favoriteItems.length}</span>}
                     </button>
                 </Link>
                 <Link to='/orders'>

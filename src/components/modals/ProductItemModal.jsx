@@ -7,6 +7,7 @@ import { ClipLoader } from 'react-spinners';
 import { postFavorite, deleteFavorite } from '../../services/api/favorites';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart } from '../../services/cartSlice';
+import { addToFavorite, removeFromFavorite } from '../../services/favoriteSlice';
 
 
 export default function ProductItemModal( {clickedProductId, setOpenProductModal, favoriteAdded, setFavoriteAdded} ) {
@@ -14,12 +15,15 @@ export default function ProductItemModal( {clickedProductId, setOpenProductModal
     const {title, picture, price, description, favorite} = productContent;
     const [contentLoading, setContentLoading] = useState(false);
     const { cartItems } = useSelector(state => state.cartReducer);
-    const findedItem = cartItems.find(value => value.id === productContent.id)
+    const { favoriteItems } = useSelector(state => state.favoriteReducer);
+    const findedItemInCart = cartItems.find(value => value.id === productContent.id)
+    const findedItemInFavorite = favoriteItems.find(value => value.id === productContent.id)
+
 
     const dispatch = useDispatch();
 
     const handleAddRemoveCart = (product) => {
-        findedItem 
+        findedItemInCart 
         ? dispatch(removeFromCart(product))
         : dispatch(addToCart(product))
     }
@@ -31,14 +35,24 @@ export default function ProductItemModal( {clickedProductId, setOpenProductModal
             setProductContent(response.data)
         })
         .finally(() => setContentLoading(false))
-    },[clickedProductId, productContent.favorite])
+    },[clickedProductId])
+
+
+    const addFavorite = (id) => {
+        postFavorite(id);
+        dispatch(addToFavorite(productContent));
+    }
+
+    const removeFavorite = (id) => {
+        deleteFavorite(id);
+        dispatch(removeFromFavorite(productContent));
+    }
 
     const postFavouriteItem = (e, id = productContent.id) => {
         e.stopPropagation();
-        setFavoriteAdded(!favoriteAdded);
         productContent.favorite 
-        ? deleteFavorite(id)
-        : postFavorite(id)
+        ? removeFavorite(id)
+        : addFavorite(id)
     }
 
     return(
@@ -84,10 +98,10 @@ export default function ProductItemModal( {clickedProductId, setOpenProductModal
                     </div>
                     <div className='modal__container__product__action'>
                         <button onClick={() => handleAddRemoveCart(productContent)}>
-                            {findedItem ? 'remove from cart' : 'add to cart'}
+                            {findedItemInCart ? 'remove from cart' : 'add to cart'}
                         </button>
                         <button onClick={(e) => postFavouriteItem(e, productContent.id)}>
-                            {favorite ? 'remove from favorites' : 'add to favorite'}
+                            {findedItemInFavorite ? 'remove from favorites' : 'add to favorite'}
                         </button>
                         <button className='button__buy_now'>buy now</button>
                     </div>

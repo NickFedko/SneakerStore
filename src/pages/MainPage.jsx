@@ -11,7 +11,6 @@ export default function MainPage() {
     const [products, setProducts] = useState([]);
     const [clickedProductId, setClickedProductId] = useState(0);
     const [openProductModal, setOpenProductModal] = useState(false);
-    const [favoriteAdded, setFavoriteAdded] = useState(false);
     const [offset, setOffset] = useState(0);
     const [limit, setLimit] = useState(10);
     const [sortBy, setSortBy] = useState(undefined)
@@ -64,7 +63,7 @@ export default function MainPage() {
                 setLoading(false);
             });
         }
-    }, [offset, limit, searchProductsValue, idCategory, sortBy, isLoggedIn, favoriteAdded])
+    }, [offset, limit, searchProductsValue, idCategory, sortBy, isLoggedIn])
 
    const renderLoadMoreBtn = () => {
         if(!(products.length % limit) && products.length !== 0) {
@@ -97,8 +96,6 @@ export default function MainPage() {
                         setOpenProductModal={setOpenProductModal}
                         key={index}
                         product={product}
-                        favoriteAdded={favoriteAdded}
-                        setFavoriteAdded={setFavoriteAdded}
                     />
                 ))}
             </div>
@@ -127,8 +124,6 @@ export default function MainPage() {
                     <ProductItemModal
                         clickedProductId={clickedProductId}
                         setOpenProductModal={setOpenProductModal}
-                        setFavoriteAdded={setFavoriteAdded}
-                        favoriteAdded={favoriteAdded}
                     />
             </AnimatePresence>
             }

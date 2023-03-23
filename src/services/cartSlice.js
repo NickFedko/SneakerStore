@@ -5,13 +5,13 @@ const initialState = {
     cartItems: [],
     cartTotalQuantity: 0,
     cartTotalAmount: 0,
-}
+};
 
 const notify = (message) => toast(message, {
     type: 'default',
     autoClose: 2000,
     theme: 'colored'
-})
+});
 
 const cartSlice = createSlice({
     name: 'cart',
