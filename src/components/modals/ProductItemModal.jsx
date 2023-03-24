@@ -10,12 +10,13 @@ import { addToCart, removeFromCart } from '../../services/cartSlice';
 import { addToFavorite, removeFromFavorite } from '../../services/favoriteSlice';
 
 
-export default function ProductItemModal( {clickedProductId, setOpenProductModal, favoriteAdded, setFavoriteAdded} ) {
+export default function ProductItemModal( {clickedProductId, setOpenProductModal} ) {
     const [productContent, setProductContent] = useState([]);
-    const {title, picture, price, description, favorite} = productContent;
+    const {title, picture, price, description} = productContent;
     const [contentLoading, setContentLoading] = useState(false);
     const { cartItems } = useSelector(state => state.cartReducer);
     const { favoriteItems } = useSelector(state => state.favoriteReducer);
+    const { isLoggedIn } = useSelector(state => state.auth);
     const findedItemInCart = cartItems.find(value => value.id === productContent.id)
     const findedItemInFavorite = favoriteItems.find(value => value.id === productContent.id)
 
@@ -23,9 +24,11 @@ export default function ProductItemModal( {clickedProductId, setOpenProductModal
     const dispatch = useDispatch();
 
     const handleAddRemoveCart = (product) => {
-        findedItemInCart 
-        ? dispatch(removeFromCart(product))
-        : dispatch(addToCart(product))
+        if(isLoggedIn) {
+            findedItemInCart  
+            ? dispatch(removeFromCart(product))
+            : dispatch(addToCart(product))
+        }
     }
 
     useEffect(() => {
@@ -50,9 +53,11 @@ export default function ProductItemModal( {clickedProductId, setOpenProductModal
 
     const postFavouriteItem = (e, id = productContent.id) => {
         e.stopPropagation();
-        productContent.favorite 
-        ? removeFavorite(id)
-        : addFavorite(id)
+        if(isLoggedIn) {
+            findedItemInFavorite 
+            ? removeFavorite(id)
+            : addFavorite(id)
+        }
     }
 
     return(

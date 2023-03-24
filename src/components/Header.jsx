@@ -4,12 +4,11 @@ import basket from '../assets/images/icons/basket.svg';
 import '../assets/styles/Header.css'
 import { Link } from 'react-router-dom';
 import UserBar from './UserBar';
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import AuthModal from './modals/AuthModal';
 
 import { useSelector } from 'react-redux';
-import { getFavorites } from '../services/api/favorites';
 
 export default function Header() {
     const { isLoggedIn } = useSelector(state => state.auth);

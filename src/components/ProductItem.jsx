@@ -3,13 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { deleteFavorite, postFavorite } from '../services/api/favorites';
 import { addToFavorite, removeFromFavorite } from '../services/favoriteSlice';
-import { useEffect } from 'react';
 
 export default function ProductItem (props) {
     const {product} = props;
     const {setClickedProductId} = props;
     const {setOpenProductModal} = props;
-    const {favoriteAdded, setFavoriteAdded} = props;
 
     const { isLoggedIn } = useSelector(state => state.auth);
     const dispatch = useDispatch();
@@ -34,9 +32,11 @@ export default function ProductItem (props) {
 
     const postFavouriteItem = (e, id = product.id) => {
         e.stopPropagation();
-        findedItem
-        ? removeFavorite(id)
-        : addFavorite(id)
+        if(isLoggedIn) {
+            findedItem
+            ? removeFavorite(id)
+            : addFavorite(id)
+        }
     }
 
     return (

@@ -138,6 +138,11 @@
     transition: 0.5s;
 }
 
+.cart__form .input__block label {
+    color: var(--font-color-red);
+    margin-left: 10px;
+}
+
 .input__block input:focus ~ span,
 .input__block input:not(:placeholder-shown) ~ span {
     font-weight: 600;

@@ -11,7 +11,7 @@ export default function CartPage() {
 
     useEffect(() => {
         dispatch(getTotals())
-    }, [cartItems])
+    }, [cartItems, dispatch])
 
     return(
         <div className="cart__page">

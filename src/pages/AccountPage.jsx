@@ -49,7 +49,7 @@ export default function AccountPage() {
     });
 
 
-    const handleClickUpdateAccountInfo = () => {
+    const handleUpdateAccountInfo = () => {
         setLoading(true);
         putAccountInfo(formik.values)
             .then((response) => console.log(response))
@@ -60,13 +60,13 @@ export default function AccountPage() {
         initialValues: {
             fullName,
             email,
-            phone,
+            phone: phone || '',
             country: country || '',
             city: city || '',
             address: address || ''
         },
         validationSchema,
-        onSubmit: handleClickUpdateAccountInfo
+        onSubmit: handleUpdateAccountInfo
     });
 
     const validationSchemaPassword = Yup.object().shape({
@@ -89,7 +89,7 @@ export default function AccountPage() {
         .oneOf([Yup.ref('newPassword'), null], 'Passwords must match')
     })
     
-    const handleClickUpdateAccountPassword = () => {
+    const handleUpdateAccountPassword = () => {
         setLoadingPassword(true);
         putAccountPassword(oldPassword, newPassword)
             .then((response) => console.log(response))
@@ -102,8 +102,8 @@ export default function AccountPage() {
             newPassword: '',
             newPasswordRepeat: ''
         },
-        validationSchema:validationSchemaPassword,
-        onSubmit: handleClickUpdateAccountPassword,
+        validationSchema: validationSchemaPassword,
+        onSubmit: handleUpdateAccountPassword,
     })
 
     const {newPassword, newPasswordRepeat, oldPassword} = formikPassword.values
