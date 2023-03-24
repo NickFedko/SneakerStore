@@ -120,13 +120,14 @@ export default function MainPage() {
                     <ClipLoader className="loader_icon" size={200} color={'white'}/>
                 </div>
             }
-            {openProductModal &&  <AnimatePresence>
+            <AnimatePresence>
+                { openProductModal &&
                     <ProductItemModal
                         clickedProductId={clickedProductId}
                         setOpenProductModal={setOpenProductModal}
                     />
-            </AnimatePresence>
-            }
+                }
+                </AnimatePresence>
 
         </div>
     );

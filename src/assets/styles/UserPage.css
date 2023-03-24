@@ -8,6 +8,11 @@
     margin-left: auto;
     margin-right: auto;
     min-height: 137vh;
+    padding-bottom: 200px;
+}
+
+.user_page .list__items h2 {
+    margin-top: 80px;
 }
 
 .user_page .user_page__image {
@@ -140,6 +145,7 @@
 
 .order_history__container p {
     color: var(--font-color-gray);
+    text-align: left;
 }
 
 .order_history__container span {

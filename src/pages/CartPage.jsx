@@ -2,10 +2,15 @@ import CartItem from "../components/CartItem";
 import CartForm from "../components/forms/CartForm";
 import '../assets/styles/CartPage.css';
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getTotals } from "../services/cartSlice";
 
+import PurchaseModal from "../components/modals/PurchaseModal";
+import { AnimatePresence } from "framer-motion";
+
 export default function CartPage() {
+    const [openPurchaseModal, setOpenPurchaseModal] = useState(false);
+
     const { cartItems } = useSelector(state => state.cartReducer)
     const dispatch = useDispatch();
 
@@ -27,11 +32,17 @@ export default function CartPage() {
                                 />
                             ))}
                         </div>
-                        <CartForm />
+                        <CartForm setOpenPurchaseModal={setOpenPurchaseModal}/>
                     </div>
                 </>
                 : <h1>No items in cart</h1>
             }
+            <AnimatePresence>
+                { openPurchaseModal &&
+                    <PurchaseModal key={'PurchaseModal'} setOpenPurchaseModal={setOpenPurchaseModal} />
+                }
+            </AnimatePresence>
         </div>
+
     )
 }

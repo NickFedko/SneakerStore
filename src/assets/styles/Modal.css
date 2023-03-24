@@ -293,7 +293,14 @@ header .modal__container {
 
 .modal__container .modal__container__purchase button.modal__container__purchase__button {
     width: 220px;
+    height: 40px;
     margin-top: 20px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: var(--modal-container-input-border-radius);
+    background-color: var(--orange-bg);
+    color: var(--font-color-white);
+    cursor: pointer;
 }
 
 /* Modal Orders */

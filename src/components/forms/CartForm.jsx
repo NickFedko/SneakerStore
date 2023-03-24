@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import getCountries from "../../services/api/countries";
-import PurchaseModal from "../modals/PurchaseModal";
-import { AnimatePresence } from "framer-motion";
 import { useSelector, useDispatch } from "react-redux";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -12,9 +10,8 @@ import { toast } from 'react-toastify';
 import { clearCart } from "../../services/cartSlice";
 
 
-export default function CartForm() {
+export default function CartForm({ setOpenPurchaseModal }) {
     const [selectCounties, setSelectCountries] = useState([]);
-    const [openPurchaseModal, setOpenPurchaseModal] = useState(false);
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
 
@@ -143,11 +140,6 @@ export default function CartForm() {
             <Link to={'/'}>
                 <button type="button">Continue shopping</button>
             </Link>
-            {openPurchaseModal &&
-                <AnimatePresence>
-                    <PurchaseModal key={'PurchaseModal'} setOpenPurchaseModal={setOpenPurchaseModal} />
-                </AnimatePresence>
-            }
         </form>
     )
 }

@@ -2,14 +2,22 @@ import closeIcon from '../../assets/images/icons/close.svg';
 import '../../assets/styles/Modal.css';
 import { motion } from 'framer-motion';
 import OrderItem from '../OrderItem';
+import { useEffect, useState } from 'react';
+import { getOrder } from '../../services/api/orders';
 
-export default function OrderModal( {setOpenOrderModal} ) {
+export default function OrderModal( {setOpenOrderModal, orderId} ) {
+    const [orderInfo, setOrderInfo] = useState([]);
+
+    useEffect(() => {
+        console.log(orderId);
+    }, [])
+
     return(
         <motion.div 
             className="modal__overlay"
             initial={{opacity:0}}
             animate={{
-                opacity:1,
+                opacity:0.5,
                 transition:{duration:0.5}
             }}
             exit={{opacity:0}}
@@ -32,7 +40,7 @@ export default function OrderModal( {setOpenOrderModal} ) {
                         <img src={closeIcon} alt="close_button"/>
                     </button>
                     <h2>Order details ID 333333</h2>
-                    <OrderItem /> 
+                    {/* <OrderItem />  */}
                     <div className='modal__container__orders__info'>
                         <div>
                             <p>Date: <span>05/10/2021</span></p>

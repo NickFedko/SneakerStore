@@ -16,8 +16,10 @@ export default function ProductItem (props) {
     const findedItem = favoriteItems.find(value => value.id === product.id)
 
     const handleProductModal = () => {
-        setClickedProductId(product.id);
-        setOpenProductModal(true);
+        if(setClickedProductId) {
+            setClickedProductId(product.id);
+            setOpenProductModal(true);
+        }
     }
 
     const addFavorite = (id) => {
