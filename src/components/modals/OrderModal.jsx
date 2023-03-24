@@ -9,15 +9,24 @@ export default function OrderModal( {setOpenOrderModal, orderId} ) {
     const [orderInfo, setOrderInfo] = useState([]);
 
     useEffect(() => {
-        console.log(orderId);
-    }, [])
+        getOrder(orderId)
+            .then(res => setOrderInfo(res.data))
+    }, [orderId])
 
+    const orderQuantity = orderInfo && orderInfo.items 
+        ? orderInfo.items.map(item => item.quantity).reduce((a, b) => a + b, 0) 
+        : 0;
+
+    const orderItems = orderInfo && orderInfo.items
+        ? orderInfo.items
+        : []
+ 
     return(
         <motion.div 
             className="modal__overlay"
             initial={{opacity:0}}
             animate={{
-                opacity:0.5,
+                opacity: 1,
                 transition:{duration:0.5}
             }}
             exit={{opacity:0}}
@@ -39,16 +48,24 @@ export default function OrderModal( {setOpenOrderModal, orderId} ) {
                     >
                         <img src={closeIcon} alt="close_button"/>
                     </button>
-                    <h2>Order details ID 333333</h2>
-                    {/* <OrderItem />  */}
+                    <h2>Order details ID {orderInfo.id}</h2>
+                    {orderInfo && orderItems.map((item, index) => 
+                        <OrderItem key={index} orderedProduct={item}/>
+                    )}
                     <div className='modal__container__orders__info'>
                         <div>
-                            <p>Date: <span>05/10/2021</span></p>
-                            <p>Address: <span>13 Street, Kyiv, Ukraine</span></p>
+                            <p>Date: <span>{orderInfo.createdAt}</span></p>
+                            <p>Address: 
+                                <span>
+                                    {orderInfo && orderInfo.shipment && orderInfo.shipment.address}, 
+                                    {orderInfo && orderInfo.shipment && orderInfo.shipment.city}, 
+                                    {orderInfo && orderInfo.shipment && orderInfo.shipment.country}
+                                </span>
+                            </p>
                         </div>
                         <div>
-                            <p>Items: <span>4</span></p>
-                            <p>Total: <span>$555.14</span></p>
+                            <p>Items: <span>{orderQuantity}</span></p>
+                            <p>Total: <span>${orderInfo.totalPrice}</span></p>
                         </div>
                     </div>
                 </div>

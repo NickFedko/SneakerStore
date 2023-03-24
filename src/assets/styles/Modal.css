@@ -332,20 +332,26 @@ header .modal__container {
 .orders__item__container__info__price {
     border-left: var(--orders-item-container-info-price-border);
     padding: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
  .modal__container .orders__item__container__info__price p {
     color: var(--font-color-black);
+    margin: 4px;
 }
 
 .orders__item__container__info {
     padding: 0 20px;
     align-self: flex-start;
     margin-top: 30px;
+    display: flex;
+    flex-direction: column;
 }
 
 .modal__container .orders__item__container__info p {
     color: var(--font-color-black);
+    margin: 5px;
 }
 
 .modal__container .orders__item__container__info p span {

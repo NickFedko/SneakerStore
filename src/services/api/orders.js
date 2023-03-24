@@ -1,5 +1,5 @@
 import axios from "axios";
-import { baseUrl, headers } from ".";
+import { baseUrl } from ".";
 import authHeader from "../auth-header";
 
 export async function getOrders(params) {

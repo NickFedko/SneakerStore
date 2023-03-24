@@ -66,16 +66,16 @@ export default function OrderHistory() {
                         <p>Date: <span>{order.createdAt}</span></p>
                     </div>
                     <p>Price <span>$ {order.totalPrice}</span></p>
-                    <AnimatePresence>
-                        {openOrderModal &&
-                            <OrderModal 
-                                setOpenOrderModal={setOpenOrderModal}
-                                orderId={orderId}
-                            />
-                        }
-                    </AnimatePresence>
                 </div>
             ))}
+            <AnimatePresence>
+                { openOrderModal &&
+                    <OrderModal 
+                        setOpenOrderModal={setOpenOrderModal}
+                        orderId={orderId}
+                    />
+                }
+            </AnimatePresence>
         </div>
     )
 }
