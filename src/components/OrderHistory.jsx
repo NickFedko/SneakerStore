@@ -17,6 +17,11 @@ export default function OrderHistory() {
         getOrders()
             .then(res => setOrders(res.data))
     }, [])
+    const formatOrderDate = (date) => {
+        const current = new Date(date);
+        const orderDate = `${current.getDate()}.${current.getMonth()+1}.${current.getFullYear()}`;
+        return orderDate;
+    }
 
     const { fullName } = user;
 
@@ -63,7 +68,7 @@ export default function OrderHistory() {
                 >
                     <div className="order_history__container__label">
                         <p>Order ID: <span>{order.id}</span></p>
-                        <p>Date: <span>{order.createdAt}</span></p>
+                        <p>Date: <span>{formatOrderDate(order.createdAt)}</span></p>
                     </div>
                     <p>Price <span>$ {order.totalPrice}</span></p>
                 </div>

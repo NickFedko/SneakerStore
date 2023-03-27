@@ -19,7 +19,13 @@ export default function OrderModal( {setOpenOrderModal, orderId} ) {
 
     const orderItems = orderInfo && orderInfo.items
         ? orderInfo.items
-        : []
+        : [];
+
+    const formatOrderDate = (date) => {
+        const current = new Date(date);
+        const orderDate = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+        return orderDate;
+    }
  
     return(
         <motion.div 
@@ -54,7 +60,7 @@ export default function OrderModal( {setOpenOrderModal, orderId} ) {
                     )}
                     <div className='modal__container__orders__info'>
                         <div>
-                            <p>Date: <span>{orderInfo.createdAt}</span></p>
+                            <p>Date: <span>{formatOrderDate(orderInfo.createdAt)}</span></p>
                             <p>Address: 
                                 <span>
                                     {orderInfo && orderInfo.shipment && orderInfo.shipment.address}, 

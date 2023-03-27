@@ -69,3 +69,7 @@ header .header__interaction__block span.header__vertical__line {
   height: 12px;
   background-color: var(--vertical-line-bg)
 }
+
+.Toastify * {
+  top: 80px;
+}

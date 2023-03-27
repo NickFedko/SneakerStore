@@ -104,13 +104,13 @@ export default function ProductItemModal( {clickedProductId, setOpenProductModal
                             onClick={() => handleAddRemoveCart(productContent)}
                             className='active'
                         >
-                            {findedItemInCart ? 'remove from cart' : 'add to cart'}
+                            {findedItemInCart ? 'added to cart  ✓' : 'add to cart'}
                         </button>
                         <button 
                             onClick={(e) => postFavouriteItem(e, productContent.id)}
                             className={isLoggedIn && 'active'}
                         >
-                            {findedItemInFavorite ? 'remove from favorites' : 'add to favorite'}
+                            {findedItemInFavorite ? 'added to favorites ✓' : 'add to favorite'}
                         </button>
                         <button className='button__buy_now'>buy now</button>
                     </div>

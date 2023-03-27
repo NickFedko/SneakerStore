@@ -45,10 +45,10 @@ export default function ProductItem (props) {
         <div className="item__block" id={product.id}  onClick={() => handleProductModal()}>
             <img className="item__block__image" src={product.picture} alt=" "/>
             <p className="item__block__name">{product.title.split(' ').slice(0,4).join(' ')}</p>
-            <p className="item__block__price">${product.price}</p>
+            <p className="item__block__price">${product.price}</p>  
             <button 
                 type="button" 
-                className={`item__block__button ${findedItem && 'favourite'} ${isLoggedIn && 'active'}`} 
+                className={`item__block__button ${findedItem ? 'favourite' : ''} ${isLoggedIn ? 'active' : ''}`} 
                 onClick={(e) => postFavouriteItem(e, product.id)}
             />
         </div>
