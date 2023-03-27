@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../store/actions/auth'
+import { login } from '../../store/actions/auth';
 import { ClipLoader } from 'react-spinners';
 
 import { toast } from 'react-toastify';
@@ -12,7 +12,7 @@ import * as Yup from 'yup'
 export default function LoginForm( {setOpenAuthModal} ) {
     const [passwordShown, setPasswordShown] = useState(false);
     const [loading, setLoading] = useState(false);
-
+    
     const togglePassword = () => {
         setPasswordShown(!passwordShown);
     }

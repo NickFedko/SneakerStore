@@ -27,8 +27,8 @@ export default function CartForm({ setOpenPurchaseModal }) {
     const cartItemsIdAndQuantity = cartItems.map(value => { 
         return { productId: value.id , quantity: value.cartQuantity }
     })
-
-    const { fullName, phone, country, city, address } = user;
+    
+    const { fullName, phone, country, city, address } = user || {};
 
     const validationSchema = Yup.object().shape({
         fullName: Yup.string()

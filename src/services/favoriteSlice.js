@@ -1,12 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-import message from "../store/reducers/message";
 
 const initialState = {
     favoriteItems: []
 };
 
-const notify = (message) => toast(message, {
+const notify = (message) => toast( message, {
     type: 'default',
     autoClose: 2000,
     theme: 'colored'
@@ -27,10 +26,16 @@ const favoriteSlice = createSlice({
 
             state.favoriteItems = nextFavoriteItems;
             notify(`${action.payload.title} removed from favorite`);
+        },
+        clearFavorite(state) {
+            state.favoriteItems = [];
+        },
+        checkFavorite(state, action) {
+            state.favoriteItems.push(...action.payload);
         }
     }
 })
 
-export const { addToFavorite, removeFromFavorite } = favoriteSlice.actions
+export const { addToFavorite, removeFromFavorite, clearFavorite, checkFavorite } = favoriteSlice.actions
 
 export default favoriteSlice.reducer;

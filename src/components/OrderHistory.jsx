@@ -16,7 +16,7 @@ export default function OrderHistory() {
     useEffect(() => {
         getOrders()
             .then(res => setOrders(res.data))
-    })
+    }, [])
 
     const { fullName } = user;
 

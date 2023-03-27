@@ -19,7 +19,7 @@ export async function deleteFavorite(id) {
 }
 
 export async function getFavorites(params) {
-    return axios({
+    return await axios({
         method: 'GET',
         url: `${baseUrl}/products/favorites`,
         params,

@@ -4,18 +4,36 @@ import basket from '../assets/images/icons/basket.svg';
 import '../assets/styles/Header.css'
 import { Link } from 'react-router-dom';
 import UserBar from './UserBar';
-import {  useState } from 'react';
+import {  useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import AuthModal from './modals/AuthModal';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getFavorites } from '../services/api/favorites';
+import { checkFavorite } from '../services/favoriteSlice';
+import { useNavigate } from 'react-router-dom';
+import NotLoggedInModal from './modals/NotLoggedInModal';
 
 export default function Header() {
     const { isLoggedIn } = useSelector(state => state.auth);
     const { cartItems } = useSelector(state => state.cartReducer);
     const { favoriteItems } = useSelector(state => state.favoriteReducer);
     const [openAuthModal, setOpenAuthModal] = useState(false);
+    const [openNotLoggedInModal, setOpenNotLoggedInModal] = useState(false);
     const [formType, setFormType] = useState('');
+    const [favorites, setFavorites] = useState([]);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if(isLoggedIn) {
+            getFavorites()
+                .then((res) => {
+                    setFavorites(res.data);
+                    dispatch(checkFavorite(favorites));
+            });
+        }
+    }, [isLoggedIn, dispatch])
     
 
     const openLoginModal = () => {
@@ -28,6 +46,12 @@ export default function Header() {
         setFormType('register');
     }
 
+    const openFavoriteSection = () => {
+        isLoggedIn 
+            ? navigate('/account/favourite')
+            : setOpenNotLoggedInModal(true);
+    }
+
     return(
         <header>
             <div className='header__logo__block'>
@@ -36,16 +60,17 @@ export default function Header() {
                 </Link>
             </div>
             <div className='header__interaction__block'>
-                <Link to='/account/favourite'>
-                    <button className='header__favourite__button'>
-                        <img src={favourite} alt={'favourite__button'}/>
-                        {isLoggedIn && favoriteItems.length > 0 &&<span>{favoriteItems.length}</span>}
-                    </button>
-                </Link>
+                <button 
+                    className='header__favourite__button'
+                    onClick={() => openFavoriteSection()}
+                >
+                    <img src={favourite} alt={'favourite__button'}/>
+                    {isLoggedIn && favoriteItems.length > 0 &&<span>{favoriteItems.length}</span>}
+                </button>
                 <Link to='/orders'>
                     <button className='header__basket__button'>
                         <img src={basket} alt={'basket__button'}/>
-                        {isLoggedIn && cartItems.length > 0 &&<span>{cartItems.length}</span>}
+                        {cartItems.length > 0 &&<span>{cartItems.length}</span>}
                     </button>
                 </Link>
                 {isLoggedIn ?
@@ -68,14 +93,22 @@ export default function Header() {
                     </>
                 }
             </div>
-            {openAuthModal && <AnimatePresence>
+            <AnimatePresence>
+                {openAuthModal && 
                     <AuthModal
                         type={formType}
                         setType={setFormType}
                         setOpenAuthModal={setOpenAuthModal}
                     />
-                </AnimatePresence>
-            }
+                }
+                {openNotLoggedInModal && 
+                    <NotLoggedInModal 
+                        setOpenNotLoggedInModal={setOpenNotLoggedInModal}
+                        setOpenAuthModal={setOpenAuthModal}
+                        setFormType={setFormType}
+                    />
+                }
+            </AnimatePresence>
         </header>
     )
 }

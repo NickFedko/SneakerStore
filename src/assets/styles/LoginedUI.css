@@ -49,16 +49,17 @@
     padding: 0;
 }
 
-.user__ui .drop_down__ul a {
-    margin: 0;
-    text-decoration: none;
-    color: var(--font-color-black);
-}
-
 .drop_down__ul .drop_down__li {
     font-size: var(--font-size-smallest);
+    width: 100%;
+    height: 100%;
     margin: 16px;
     cursor: pointer;
+    padding: 0;
+}
+
+.drop_down__ul .drop_down__li:first-child {
+    cursor: auto;
 }
 
 .drop_down__ul .drop_down__li p {

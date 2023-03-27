@@ -48,7 +48,7 @@ export default function ProductItem (props) {
             <p className="item__block__price">${product.price}</p>
             <button 
                 type="button" 
-                className={`item__block__button ${findedItem && 'favourite'}`} 
+                className={`item__block__button ${findedItem && 'favourite'} ${isLoggedIn && 'active'}`} 
                 onClick={(e) => postFavouriteItem(e, product.id)}
             />
         </div>

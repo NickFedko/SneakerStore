@@ -2,13 +2,14 @@ import dropDown from '../assets/images/icons/drop_down.svg';
 import { useState, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import '../assets/styles/LoginedUI.css'
 
 import { useDispatch, useSelector } from 'react-redux';
 
 import { logout } from '../store/actions/auth';
+import { clearFavorite } from '../services/favoriteSlice';
 
 export default function UserBar() {
     const [open, setOpen] = useState(false);
@@ -26,7 +27,8 @@ export default function UserBar() {
 
     const logOut = useCallback(() => {
         dispatch(logout());
-        navigate("/")
+        dispatch(clearFavorite());
+        navigate('/');
     }, [dispatch, navigate]);
 
     return (
@@ -60,11 +62,14 @@ export default function UserBar() {
                             </p>
                         </li>
                         <hr className='drop_down__hr' />
-                        <Link to='/account' onClick={() => setOpen(false)}>
-                            <li className='drop_down__li'>
-                                Settings
-                            </li>
-                        </Link>
+                        <li className='drop_down__li' 
+                            onClick={() => {
+                                setOpen(false);
+                                navigate('/account')
+                            }}
+                        >
+                            Settings
+                        </li>
                         <li className='drop_down__li logout' onClick={logOut}>
                             Log Out
                         </li>

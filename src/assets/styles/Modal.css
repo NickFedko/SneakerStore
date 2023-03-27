@@ -245,6 +245,13 @@ header .modal__container {
     background-color: var(--white-bg);
 }
 
+.modal__container__product__action button.active {
+    border: none;
+    background-color: var(--orange-bg);
+    color: var(--font-color-white);
+    cursor: pointer;
+}
+
 .modal__container__product__action button.button__buy_now {
     margin: 0px;
     width: 220px;
@@ -385,4 +392,37 @@ header .modal__container {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+/* Modal Not logged in */
+
+.modal__container__not_logged_in {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 40px;
+}
+
+.modal__container__not_logged_in h2 {
+    width: 220px;
+}
+
+.modal__container__not_logged_in button, .modal__container__not_logged_in button:last-child {
+    width: 220px;
+    height: 36px;
+    cursor: pointer;
+    background-color: var(--orange-bg);
+    color: var(--font-color-white);
+    border: none;
+    margin: 8px 0;
+    border-radius: var(--modal-container-input-border-radius);
+}
+
+.modal__container__not_logged_in button:last-child {
+    color: var(--font-color-orange);
+    background-color: var(--white-bg);
+    border: var(--modal-container-product-action-button-border);
+}
+
+.modal__container__not_logged_in button.modal__close-button {
+    width: auto;
 }

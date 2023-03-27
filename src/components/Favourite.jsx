@@ -15,7 +15,7 @@ export default function Favourite() {
     useEffect(() => {
         getFavorites({offset, limit})
             .then(res => setFavoritesProducts(res.data))
-    }, [limit, offset, favoritesProducts])
+    }, [limit, offset])
 
     const { user } = useSelector(state => state.auth);
 

@@ -59,6 +59,9 @@
     border: none;
     box-shadow: var(--item-block-button-box-shadow);
     background: #FFFFFF url('../images/icons/favourite_unactive.svg') no-repeat center;
+}
+
+.list__items .item__block .item__block__button.active {
     cursor: pointer;
 }
 
