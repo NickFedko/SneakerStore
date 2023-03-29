@@ -57,6 +57,16 @@
     border: var(--cart-item-container-img-border);
 }
 
+.cart__item__container__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cart__item__container__info p:first-child {
+    width: 220px;
+}
+
 .cart__item__container__info__action {
     display: flex;
     align-items: center;

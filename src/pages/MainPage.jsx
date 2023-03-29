@@ -17,7 +17,8 @@ export default function MainPage() {
     const [searchProductsValue, setSearchProductsValue] = useState('');
     const [idCategory, setIdCategory] = useState(0);
     const [loading, setLoading] = useState(false);
-    const { isLoggedIn } = useSelector(state => state.auth)
+    const { isLoggedIn } = useSelector(state => state.auth);
+    const { favoriteItems } = useSelector(state => state.favoriteReducer)
 
 
     useEffect(() => {
@@ -63,7 +64,7 @@ export default function MainPage() {
                 setLoading(false);
             });
         }
-    }, [offset, limit, searchProductsValue, idCategory, sortBy, isLoggedIn])
+    }, [offset, limit, searchProductsValue, idCategory, sortBy, isLoggedIn, favoriteItems])
 
    const renderLoadMoreBtn = () => {
         if(!(products.length % limit) && products.length !== 0) {

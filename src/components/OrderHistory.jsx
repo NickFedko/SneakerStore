@@ -17,6 +17,7 @@ export default function OrderHistory() {
         getOrders()
             .then(res => setOrders(res.data))
     }, [])
+    
     const formatOrderDate = (date) => {
         const current = new Date(date);
         const orderDate = `${current.getDate()}.${current.getMonth()+1}.${current.getFullYear()}`;

@@ -12,6 +12,7 @@ import { addToFavorite, removeFromFavorite } from '../../services/favoriteSlice'
 
 export default function ProductItemModal( {clickedProductId, setOpenProductModal} ) {
     const [productContent, setProductContent] = useState([]);
+    const [productAmount, setProductAmount] = useState(1);
     const {title, picture, price, description} = productContent;
     const [contentLoading, setContentLoading] = useState(false);
     const { cartItems } = useSelector(state => state.cartReducer);
@@ -23,10 +24,24 @@ export default function ProductItemModal( {clickedProductId, setOpenProductModal
 
     const dispatch = useDispatch();
 
+    const objProductAmount = { amount: productAmount }
+
     const handleAddRemoveCart = (product) => {
+        Object.assign(product, objProductAmount);
+        console.log(product);
         findedItemInCart  
         ? dispatch(removeFromCart(product))
         : dispatch(addToCart(product))
+    }
+
+    const increase = () => {
+        setProductAmount(productAmount + 1);
+    }
+
+    const decrease = () => {
+        if(productAmount > 1) {
+            setProductAmount(productAmount - 1);
+        }
     }
 
     useEffect(() => {
@@ -93,10 +108,23 @@ export default function ProductItemModal( {clickedProductId, setOpenProductModal
                             <p>{description}</p>
                             <p className='price__label'>Price: <span>${price}</span></p>
                             <div className='modal__container__product__description__row'>
-                                <button>+</button><p>1</p><button>-</button>
+                                <button
+                                    type='button'
+                                    onClick={() => increase()}
+                                >
+                                    +
+                                </button>
+                                <p>{productAmount}</p>
+                                <button
+                                    type='button'
+                                    className={productAmount > 1 ? '' : 'active'}
+                                    onClick={() => decrease()}
+                                >
+                                    -
+                                </button>
                             </div>
-                            <p>Items: <span>1</span></p>
-                            <p>Total: <span>${price}</span></p>
+                            <p>Items: <span>{productAmount}</span></p>
+                            <p>Total: <span>${price*productAmount}</span></p>
                         </div>
                     </div>
                     <div className='modal__container__product__action'>

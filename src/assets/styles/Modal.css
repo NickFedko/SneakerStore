@@ -213,17 +213,21 @@ header .modal__container {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    color: var(--font-color-gray);
+    color: var(--font-color-white);
     background-color: var(--modal-container-product-description-button-bg);
     border: none;
     font-size: var(--font-size-largest);
     padding: 0px;
     line-height: 0px;
     text-align: center;
-    display: table-cell;
-    vertical-align: middle;
     margin: 0px;
     cursor: pointer;
+}
+
+.modal__container__product__description .modal__container__product__description__row button.active {
+    background-color: var(--white-bg);
+    color: var(--font-color-orange);
+    border: var(--vertical-line-border);
 }
 
 .modal__container__product__action {
@@ -261,9 +265,9 @@ header .modal__container {
 
 .modal__container__product__description .modal__container__product__description__row p {
     width: 20px;
-    line-height: 36px;
     text-align: center;
     margin: 0;
+    align-self: center;
 }
 
 .modal__container__product__description__row {
@@ -392,6 +396,10 @@ header .modal__container {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.modal__container__orders__info div span {
+    margin-left: 6px;
 }
 
 /* Modal Not logged in */
