@@ -28,7 +28,6 @@ export default function ProductItemModal( {clickedProductId, setOpenProductModal
 
     const handleAddRemoveCart = (product) => {
         Object.assign(product, objProductAmount);
-        console.log(product);
         findedItemInCart  
         ? dispatch(removeFromCart(product))
         : dispatch(addToCart(product))
