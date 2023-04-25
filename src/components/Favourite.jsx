@@ -12,6 +12,7 @@ export default function Favourite() {
     const [offset, setOffset] = useState(0);
     const [limit, setLimit] = useState(10);
 
+
     useEffect(() => {
         getFavorites({offset, limit})
             .then(res => setFavoritesProducts(res.data))

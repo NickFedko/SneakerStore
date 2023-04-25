@@ -53,7 +53,7 @@ const cartSlice = createSlice({
                 notify(`${action.payload.title} removed from cart`)
             }
         },
-        getTotals(state, action) {
+        getTotals(state) {
             let {total, quantity} = state.cartItems.reduce(
                 (cartTotal, cartItem) => {
                 const { price, cartQuantity } = cartItem;
@@ -71,7 +71,7 @@ const cartSlice = createSlice({
             state.cartTotalQuantity = quantity;
             state.cartTotalAmount = total;
         },
-        clearCart(state, action) {
+        clearCart(state) {
             state.cartItems = [];
         }
     },

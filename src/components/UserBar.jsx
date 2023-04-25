@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { logout } from '../store/actions/auth';
 import { clearFavorite } from '../services/favoriteSlice';
+import { clearCart } from '../services/cartSlice';
 
 export default function UserBar() {
     const [open, setOpen] = useState(false);
@@ -28,6 +29,7 @@ export default function UserBar() {
     const logOut = useCallback(() => {
         dispatch(logout());
         dispatch(clearFavorite());
+        dispatch(clearCart());
         navigate('/');
     }, [dispatch, navigate]);
 
