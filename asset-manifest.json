@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/static/css/main.8da37a71.css",
-    "main.js": "/static/js/main.0bfbb2ae.js",
-    "static/media/Heebo-Regular.ttf": "/static/media/Heebo-Regular.4dbbe613d25d93d40f37.ttf",
-    "static/media/logo.svg": "/static/media/logo.679af4c115c97fcc9823713fc8a9c2dd.svg",
-    "static/media/icon_delete.svg": "/static/media/icon_delete.b14cb201d5ebbb5f833e.svg",
-    "static/media/icon_search.svg": "/static/media/icon_search.81f8897cc8a04d6237e1.svg",
-    "static/media/basket.svg": "/static/media/basket.1049b649e5f65a11675202b2d917e61f.svg",
-    "static/media/icon_limit.svg": "/static/media/icon_limit.dc058f1ed78415fb8748.svg",
-    "index.html": "/index.html",
-    "static/media/favourite_active.svg": "/static/media/favourite_active.c3b7c52c0de1f699219f58db6052cfc0.svg",
-    "static/media/favourite_unactive.svg": "/static/media/favourite_unactive.8272eb83ef4036bd820d.svg",
-    "static/media/visibility.svg": "/static/media/visibility.b1aa69aac0ea42ade073.svg",
-    "static/media/favourite_clicked.svg": "/static/media/favourite_clicked.2f6e636b9f8fb1403ae0.svg",
-    "static/media/icon_sorting.svg": "/static/media/icon_sorting.bea69fc04dcdeca3d6ad.svg",
-    "static/media/close.svg": "/static/media/close.fd5a11d9408ff45fe3cbc95fdb6d451a.svg",
-    "static/media/icon_category.svg": "/static/media/icon_category.76f4250c04926c3e5ea2.svg",
-    "static/media/drop_down.svg": "/static/media/drop_down.f3c880680e6acdff0d9d7a23c7a64b74.svg",
-    "main.8da37a71.css.map": "/static/css/main.8da37a71.css.map",
-    "main.0bfbb2ae.js.map": "/static/js/main.0bfbb2ae.js.map"
+    "main.css": "/SneakerStore/static/css/main.50cbd4ab.css",
+    "main.js": "/SneakerStore/static/js/main.f54943d5.js",
+    "static/media/Heebo-Regular.ttf": "/SneakerStore/static/media/Heebo-Regular.4dbbe613d25d93d40f37.ttf",
+    "static/media/logo.svg": "/SneakerStore/static/media/logo.679af4c115c97fcc9823713fc8a9c2dd.svg",
+    "static/media/icon_delete.svg": "/SneakerStore/static/media/icon_delete.b14cb201d5ebbb5f833e.svg",
+    "static/media/icon_search.svg": "/SneakerStore/static/media/icon_search.81f8897cc8a04d6237e1.svg",
+    "static/media/basket.svg": "/SneakerStore/static/media/basket.1049b649e5f65a11675202b2d917e61f.svg",
+    "static/media/icon_limit.svg": "/SneakerStore/static/media/icon_limit.dc058f1ed78415fb8748.svg",
+    "index.html": "/SneakerStore/index.html",
+    "static/media/favourite_active.svg": "/SneakerStore/static/media/favourite_active.c3b7c52c0de1f699219f58db6052cfc0.svg",
+    "static/media/favourite_unactive.svg": "/SneakerStore/static/media/favourite_unactive.8272eb83ef4036bd820d.svg",
+    "static/media/visibility.svg": "/SneakerStore/static/media/visibility.b1aa69aac0ea42ade073.svg",
+    "static/media/favourite_clicked.svg": "/SneakerStore/static/media/favourite_clicked.2f6e636b9f8fb1403ae0.svg",
+    "static/media/icon_sorting.svg": "/SneakerStore/static/media/icon_sorting.bea69fc04dcdeca3d6ad.svg",
+    "static/media/close.svg": "/SneakerStore/static/media/close.fd5a11d9408ff45fe3cbc95fdb6d451a.svg",
+    "static/media/icon_category.svg": "/SneakerStore/static/media/icon_category.76f4250c04926c3e5ea2.svg",
+    "static/media/drop_down.svg": "/SneakerStore/static/media/drop_down.f3c880680e6acdff0d9d7a23c7a64b74.svg",
+    "main.50cbd4ab.css.map": "/SneakerStore/static/css/main.50cbd4ab.css.map",
+    "main.f54943d5.js.map": "/SneakerStore/static/js/main.f54943d5.js.map"
   },
   "entrypoints": [
-    "static/css/main.8da37a71.css",
-    "static/js/main.0bfbb2ae.js"
+    "static/css/main.50cbd4ab.css",
+    "static/js/main.f54943d5.js"
   ]
 }
